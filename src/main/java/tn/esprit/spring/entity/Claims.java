@@ -79,7 +79,7 @@ public class Claims implements Serializable {
 
 	
 	@ManyToOne
-	private User user;
+	private User user; 
 	
 
 }
