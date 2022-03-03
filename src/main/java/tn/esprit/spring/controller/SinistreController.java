@@ -23,9 +23,4 @@ public class SinistreController {
 		sinistreservice.addSinistre(s);
 	}
 	
-	//@GetMapping("/getContractBysinistre/{sinistreId}")
-	//@ResponseBody
-	//public List<Contract> getContractBysinistre(@PathVariable("sinistreId") long sinistreId){
-		//return sinistreservice.getContarctBysinistre(sinistreId).get();
-	//}
 }
