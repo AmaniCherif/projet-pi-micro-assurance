@@ -72,9 +72,11 @@ public class Claims implements Serializable {
 		Claim_date = claim_date;
 	}
 
+
 	
 	@ManyToOne
 	private User user;
 	
+
 
 }

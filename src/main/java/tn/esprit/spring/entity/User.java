@@ -156,6 +156,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<Offers>Offer;
 
+
     @OneToMany (mappedBy="user")
     private Set<Sinistre>Sinistre;
 
