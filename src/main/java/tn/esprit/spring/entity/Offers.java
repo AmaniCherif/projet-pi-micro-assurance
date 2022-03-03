@@ -82,5 +82,5 @@ public class Offers implements Serializable {
 		this.type_offers = type_offers;
 	}
 @ManyToOne
-private User user;
+private User user; 
 }
