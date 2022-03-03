@@ -9,10 +9,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import tn.esprit.spring.dao.entities.Produit;
 
 
 @Entity
@@ -152,9 +155,17 @@ public class User implements Serializable {
 	private Set<Claims>Claim;
 	@OneToMany(mappedBy="user")
 	private Set<Offers>Offer;
+<<<<<<< HEAD
 
 
+=======
+    @OneToMany (mappedBy="user")
+    private Set<Sinistre>Sinistre;
+>>>>>>> 467052e871aac6578172ce5b63ad287d9d797483
 
+    @ManyToMany
+	private Set<Contract> user;
+	
 
 
 
