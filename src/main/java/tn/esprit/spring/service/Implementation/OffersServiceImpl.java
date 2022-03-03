@@ -1,4 +1,4 @@
-package tn.esprit.spring.service;
+package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import tn.esprit.spring.entity.Offers;
 import tn.esprit.spring.repository.OffersRepository;
+import tn.esprit.spring.service.Interface.IOffersService;
+
 import org.springframework.stereotype.Service;
 
 
