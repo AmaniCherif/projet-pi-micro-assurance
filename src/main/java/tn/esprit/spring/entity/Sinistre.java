@@ -3,14 +3,22 @@ package tn.esprit.spring.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+@Entity
+@Table(name="Sinistre")
 public class Sinistre implements Serializable{
 
 	@Id
+	@GeneratedValue( strategy = GenerationType.IDENTITY)
+	@Column (name= "id_Sinistre")
 	private long Id_Sinistre;
 	@Temporal(TemporalType.DATE)
 	private Date Date_Declaration;
@@ -51,5 +59,5 @@ public class Sinistre implements Serializable{
 	}
 	
 	@ManyToOne
-	User user;
+	private User user;
 }

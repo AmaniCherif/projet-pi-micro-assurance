@@ -75,8 +75,7 @@ public class Contract implements Serializable {
 		this.primeCommercial = primeCommercial;
 	}
 	
-	@OneToOne
-	private Account account;
+	
 	
 	
 	

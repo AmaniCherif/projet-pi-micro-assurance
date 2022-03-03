@@ -11,7 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
+
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -80,5 +81,6 @@ public class Offers implements Serializable {
 	public void setType_offers(State_Offers type_offers) {
 		this.type_offers = type_offers;
 	}
-
+@ManyToOne
+private User user;
 }
