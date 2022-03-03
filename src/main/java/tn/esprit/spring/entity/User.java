@@ -149,9 +149,9 @@ public class User implements Serializable {
 		this.type = type;
 	}
 	@OneToMany(mappedBy="user")
-	private Set<Claim>Claim;
+	private Set<Claims>Claim;
 	@OneToMany(mappedBy="user")
-	private Set<Offer>Offer;
+	private Set<Offers>Offer;
 
 
 
