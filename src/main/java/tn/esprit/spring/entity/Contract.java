@@ -19,8 +19,7 @@ public class Contract implements Serializable {
 
 	private static final long serialVersionUID= 1L;
 	@Id
-	@GeneratedValue( strategy = GenerationType.IDENTITY)
-	@Column (name= "ref_contrat")
+	@GeneratedValue
 	private String ref_contrat;
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;
@@ -75,8 +74,7 @@ public class Contract implements Serializable {
 		this.primeCommercial = primeCommercial;
 	}
 	
-	@OneToOne
-	private Account account;
+	
 	
 	
 	

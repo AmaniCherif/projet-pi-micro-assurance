@@ -3,11 +3,14 @@ package tn.esprit.spring.service.Implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Sinistre;
 import tn.esprit.spring.repository.SinistreRepository;
 import tn.esprit.spring.service.Interface.ISinistreService;
 
+
+@Service
 public class SinistreServiceImpl implements ISinistreService{
 
 	@Autowired
