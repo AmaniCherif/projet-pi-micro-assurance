@@ -156,6 +156,19 @@ public class User implements Serializable {
 
 
 
+
+	private Set<Claims>claims;
+	@OneToMany(mappedBy="user")
+	private Set<Offers>offers;
+
+
+    @OneToMany (mappedBy="user")
+    private Set<Sinistre>sinistres;
+
+
+    @ManyToMany
+	private Set<Contract> contracts;
+
 	
 
 
