@@ -23,25 +23,25 @@ public class UserController {
   UserService userService;
  
   @GetMapping("/retrieveAllUsers")
-  @ResponseBody
+
   public List<User> getUsers(){
 	  List<User> listUsers=userService.retrieveAllUsers();
 	  return listUsers;
   }
   @GetMapping("/retrieveUser/{user-id}")
-  @ResponseBody
+  
   public User retrieveUser(@PathVariable("user-id") Long userId) {
 	  return userService.retrieveUser(userId);
   }
   @PostMapping("/addUser")
-  @ResponseBody
+
   public User addUser(@RequestBody User u)
   {
 	  User user = userService.addUser(u);
   return user;
   }
   @PutMapping("/modify-user")
-  @ResponseBody
+  
   public User modifyUser(@RequestBody User user) {
   return userService.updateUser(user);
   }

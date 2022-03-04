@@ -155,17 +155,17 @@ public class User implements Serializable {
 		this.type = type;
 	}
 	@OneToMany(mappedBy="user")
-	private Set<Claims>Claim;
+	private Set<Claims>claims;
 	@OneToMany(mappedBy="user")
-	private Set<Offers>Offer;
+	private Set<Offers>offers;
 
 
     @OneToMany (mappedBy="user")
-    private Set<Sinistre>Sinistre;
+    private Set<Sinistre>sinistres;
 
 
     @ManyToMany
-	private Set<Contract> user;
+	private Set<Contract> contracts;
 	
 
 
