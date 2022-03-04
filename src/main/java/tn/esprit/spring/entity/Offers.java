@@ -11,9 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import javax.persistence.ManyToOne;
-
-
-
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,7 +21,7 @@ import javax.persistence.TemporalType;
 public class Offers implements Serializable {
 	
 	
-	@Id
+@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	 @Column( name = "id_Offer")
 	private int IdOffer; 

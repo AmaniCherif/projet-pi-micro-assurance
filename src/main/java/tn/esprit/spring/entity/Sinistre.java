@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +26,8 @@ public class Sinistre implements Serializable{
 	private Date Date_Declaration;
 	private String Type_Sinistre;
 	private String Place_Sinistre;
-	private String State_Sinistre;
+	@Enumerated(EnumType.STRING)
+	private State_Sinistre statesinistre;
 	
 	
 	public long getId_Sinistre() {
@@ -51,13 +54,15 @@ public class Sinistre implements Serializable{
 	public void setPlace_Sinistre(String place_Sinistre) {
 		Place_Sinistre = place_Sinistre;
 	}
-	public String getState_Sinistre() {
-		return State_Sinistre;
-	}
-	public void setState_Sinistre(String state_Sinistre) {
-		State_Sinistre = state_Sinistre;
-	}
 	
+	public State_Sinistre getStatesinistre() {
+		return statesinistre;
+	}
+	public void setStatesinistre(State_Sinistre statesinistre) {
+		this.statesinistre = statesinistre;
+	}
+
+
 	@ManyToOne
 	private User user;
 }
