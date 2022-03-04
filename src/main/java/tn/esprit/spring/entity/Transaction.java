@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-@Table(name="Transaction")
 
 public class Transaction implements Serializable {
 	/**
@@ -20,7 +19,6 @@ public class Transaction implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="transactionId")
 	private int transactionid;
 	
 	@Temporal(TemporalType.DATE)
@@ -28,49 +26,9 @@ public class Transaction implements Serializable {
 
 	private float transactionAmount;
 	
-	
-    private int nbreC;
-    private float amountC;
+    private String type;
+
     
-    
-	public int getNbreC() {
-		return nbreC;
-	}
-
-	public void setNbreC(int nbreC) {
-		this.nbreC = nbreC;
-	}
-
-	public float getAmountC() {
-		return amountC;
-	}
-
-	public void setAmountC(float amountC) {
-		this.amountC = amountC;
-	}
-
-
-
-	public Transaction(Date transactionDate, float transactionAmount,
-			Contract transactionprice) {
-		super();
-		this.transactionDate = transactionDate;
-		this.transactionAmount = transactionAmount;
-	}
-
-	public Transaction(Date transaction_date, float transaction_amount) {
-		super();
-		this.transactionDate = transaction_date;
-		this.transactionAmount = transaction_amount;
-	}
-	
-
-	public Transaction() {
-		super();
-	}
-
-	
-
 	public int getTransactionid() {
 		return transactionid;
 	}
@@ -95,10 +53,26 @@ public class Transaction implements Serializable {
 		this.transactionAmount = transactionAmount;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
+	public Transaction() {
+		super();
+	}
+	
+    
+	
+
+	
 	
 
 	
