@@ -24,7 +24,7 @@ public class Account implements Serializable {
 		this.account_id = account_id;
 	}
 
-
+    
 
 	private Float balance;
 	
