@@ -6,23 +6,23 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
-import javax.persistence.ManyToMany;
 
 
 import javax.persistence.OneToMany;
-import javax.persistence.Table;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 
 @Entity
-@Table(name="T_User")
 public class User implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -33,21 +33,6 @@ public class User implements Serializable {
 	}
 	public void setIdUser(Long idUser) {
 		this.idUser = idUser;
-	}
-	@Temporal(TemporalType.DATE)
-	private Date birthDay;
-	public Date getBirthDay() {
-		return birthDay;
-	}
-	public void setBirthDay(Date birthDay) {
-		this.birthDay = birthDay;
-	}
-	private String password;
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	private String firstname;
 	public String getFirstname() {
@@ -63,12 +48,28 @@ public class User implements Serializable {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	private String phone;
-	public String getPhone() {
-		return phone;
+	private String sex;
+	public String getSex() {
+		return sex;
 	}
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	private Long cin;
+	public Long getCin() {
+		return cin;
+	}
+	public void setCin(Long cin) {
+		this.cin = cin;
+	}
+	@Temporal(TemporalType.DATE)
+	private Date birthdate;
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
 	}
 	private String address;
 	public String getAddress() {
@@ -77,27 +78,6 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	private String job;
-	public String getJob() {
-		return job;
-	}
-	public void setJob(String job) {
-		this.job = job;
-	}
-	private String city;
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
-	private String state;
-	public String getState() {
-		return state;
-	}
-	public void setState(String state) {
-		this.state = state;
-	}
 	private int postalCode;
 	public int getPostalCode() {
 		return postalCode;
@@ -105,40 +85,12 @@ public class User implements Serializable {
 	public void setPostalCode(int postalCode) {
 		this.postalCode = postalCode;
 	}
-	private String country;
-	public String getCountry() {
-		return country;
+	private String job;
+	public String getJob() {
+		return job;
 	}
-	public void setCountry(String country) {
-		this.country = country;
-	}
-	private int age;
-	public int getAge() {
-		return age;
-	}
-	public void setAge(int age) {
-		this.age = age;
-	}
-	private String login;
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
-	private int cin;
-	public int getCin() {
-		return cin;
-	}
-	public void setCin(int cin) {
-		this.cin = cin;
-	}
-	private Float salary;
-	public Float getSalary() {
-		return salary;
-	}
-	public void setSalary(Float salary) {
-		this.salary = salary;
+	public void setJob(String job) {
+		this.job = job;
 	}
 	private String email;
 	public String getEmail() {
@@ -147,25 +99,63 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	private String type;
-	public String getType() {
-		return type;
+	private String password;
+	public String getPassword() {
+		return password;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setPassword(String password) {
+		this.password = password;
 	}
+	private String confirmPassword;
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
+	}
+	private Long phoneNumber;
+    public Long getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(Long phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	private String departement;
+	public String getDepartement() {
+		return departement;
+	}
+	public void setDepartement(String departement) {
+		this.departement = departement;
+	}
+	@Enumerated(EnumType.STRING)
+	private RoleUser roleUser;
+	@Enumerated(EnumType.STRING)
+	private StatusUser statusUser;
+	@Enumerated(EnumType.STRING)
+	private CityUser cityUser;
+
+	
+	
+	
+	
+	
+	
+	
 	@OneToMany(mappedBy="user")
-	private Set<Claims>claims;
+	private Set<Investissement>investissements;
 	@OneToMany(mappedBy="user")
-	private Set<Offers>offers;
+	private Set<ContractRequest>contractsRequest;
+	@OneToMany(mappedBy="user")
+	private Set<ContractOffers>contractsOffers;
+	@OneToMany(mappedBy="user")
+	private Set<ClaimReport>claimsReport;
+	
+	
+
+  
 
 
-    @OneToMany (mappedBy="user")
-    private Set<Sinistre>sinistres;
 
-
-    @ManyToMany
-	private Set<Contract> contracts;
 	
 
 
