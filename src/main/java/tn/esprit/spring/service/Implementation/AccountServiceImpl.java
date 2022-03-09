@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import tn.esprit.spring.entity.Account;
-import tn.esprit.spring.entity.Offers;
+import tn.esprit.spring.entity.Offer;
 import tn.esprit.spring.repository.AccountRepository;
 import tn.esprit.spring.service.Interface.AccountService;
 
