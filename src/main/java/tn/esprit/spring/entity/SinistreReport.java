@@ -1,5 +1,8 @@
 package tn.esprit.spring.entity;
 
-public class SinistreReport {
+import javax.persistence.ManyToOne;
 
+public class SinistreReport {
+@ManyToOne
+private Contract contract;
 }
