@@ -58,6 +58,7 @@ public class User implements Serializable {
 	private Long cin;
 	public Long getCin() {
 		return cin;
+
 	}
 	public void setCin(Long cin) {
 		this.cin = cin;
@@ -68,6 +69,18 @@ public class User implements Serializable {
 	public Date getBirthdate() {
 		return birthdate;
 	}
+
+	}
+	public void setCin(Long cin) {
+		this.cin = cin;
+	}
+	@Temporal(TemporalType.DATE)
+	private Date birthdate;
+
+	public Date getBirthdate() {
+		return birthdate;
+	}
+
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
@@ -141,18 +154,30 @@ public class User implements Serializable {
 	
 	
 	
+
 	@OneToMany(mappedBy="user")
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractsRequest;
 	@OneToMany(mappedBy="user")
-	private Set<ContractOffers>contractsOffers;
+	private Set<ContractOffer>contractOffers;
 	@OneToMany(mappedBy="user")
 	private Set<ClaimReport>claimsReport;
 	
 	
 
   
+
+
+
+
+	
+	
+	
+
+  
+
+
 
 
 
