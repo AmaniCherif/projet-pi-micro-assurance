@@ -5,7 +5,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-@Repository
+
+
 public interface ContractRequestRepository extends CrudRepository<ContractRepository, String>{
 }
 */
