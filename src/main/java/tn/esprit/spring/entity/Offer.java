@@ -101,6 +101,6 @@ public class Offer implements Serializable {
 		Description = description;
 	}
 	@OneToOne
-	private ContractOffer contractOffer;
+	private ContractOffer offer;
 
 }
