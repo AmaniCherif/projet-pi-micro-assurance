@@ -16,10 +16,10 @@ import tn.esprit.spring.service.Implementation.ContractServiceImpl;
 
 @RestController
 @RequestMapping("/Contract")
-public class ContactController {
+public class ContractController {
 @Autowired
 ContractServiceImpl csi;
-//URL : http://localhost:8080/SpringMVC/contract/getAllContract
+//URL : http://localhost:8080/SpringMVC/Contract/getAllContract
 @GetMapping("/getAllContract")
 public List<Contract> getNomsContractJPQL() {			
 	return csi.retrieveALLContracts();
