@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Entity
 
 public class User implements Serializable {
-	/*@Id
+	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 
 	private Long idUser;
@@ -73,13 +73,7 @@ public class User implements Serializable {
 		return birthdate;
 	}
 	
-	@Temporal(TemporalType.DATE)
-	private Date birthdate;
-
-	public Date getBirthdate() {
-		return birthdate;
-	}
-  	public void setBirthdate(Date birthdate) {
+	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 }
 	private String address;
