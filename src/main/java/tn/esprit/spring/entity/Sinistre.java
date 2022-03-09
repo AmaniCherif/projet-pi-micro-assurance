@@ -11,58 +11,62 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 @Entity
-@Table(name="Sinistre")
 public class Sinistre implements Serializable{
 
 	@Id
 	@GeneratedValue( strategy = GenerationType.IDENTITY)
 	@Column (name= "id_Sinistre")
-	private long Id_Sinistre;
+	private int id_Sinistre_claim;
 	@Temporal(TemporalType.DATE)
-	private Date Date_Declaration;
-	private String Type_Sinistre;
-	private String Place_Sinistre;
+	private Date date_Payment;
+	private double repayment_capital;
 	@Enumerated(EnumType.STRING)
-	private State_Sinistre statesinistre;
+	private State_Sinistre_Claim state_Sinistre_Claim;
 	
+	@OneToOne(mappedBy = "sinistre")
+	private SinistreReport sinistreReport;
+	@OneToOne
+	private Provisions provisions;
 	
-	public long getId_Sinistre() {
-		return Id_Sinistre;
+	public int getId_Sinistre_claim() {
+		return id_Sinistre_claim;
 	}
-	public void setId_Sinistre(long id_Sinistre) {
-		Id_Sinistre = id_Sinistre;
+	public void setId_Sinistre_claim(int id_Sinistre_claim) {
+		this.id_Sinistre_claim = id_Sinistre_claim;
 	}
-	public Date getDate_Declaration() {
-		return Date_Declaration;
+	public Date getDate_Payment() {
+		return date_Payment;
 	}
-	public void setDate_Declaration(Date date_Declaration) {
-		Date_Declaration = date_Declaration;
+	public void setDate_Payment(Date date_Payment) {
+		this.date_Payment = date_Payment;
 	}
-	public String getType_Sinistre() {
-		return Type_Sinistre;
+	public double getRepayment_capital() {
+		return repayment_capital;
 	}
-	public void setType_Sinistre(String type_Sinistre) {
-		Type_Sinistre = type_Sinistre;
+	public void setRepayment_capital(double repayment_capital) {
+		this.repayment_capital = repayment_capital;
 	}
-	public String getPlace_Sinistre() {
-		return Place_Sinistre;
+	public State_Sinistre_Claim getState_Sinistre_Claim() {
+		return state_Sinistre_Claim;
 	}
-	public void setPlace_Sinistre(String place_Sinistre) {
-		Place_Sinistre = place_Sinistre;
+	public void setState_Sinistre_Claim(State_Sinistre_Claim state_Sinistre_Claim) {
+		this.state_Sinistre_Claim = state_Sinistre_Claim;
+	}
+	public SinistreReport getSinistreReport() {
+		return sinistreReport;
+	}
+	public void setSinistreReport(SinistreReport sinistreReport) {
+		this.sinistreReport = sinistreReport;
+	}
+	public Provisions getProvisions() {
+		return provisions;
+	}
+	public void setProvisions(Provisions provisions) {
+		this.provisions = provisions;
 	}
 	
-	public State_Sinistre getStatesinistre() {
-		return statesinistre;
-	}
-	public void setStatesinistre(State_Sinistre statesinistre) {
-		this.statesinistre = statesinistre;
-	}
-
-
-	@ManyToOne
-	private User user;
 }
