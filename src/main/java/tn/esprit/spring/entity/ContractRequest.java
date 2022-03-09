@@ -8,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -158,6 +159,7 @@ public class ContractRequest {
 	public void setContractType(ContractType contractType) {
 		this.contractType = contractType;
 	}
-	 
+	 @OneToOne(mappedBy="contract")
+	 private Contract contract;
 	 
 }
