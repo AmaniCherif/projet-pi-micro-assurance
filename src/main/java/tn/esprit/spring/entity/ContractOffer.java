@@ -2,7 +2,7 @@ package tn.esprit.spring.entity;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,7 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+@Entity
 public class ContractOffer {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -63,7 +63,7 @@ public class ContractOffer {
 	public void setStartingDate(Date startingDate) {
 		this.startingDate = startingDate;
 	}
-	@OneToOne(mappedBy="contOff")
+	@OneToOne(mappedBy="offer")
 	private Offer offer;
 	
 	@ManyToOne

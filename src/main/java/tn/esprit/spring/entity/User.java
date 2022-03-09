@@ -19,9 +19,7 @@ import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-
-
+@SuppressWarnings("serial")
 @Entity
 
 public class User implements Serializable {
@@ -57,11 +55,15 @@ public class User implements Serializable {
 		this.sex = sex;
 	}
 
-	public Long getCin() {
-		return cin;
-
-	}
+	public Long Cin;
 	
+	
+	public Long getCin() {
+		return Cin;
+	}
+	public void setCin(Long cin) {
+		Cin = cin;
+	}
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
 
@@ -72,6 +74,7 @@ public class User implements Serializable {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
   }
+
 	private String address;
 	public String getAddress() {
 		return address;
@@ -137,14 +140,12 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
-
 	private Set<ContractRequest>contractRequest;
-
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffers;
 	@OneToMany(mappedBy="user")
-
 	private Set<Claim_report>claimsReport;
+	
 
 
 
