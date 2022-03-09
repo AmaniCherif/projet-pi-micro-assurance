@@ -9,6 +9,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -99,6 +100,8 @@ public class Investement implements Serializable{
 		this.cumule_amount = cumule_amount;
 	}
 	
+	@ManyToOne
+	private User user;
 	
 	
 }
