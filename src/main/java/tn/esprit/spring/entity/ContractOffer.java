@@ -3,6 +3,8 @@ package tn.esprit.spring.entity;
 import java.util.Date;
 
 import javax.persistence.Entity;
+
+
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -63,7 +65,7 @@ public class ContractOffer {
 	public void setStartingDate(Date startingDate) {
 		this.startingDate = startingDate;
 	}
-	@OneToOne(mappedBy="contOff")
+	@OneToOne(mappedBy="contractOffer")
 	private Offer offer;
 	
 	@ManyToOne

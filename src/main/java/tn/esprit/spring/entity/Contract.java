@@ -120,7 +120,10 @@ public class Contract implements Serializable {
 	
 	@OneToOne
 	private ReinsuranceContract reinsuranceContract;
-	
+	private Contract contract;
+//	@OneToOne
+//	private SinistreReport sinistreReport;
+
 	
 	
 	
