@@ -160,7 +160,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractsRequest;
 	@OneToMany(mappedBy="user")
-	private Set<ContractOffers>contractsOffers;
+	private Set<ContractOffer>contractOffers;
 	@OneToMany(mappedBy="user")
 	private Set<ClaimReport>claimsReport;
 	
