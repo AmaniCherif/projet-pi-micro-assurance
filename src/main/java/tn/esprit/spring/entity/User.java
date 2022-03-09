@@ -19,9 +19,6 @@ import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-
-
 @SuppressWarnings("serial")
 @Entity
 
@@ -144,7 +141,6 @@ public class User implements Serializable {
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractRequest;
-
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffers;
 	@OneToMany(mappedBy="user")
