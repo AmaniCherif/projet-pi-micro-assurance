@@ -152,7 +152,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>contractOffers;
 	@OneToMany(mappedBy="user")
-	private Set<ClaimReport>claimReports;
+	private Set<Claim_report>claim_reports;
 	
 	
 
