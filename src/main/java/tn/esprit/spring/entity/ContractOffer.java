@@ -68,8 +68,13 @@ public class ContractOffer {
 		this.startingDate = startingDate;
 	}
 
+
 	@OneToOne(mappedBy="offer")
 	private Offer offer;
+
+	@OneToOne(mappedBy="contOff")
+	private Offer offers;
+
 
 	@OneToOne(mappedBy="contOff")
 	private Offer offers;
