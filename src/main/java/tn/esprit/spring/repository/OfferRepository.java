@@ -3,8 +3,8 @@ package tn.esprit.spring.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import tn.esprit.spring.entity.Offers;
+import tn.esprit.spring.entity.Offer;
 @Repository
-public interface OffersRepository extends CrudRepository<Offers, Integer> {
+public interface OfferRepository extends CrudRepository<Offer, Integer> {
 
 }
