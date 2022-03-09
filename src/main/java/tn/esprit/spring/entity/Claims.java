@@ -1,7 +1,7 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,7 +23,7 @@ public class Claims implements Serializable {
 	
 	private Double Claim_id;
 	@Temporal(TemporalType.DATE)
-	private Date Claim_date;
+	private Date Claimdate;
 	@Enumerated(EnumType.STRING)
 	private State_claim state_claim;
 	public Double getClaim_id() {
@@ -33,10 +33,10 @@ public class Claims implements Serializable {
 		Claim_id = claim_id;
 	}
 	public Date getClaim_date() {
-		return Claim_date;
+		return Claimdate;
 	}
-	public void setClaim_date(Date claim_date) {
-		Claim_date = claim_date;
+	public void setClaim_date(Date claimdate) {
+		Claimdate = claimdate;
 	}
 	
 }

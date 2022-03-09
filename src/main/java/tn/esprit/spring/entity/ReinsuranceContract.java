@@ -1,9 +1,11 @@
 package tn.esprit.spring.entity;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.OneToOne;
+@Entity
 public class ReinsuranceContract {
 
 	@Id
@@ -44,7 +46,8 @@ public class ReinsuranceContract {
 	public void setRepayment(double repayment) {
 		this.repayment = repayment;
 	}
-	
+	@OneToOne(mappedBy="reinsuranceContract")
+	private Contract contract;
 	
 	
 }

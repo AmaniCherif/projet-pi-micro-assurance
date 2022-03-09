@@ -3,6 +3,7 @@ package tn.esprit.spring.entity;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
+ @Entity
 public class ContractRequest {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -160,10 +161,9 @@ public class ContractRequest {
 	public void setContractType(ContractType contractType) {
 		this.contractType = contractType;
 	}
-	 @OneToOne(mappedBy="contract")
-	 private Contract contract;
 	 @OneToOne
-	 private Transaction transaction;
+	 private Contract contracts;
+	 
 	 @ManyToOne
 		private User user;
 }

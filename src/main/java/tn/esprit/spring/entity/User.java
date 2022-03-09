@@ -56,7 +56,7 @@ public class User implements Serializable {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	private Long cin;
+	/*private Long cin;
 	public Long getCin() {
 		return cin;
 
@@ -79,6 +79,7 @@ public class User implements Serializable {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
+	*/
 	private String address;
 	public String getAddress() {
 		return address;
@@ -144,7 +145,7 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
-	private Set<ContractRequest>contractsRequest;
+	private Set<ContractRequest>contractRequest;
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffer;
 	@OneToMany(mappedBy="user")
@@ -158,3 +159,4 @@ public class User implements Serializable {
 
 
 }
+
