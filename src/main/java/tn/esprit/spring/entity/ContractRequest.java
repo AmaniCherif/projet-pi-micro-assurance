@@ -1,8 +1,6 @@
 package tn.esprit.spring.entity;
 
 import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -17,18 +15,9 @@ import javax.persistence.TemporalType;
 public class ContractRequest {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	 @Column( name = "idContract")
 	private int numRequest; // ClÃ© primaire
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
-	
-	
-	
-	// Assurance_Credit , Assurance_Epargne , Assurance_Sante , Assurance_Capital_differe
-	//  assurance : cas vie : capital diffÃ©re , rente viagÃ©re
-	//              cas dÃ©ces : vie entiÃ©re
-	//  santÃ© 
-
 	private String duration ;  // des question pour distinction du type de contrat
 	private String incomeLevel;
 	
@@ -162,7 +151,7 @@ public class ContractRequest {
 		this.contractType = contractType;
 	}
 	 @OneToOne
-	 private Contract contracts;
+	 private Contract contract;
 	 
 	 @ManyToOne
 		private User user;

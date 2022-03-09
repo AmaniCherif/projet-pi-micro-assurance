@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import tn.esprit.spring.entity.Sinistre;
 
-public interface SinistreRepository extends CrudRepository<Sinistre, Integer>{
+public interface SinistreRepository extends CrudRepository<Sinistre, Long>{
 
 }

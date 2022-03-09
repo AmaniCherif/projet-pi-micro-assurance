@@ -2,18 +2,20 @@ package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
-
+@Entity
 public class Provisions implements Serializable{
-
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id_provision;
 	private String type;
 	private String descreption;
 	private double price;
 	
-	@OneToOne(mappedBy = "provisions")
-	private Sinistre sinistre;
-
 	public int getId_provision() {
 		return id_provision;
 	}
@@ -53,5 +55,7 @@ public class Provisions implements Serializable{
 	public void setSinistre(Sinistre sinistre) {
 		this.sinistre = sinistre;
 	}
-	
+	@OneToOne(mappedBy = "provisions")
+	private Sinistre sinistre;
+
 }
