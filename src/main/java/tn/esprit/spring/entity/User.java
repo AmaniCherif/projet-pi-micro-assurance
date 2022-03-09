@@ -57,28 +57,31 @@ public class User implements Serializable {
 		this.sex = sex;
 	}
 	private Long cin;
+	public void setCin(Long cin) {
+		this.cin = cin;
+	}
+
 	public Long getCin() {
 		return cin;
 
 	}
-	public void setCin(Long cin) {
-		this.cin = cin;
-	}
+	
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
 
 	public Date getBirthdate() {
 		return birthdate;
 	}
-	public void setCin(Long cin) {
-		this.cin = cin;
-	}
+	
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
 
-	public void setBirthdate(Date birthdate) {
-		this.birthdate = birthdate;
+	public Date getBirthdate() {
+		return birthdate;
 	}
+  	public void setBirthdate(Date birthdate) {
+		this.birthdate = birthdate;
+}
 	private String address;
 	public String getAddress() {
 		return address;
@@ -144,15 +147,27 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
-	private Set<ContractRequest>contractsRequest;
+	private Set<ContractRequest>contractRequests;
 	@OneToMany(mappedBy="user")
-	private Set<ContractOffer>ContractOffer;
+	private Set<ContractOffer>ContractOffers;
 	@OneToMany(mappedBy="user")
-	private Set<ClaimReport>claimsReport;
+	private Set<Claim_report>claim_reports;
+	
+	
+
+  
 
 
 
-*/
+
+	
+	
+	
+
+  
+
+
+
 	
 
 
