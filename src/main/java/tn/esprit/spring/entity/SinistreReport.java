@@ -4,13 +4,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-@Entity
-public class SinistreReport {
-	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private int sinistreReport;
-@ManyToOne
-private Contract contract;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,8 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-public class SinistreReport implements Serializable{
+@Entity
+public class SinistreReport implements Serializable {
+	@Id
+	@GeneratedValue (strategy = GenerationType.IDENTITY)
 
 	private int id_Sinistre_Report;
 	@Temporal(TemporalType.DATE)
@@ -37,10 +32,8 @@ public class SinistreReport implements Serializable{
 	private int death;
 	private int illness;
 	
-	@ManyToOne
-	Contract contract;
-	@OneToOne
-	private Sinistre sinistre;
+	
+	
 	public int getId_Sinistre_Report() {
 		return id_Sinistre_Report;
 	}
@@ -125,4 +118,8 @@ public class SinistreReport implements Serializable{
 	public void setSinistre(Sinistre sinistre) {
 		this.sinistre = sinistre;
 	}
+	@ManyToOne
+	private Contract contract;
+	@OneToOne
+	private Sinistre sinistre;
 }
