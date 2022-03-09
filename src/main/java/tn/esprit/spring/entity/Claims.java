@@ -1,10 +1,13 @@
 package tn.esprit.spring.entity;
 
 import java.io.Serializable;
+
 import java.util.Date;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,59 +17,39 @@ import javax.persistence.ManyToOne;
 
 
 
-import javax.persistence.Table;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
+
+
+
 @SuppressWarnings("serial")
 @Entity
-@Table( name ="Claims")
+
 
 public class Claims implements Serializable {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="idClaims")
+	
 	private Long idClaims;
-	private Long State;
-	private String Description; 
 	@Temporal(TemporalType.DATE)
 	private Date Claim_date;
-	private String Claim_type;
-	
+	private String Claim_description; 
+	private Integer Claim_process;
+	@Enumerated(EnumType.STRING)
+	private Claim_type claim_type;
 	
 
-	public long getIdClaims() {
+
+	public Long getIdClaims() {
 		return idClaims;
 	}
 
-	public void setIdClaims(long idClaims) {
+	public void setIdClaims(Long idClaims) {
 		this.idClaims = idClaims;
-	}
-
-	public Long getState() {
-		return State;
-	}
-
-	public void setState(Long state) {
-		State = state;
-	}
-
-	public String getDescription() {
-		return Description;
-	}
-
-	public void setDescription(String description) {
-		Description = description;
-	}
-
-	public String getClaim_type() {
-		return Claim_type;
-	}
-
-	public void setClaim_type(String claim_type) {
-		Claim_type = claim_type;
 	}
 
 	public Date getClaim_date() {
@@ -77,8 +60,32 @@ public class Claims implements Serializable {
 		Claim_date = claim_date;
 	}
 
+	public String getClaim_description() {
+		return Claim_description;
+	}
 
-	
+	public void setClaim_description(String claim_description) {
+		Claim_description = claim_description;
+	}
+
+	public Integer getClaim_process() {
+		return Claim_process;
+	}
+
+
+
+
+
+
+	public void setClaim_process(Integer claim_process) {
+		Claim_process = claim_process;
+	}
+
+
+
+
+
+
 	@ManyToOne
 	private User user; 
 	
