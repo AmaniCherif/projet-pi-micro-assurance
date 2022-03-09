@@ -23,10 +23,11 @@ import javax.persistence.TemporalType;
 
 
 @Entity
+
 public class User implements Serializable {
-	@Id
+	/*@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="User_ID")
+
 	private Long idUser;
 	public Long getIdUser() {
 		return idUser;
@@ -69,17 +70,11 @@ public class User implements Serializable {
 	public Date getBirthdate() {
 		return birthdate;
 	}
-
-	}
 	public void setCin(Long cin) {
 		this.cin = cin;
 	}
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
-
-	public Date getBirthdate() {
-		return birthdate;
-	}
 
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
@@ -146,41 +141,18 @@ public class User implements Serializable {
 	private StatusUser statusUser;
 	@Enumerated(EnumType.STRING)
 	private CityUser cityUser;
-
-	
-	
-	
-	
-	
-	
-	
-
 	@OneToMany(mappedBy="user")
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractsRequest;
 	@OneToMany(mappedBy="user")
-	private Set<ContractOffer>contractOffers;
+	private Set<ContractOffer>ContractOffer;
 	@OneToMany(mappedBy="user")
 	private Set<ClaimReport>claimsReport;
-	
-	
-
-  
 
 
 
-
-	
-	
-	
-
-  
-
-
-
-
-
+*/
 	
 
 

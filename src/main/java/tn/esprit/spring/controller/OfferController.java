@@ -10,19 +10,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 
-import tn.esprit.spring.entity.Offers;
-import tn.esprit.spring.service.Implementation.OffersServiceImpl;
+import tn.esprit.spring.entity.Offer;
+import tn.esprit.spring.service.Implementation.OfferServiceImpl;
 
 public class OfferController {
 	@Autowired
-	OffersServiceImpl osi;
+	OfferServiceImpl osi;
+	//URL : http://localhost:8081/SpringMVC/getAllOffers
 	@GetMapping("/getAllOffers")
-	public List<Offers> getNomsContractJPQL() {			
+	public List<Offer> getNomsContractJPQL() {			
 		return osi.retrieveAll_Offers();
 	}
 	
 	@PostMapping("/addOffers")
-	public Offers add_Offers(@RequestBody Offers offers)
+	public Offer add_Offers(@RequestBody Offer offers)
 		{osi.add_Offers(offers);
 		return offers;
 		}
