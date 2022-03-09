@@ -1,30 +1,27 @@
 package tn.esprit.spring.entity;
-
 import java.io.Serializable;
 import java.util.Date;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@SuppressWarnings("serial")
+
 @Entity
-@Table( name = "Offers")
-public class Offers implements Serializable {
+
+public class Offer implements Serializable {
 	
 	
 @Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	 @Column( name = "id_Offer")
-	private int IdOffer; 
+
+	private int id; 
 	
 	@Temporal(TemporalType.DATE)
 	private Date date_debut ;
@@ -35,20 +32,51 @@ public class Offers implements Serializable {
 	private String Description ;
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public double getTarification() {
+		return tarification;
+	}
+
+	public void setTarification(double tarification) {
+		this.tarification = tarification;
+	}
+
+	public State_Offer getState_offers() {
+		return state_offers;
+	}
+
+	public void setState_offers(State_Offer state_offers) {
+		this.state_offers = state_offers;
+	}
+
+	private double tarification;
+	
 	@Enumerated(EnumType.STRING)
-	State_Offers type_offers;
+	TypeOffer typeOffer ;
 	
 	
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	@Enumerated(EnumType.STRING)
+	State_Offer state_offers;
+	
+	@ManyToOne
+	private User user; 
 	
 //getters et Setters 
-	public int getIdOffer() {
-		return IdOffer;
-	}
-
-	public void setIdOffer(int idOffer) {
-		IdOffer = idOffer;
-	}
-
 	public Date getDate_debut() {
 		return date_debut;
 	}
@@ -72,14 +100,7 @@ public class Offers implements Serializable {
 	public void setDescription(String description) {
 		Description = description;
 	}
+	@OneToOne
+	private ContractOffer contOff;
 
-	public State_Offers getType_offers() {
-		return type_offers;
-	}
-
-	public void setType_offers(State_Offers type_offers) {
-		this.type_offers = type_offers;
-	}
-@ManyToOne
-private User user;
 }
