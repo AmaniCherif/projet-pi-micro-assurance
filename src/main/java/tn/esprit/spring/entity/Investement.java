@@ -34,35 +34,36 @@ public class Investement implements Serializable{
 	private Date End_date;
 	@Temporal(TemporalType.DATE)
 	private Date Current_date;
-	private Long rachat_amount;
+	private Double rachat_amount;
 	private Long cumule_amount;
 	@Enumerated(EnumType.STRING)
 	private Fond fond;
 	@Enumerated(EnumType.STRING)
 	private Prime_choice prime_choice ;
 	
-	public int getActif_Id() {
+
+	public Double getActif_Id() {
 		return Actif_Id;
 	}
-	public void setActif_Id(Integer actif_Id) {
+	public void setActif_Id(Double actif_Id) {
 		Actif_Id = actif_Id;
 	}
-	public Long getActifs() {
+	public Double getActifs() {
 		return Actifs;
 	}
-	public void setActifs(Long actifs) {
+	public void setActifs(Double actifs) {
 		Actifs = actifs;
 	}
-	public Long getPassifs() {
+	public Double getPassifs() {
 		return Passifs;
 	}
-	public void setPassifs(Long passifs) {
+	public void setPassifs(Double passifs) {
 		Passifs = passifs;
 	}
-	public Long getInvest_amount() {
+	public Double getInvest_amount() {
 		return Invest_amount;
 	}
-	public void setInvest_amount(Long invest_amount) {
+	public void setInvest_amount(Double invest_amount) {
 		Invest_amount = invest_amount;
 	}
 	public Integer getMaturite() {
@@ -89,10 +90,10 @@ public class Investement implements Serializable{
 	public void setCurrent_date(Date current_date) {
 		Current_date = current_date;
 	}
-	public Long getRachat_amount() {
+	public Double getRachat_amount() {
 		return rachat_amount;
 	}
-	public void setRachat_amount(Long rachat_amount) {
+	public void setRachat_amount(Double rachat_amount) {
 		this.rachat_amount = rachat_amount;
 	}
 	public Long getCumule_amount() {
