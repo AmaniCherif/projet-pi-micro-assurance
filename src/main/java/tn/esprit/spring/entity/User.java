@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -56,30 +56,22 @@ public class User implements Serializable {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	/*private Long cin;
+
 	public Long getCin() {
 		return cin;
 
 	}
-	public void setCin(Long cin) {
-		this.cin = cin;
-	}
+	
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
 
 	public Date getBirthdate() {
 		return birthdate;
 	}
-	public void setCin(Long cin) {
-		this.cin = cin;
-	}
-	@Temporal(TemporalType.DATE)
-	private Date birthdate;
-
+	
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
-	}
-	*/
+  }
 	private String address;
 	public String getAddress() {
 		return address;
@@ -145,16 +137,14 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<Investement>investements;
 	@OneToMany(mappedBy="user")
+
 	private Set<ContractRequest>contractRequest;
+
 	@OneToMany(mappedBy="user")
-	private Set<ContractOffer>ContractOffer;
+	private Set<ContractOffer>ContractOffers;
 	@OneToMany(mappedBy="user")
+
 	private Set<Claim_report>claimsReport;
-
-
-
-
-	
 
 
 

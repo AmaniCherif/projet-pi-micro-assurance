@@ -1,9 +1,10 @@
 package tn.esprit.spring.entity;
 
-public enum State_Sinistre {
+public enum State_Sinistre_Claim {
 
 	Waiting,
 	InProgress,
 	Valid,
-	Invalid;
+	Invalid,
+	Reclamation;
 }
