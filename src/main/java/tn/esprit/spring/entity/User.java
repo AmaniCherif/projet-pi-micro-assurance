@@ -25,7 +25,7 @@ import javax.persistence.TemporalType;
 @Entity
 
 public class User implements Serializable {
-	/*@Id
+	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 
 	private Long idUser;
@@ -148,11 +148,11 @@ public class User implements Serializable {
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffer;
 	@OneToMany(mappedBy="user")
-	private Set<ClaimReport>claimsReport;
+	private Set<Claim_report>claimsReport;
 
 
 
-*/
+
 	
 
 
