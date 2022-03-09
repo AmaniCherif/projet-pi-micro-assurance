@@ -2,6 +2,10 @@ package tn.esprit.spring.entity;
 
 import java.util.Date;
 
+
+
+import javax.persistence.CascadeType;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -63,8 +67,13 @@ public class ContractOffer {
 	public void setStartingDate(Date startingDate) {
 		this.startingDate = startingDate;
 	}
+
 	@OneToOne(mappedBy="offer")
 	private Offer offer;
+
+	@OneToOne(mappedBy="contOff")
+	private Offer offers;
+
 	
 	@ManyToOne
 	private User user;

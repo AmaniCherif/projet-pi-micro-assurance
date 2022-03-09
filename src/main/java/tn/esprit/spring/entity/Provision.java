@@ -3,9 +3,11 @@ package tn.esprit.spring.entity;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
 import javax.persistence.OneToOne;
 @Entity
 public class Provision implements Serializable{
@@ -16,6 +18,7 @@ public class Provision implements Serializable{
 	private String descreption;
 	private double price;
 	
+
 	public int getId_provision() {
 		return id_provision;
 	}
