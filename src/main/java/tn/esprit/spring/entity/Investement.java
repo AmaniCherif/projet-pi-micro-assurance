@@ -1,4 +1,4 @@
-/*package tn.esprit.spring.entity;
+package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -43,28 +43,29 @@ public class Investement implements Serializable{
 	private Prime_choice prime_choice ;
 	
 
-	public Double getActif_Id() {
+	
+	public int getActif_Id() {
 		return Actif_Id;
 	}
-	public void setActif_Id(Double actif_Id) {
+	public void setActif_Id(int actif_Id) {
 		Actif_Id = actif_Id;
 	}
-	public Double getActifs() {
+	public Long getActifs() {
 		return Actifs;
 	}
-	public void setActifs(Double actifs) {
+	public void setActifs(Long actifs) {
 		Actifs = actifs;
 	}
-	public Double getPassifs() {
+	public Long getPassifs() {
 		return Passifs;
 	}
-	public void setPassifs(Double passifs) {
+	public void setPassifs(Long passifs) {
 		Passifs = passifs;
 	}
-	public Double getInvest_amount() {
+	public Long getInvest_amount() {
 		return Invest_amount;
 	}
-	public void setInvest_amount(Double invest_amount) {
+	public void setInvest_amount(Long invest_amount) {
 		Invest_amount = invest_amount;
 	}
 	public Integer getMaturite() {
@@ -109,4 +110,3 @@ public class Investement implements Serializable{
 	
 	
 }
-*/
