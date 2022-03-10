@@ -5,5 +5,10 @@ import org.springframework.stereotype.Repository;
 import tn.esprit.spring.entity.ContractRequest;
 
 @Repository
+
 public interface ContractRequestRepository extends CrudRepository<ContractRequest, Integer>{
+
+public interface ContractRequestRepository extends CrudRepository<ContractRequest, String>{
+
+
 }
