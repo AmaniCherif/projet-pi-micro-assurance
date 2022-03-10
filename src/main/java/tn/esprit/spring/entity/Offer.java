@@ -1,6 +1,7 @@
 package tn.esprit.spring.entity;
-import java.io.Serializable;
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -15,13 +16,14 @@ import javax.persistence.TemporalType;
 
 @Entity
 
-public class Offer implements Serializable {
+public class Offer  {
 	
 	
-@Id
+	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 
-	private int id; 
+	private Long id; 
 	
 	@Temporal(TemporalType.DATE)
 	private Date date_debut ;
@@ -32,11 +34,11 @@ public class Offer implements Serializable {
 	private String Description ;
 	
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
