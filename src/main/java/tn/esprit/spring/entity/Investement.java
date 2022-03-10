@@ -1,4 +1,4 @@
-package tn.esprit.spring.entity;
+/*package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -10,22 +10,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 @SuppressWarnings("serial")
 @Entity
+@Table(name="investments")
 public class Investement implements Serializable{
 	
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long Actif_Id;
+	private int Actif_Id;
 	private Long Actifs;
 	private Long Passifs;
 	private Long Invest_amount ; 
-	private Integer Maturite;
+	private int Maturite;
 	@Temporal(TemporalType.DATE)
 	private Date Start_date;
 	@Temporal(TemporalType.DATE)
@@ -39,10 +41,10 @@ public class Investement implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Prime_choice prime_choice ;
 	
-	public Long getActif_Id() {
+	public int getActif_Id() {
 		return Actif_Id;
 	}
-	public void setActif_Id(Long actif_Id) {
+	public void setActif_Id(Integer actif_Id) {
 		Actif_Id = actif_Id;
 	}
 	public Long getActifs() {
@@ -105,3 +107,4 @@ public class Investement implements Serializable{
 	
 	
 }
+*/

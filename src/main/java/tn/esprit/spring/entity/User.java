@@ -138,8 +138,8 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CityUser cityUser;
 	@OneToMany(mappedBy="user")
-	private Set<Investement>investements;
-	@OneToMany(mappedBy="user")
+	///private Set<Investement>investements;
+	//@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractRequest;
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffers;

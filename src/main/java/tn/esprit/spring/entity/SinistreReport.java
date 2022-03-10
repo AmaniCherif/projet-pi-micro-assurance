@@ -1,5 +1,6 @@
 
 package tn.esprit.spring.entity;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+@SuppressWarnings("serial")
 @Entity
 public class SinistreReport implements Serializable {
 	@Id
