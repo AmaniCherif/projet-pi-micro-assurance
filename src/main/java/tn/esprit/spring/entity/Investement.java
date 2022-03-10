@@ -21,85 +21,181 @@ public class Investement implements Serializable{
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	private Long Actif_Id;
-	private Long Actifs;
-	private Long Passifs;
-	private Long Invest_amount ; 
-	private Integer Maturite;
+	private Double actifId;
+	private Double actifs;
+	private Double passifs;
+	private Double investAmount ; 
+	private Long maturite;
 	@Temporal(TemporalType.DATE)
 	private Date Start_date;
 	@Temporal(TemporalType.DATE)
 	private Date End_date;
 	@Temporal(TemporalType.DATE)
-	private Date Current_date;
-	private Long rachat_amount;
-	private Long cumule_amount;
+	private Date current_date;
+	private Double rachat_amount;
+	private Double cumule_amount;
 	@Enumerated(EnumType.STRING)
 	private Fond fond;
 	@Enumerated(EnumType.STRING)
 	private Prime_choice prime_choice ;
 	
-	public Long getActif_Id() {
-		return Actif_Id;
+	
+	
+	
+	public Double getActifId() {
+		return actifId;
 	}
-	public void setActif_Id(Long actif_Id) {
-		Actif_Id = actif_Id;
+
+
+
+
+	public void setActifId(Double actifId) {
+		this.actifId = actifId;
 	}
-	public Long getActifs() {
-		return Actifs;
+
+
+
+
+	public Double getActifs() {
+		return actifs;
 	}
-	public void setActifs(Long actifs) {
-		Actifs = actifs;
+
+
+
+
+	public void setActifs(Double actifs) {
+		this.actifs = actifs;
 	}
-	public Long getPassifs() {
-		return Passifs;
+
+
+
+
+	public Double getPassifs() {
+		return passifs;
 	}
-	public void setPassifs(Long passifs) {
-		Passifs = passifs;
+
+
+
+
+	public void setPassifs(Double passifs) {
+		this.passifs = passifs;
 	}
-	public Long getInvest_amount() {
-		return Invest_amount;
+
+
+
+
+	public Double getInvestAmount() {
+		return investAmount;
 	}
-	public void setInvest_amount(Long invest_amount) {
-		Invest_amount = invest_amount;
+
+
+
+
+	public void setInvestAmount(Double investAmount) {
+		this.investAmount = investAmount;
 	}
-	public Integer getMaturite() {
-		return Maturite;
+
+
+
+
+	public Long getMaturite() {
+		return maturite;
 	}
-	public void setMaturite(Integer maturite) {
-		Maturite = maturite;
+
+
+
+
+	public void setMaturite(Long maturite) {
+		this.maturite = maturite;
 	}
+
+
+
+
 	public Date getStart_date() {
 		return Start_date;
 	}
+
+
+
+
 	public void setStart_date(Date start_date) {
 		Start_date = start_date;
 	}
+
+
+
+
 	public Date getEnd_date() {
 		return End_date;
 	}
+
+
+
+
 	public void setEnd_date(Date end_date) {
 		End_date = end_date;
 	}
+
+
+
+
 	public Date getCurrent_date() {
-		return Current_date;
+		return current_date;
 	}
+
+
+
+
 	public void setCurrent_date(Date current_date) {
-		Current_date = current_date;
+		this.current_date = current_date;
 	}
-	public Long getRachat_amount() {
+
+
+
+
+	public Double getRachat_amount() {
 		return rachat_amount;
 	}
-	public void setRachat_amount(Long rachat_amount) {
+
+
+
+
+	public void setRachat_amount(Double rachat_amount) {
 		this.rachat_amount = rachat_amount;
 	}
-	public Long getCumule_amount() {
+
+
+
+
+	public Double getCumule_amount() {
 		return cumule_amount;
 	}
-	public void setCumule_amount(Long cumule_amount) {
+
+
+
+
+	public void setCumule_amount(Double cumule_amount) {
 		this.cumule_amount = cumule_amount;
 	}
-	
+
+
+
+
+	public User getUser() {
+		return user;
+	}
+
+
+
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+
+
+
 	@ManyToOne
 	private User user;
 	

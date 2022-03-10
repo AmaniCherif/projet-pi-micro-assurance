@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import tn.esprit.spring.entity.Contract;
 
-public interface ContractRepository  extends CrudRepository<Contract, String>{
+public interface ContractRepository  extends CrudRepository<Contract, Double>{
 
 }

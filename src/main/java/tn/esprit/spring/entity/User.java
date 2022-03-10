@@ -4,29 +4,25 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
-
-
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-
-
+@SuppressWarnings("serial")
 @Entity
+
 public class User implements Serializable {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column(name="User_ID")
+
 	private Long idUser;
 	public Long getIdUser() {
 		return idUser;
@@ -55,13 +51,15 @@ public class User implements Serializable {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	private Long cin;
+
+	public Long Cin;
+	
+	
 	public Long getCin() {
-		return cin;
-
+		return Cin;
 	}
 	public void setCin(Long cin) {
-		this.cin = cin;
+		Cin = cin;
 	}
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
@@ -69,21 +67,11 @@ public class User implements Serializable {
 	public Date getBirthdate() {
 		return birthdate;
 	}
-
-	}
-	public void setCin(Long cin) {
-		this.cin = cin;
-	}
-	@Temporal(TemporalType.DATE)
-	private Date birthdate;
-
-	public Date getBirthdate() {
-		return birthdate;
-	}
-
+	
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
-	}
+  }
+
 	private String address;
 	public String getAddress() {
 		return address;
@@ -146,42 +134,19 @@ public class User implements Serializable {
 	private StatusUser statusUser;
 	@Enumerated(EnumType.STRING)
 	private CityUser cityUser;
-
-	
-	
-	
-	
-	
-	
-	
-
 	@OneToMany(mappedBy="user")
-	private Set<Investement>investements;
-	@OneToMany(mappedBy="user")
-	private Set<ContractRequest>contractsRequest;
-	@OneToMany(mappedBy="user")
-	private Set<ContractOffer>contractOffers;
-	@OneToMany(mappedBy="user")
-	private Set<ClaimReport>claimsReport;
+	///private Set<Investement>investements;
+	//@OneToMany(mappedBy="user")
+	private Set<ContractRequest>contractRequest;
 	
-	
-
-  
-
-
-
-
-	
-	
-	
-
-  
-
-
-
-
-
-	
+	@ManyToOne
+	private Claims claim ;
+	public Claims getClaim() {
+		return claim;
+	}
+	public void setClaim(Claims claim) {
+		this.claim = claim;
+	}
 
 
 

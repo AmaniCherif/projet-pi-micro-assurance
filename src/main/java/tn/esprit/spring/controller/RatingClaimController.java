@@ -1,8 +1,5 @@
 package tn.esprit.spring.controller;
 
-
-
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,35 +12,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entity.Claims;
-
-import tn.esprit.spring.service.Implementation.ClaimServiceImpl;
-
-
-
-
-
+import tn.esprit.spring.entity.Ratingclaim;
+import tn.esprit.spring.service.Implementation.RatingclaimServiceImpl;
 
 @RestController
-@RequestMapping("/Claims")
-public class ClaimsController {
+@RequestMapping("/RatingClaim")
+public class RatingClaimController {
 	@Autowired
-	ClaimServiceImpl csi;
+	RatingclaimServiceImpl csi;
 	
-@GetMapping("/getAllClaims")
-	public List<Claims> getAllclaims() {			
-	return csi. RetrieveAllClaims();
+@GetMapping("/getAllRatingClaim")
+	public List<Ratingclaim> getAllRatingclaims() {			
+	return csi.RetrieveAllRatingclaim();
 }
 
-@PostMapping("/addClaims")
-	public Claims AddClaims(@RequestBody Claims c)
-		{csi.AddClaims(c);
+@PostMapping("/addRatingClaim")
+	public Ratingclaim AddRatingClaim(@RequestBody Ratingclaim c)
+		{csi.AddRatingclaim(c);
 		return c;
 		}
 
 @DeleteMapping("/deleteById/{ref_claims}")  
-public void deleteContractById(@PathVariable("ref_claims")String ref_claims) {
-	csi.DeleteClaims(ref_claims);}
+public void DeleteRatingclaimById(@PathVariable("ref_claims")String ref_claims) {
+	csi.DeleteRatingclaim(ref_claims);}
 
 @PutMapping("/updateClaims")
 public Claims UpdateClaims(@RequestBody Claims c) {
