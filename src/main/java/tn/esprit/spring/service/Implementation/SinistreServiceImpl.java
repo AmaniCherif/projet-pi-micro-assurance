@@ -29,7 +29,7 @@ public class SinistreServiceImpl implements ISinistreService{
 	}
 
 	@Override
-	public void deleteSinistre(Long id) {
+	public void deleteSinistre(Integer id) {
 		sinistrerepos.deleteById(id);
 		
 	}
@@ -41,7 +41,7 @@ public class SinistreServiceImpl implements ISinistreService{
 	}
 
 	@Override
-	public Sinistre retrieveSinistre(Long id) {
+	public Sinistre retrieveSinistre(Integer id) {
 		
 		return sinistrerepos.findById(id).get();
 	}

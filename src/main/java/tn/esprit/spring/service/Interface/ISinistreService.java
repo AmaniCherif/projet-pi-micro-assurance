@@ -8,7 +8,7 @@ public interface ISinistreService {
 
 	List<Sinistre> retrieveALLSinistre();
 	Sinistre addSinistre(Sinistre s);
-	void deleteSinistre(Long id);
+	void deleteSinistre(Integer id);
 	Sinistre updateSinistre(Sinistre s);
-	Sinistre retrieveSinistre(Long id);
+	Sinistre retrieveSinistre(Integer id);
 }
