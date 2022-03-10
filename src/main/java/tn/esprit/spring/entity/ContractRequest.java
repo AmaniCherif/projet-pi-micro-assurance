@@ -9,11 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
+@Table(name="ContractRequest")
 public class ContractRequest {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -156,5 +157,5 @@ public class ContractRequest {
 	 private Contract contract;
 	 
 	 @ManyToOne
-		private User user;
+	 private User user;
 }

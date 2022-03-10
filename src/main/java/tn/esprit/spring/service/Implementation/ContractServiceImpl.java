@@ -19,7 +19,7 @@ public class ContractServiceImpl implements ContractService {
 	public List<Contract> retrieveALLContracts() {
 		List<Contract> contract=(List<Contract>) (contractRep.findAll());
 		// TODO Auto-generated method stub
-		return null;
+		return contract;
 	}
 
 	@Override
