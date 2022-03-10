@@ -16,13 +16,15 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.GenericGenerator;
+
 @Entity
 @Table(name="Contract")
 public class Contract implements Serializable {
 
 	private static final long serialVersionUID= 1L;
-	@Id
-	@GeneratedValue
+	@Id @GeneratedValue(generator="system-uuid")
+	@GenericGenerator(name="system-uuid", strategy = "uuid")
 	private String ref_contract;
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;

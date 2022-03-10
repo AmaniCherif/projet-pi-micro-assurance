@@ -34,11 +34,11 @@ public void deleteContractById(@PathVariable("ref_contrat")String ref_contrat) {
 	csi.deleteContract(ref_contrat);
 }
 @PutMapping("/updateContract")
-public Contract updateClient(@RequestBody Contract c) {
+public Contract updateContract(@RequestBody Contract c) {
 	return csi.updateContract(c);
 }
 @GetMapping("retrieve-contract/{ref_contrat}")
-public Contract retrieveUser(@PathVariable("ref_contrat") String ref_contrat) {
+public Contract retrieveContract(@PathVariable("ref_contrat") String ref_contrat) {
 return csi.retrieveContract(ref_contrat);
 } 
 
