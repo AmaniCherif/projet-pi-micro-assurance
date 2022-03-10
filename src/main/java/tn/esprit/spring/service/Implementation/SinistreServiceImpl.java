@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Sinistre;
+import tn.esprit.spring.entity.State_Sinistre_Claim;
 import tn.esprit.spring.repository.SinistreRepository;
 import tn.esprit.spring.service.Interface.ISinistreService;
 
@@ -44,6 +45,12 @@ public class SinistreServiceImpl implements ISinistreService{
 	public Sinistre retrieveSinistre(Integer id) {
 		
 		return sinistrerepos.findById(id).get();
+	}
+
+	@Override
+	public List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim) {
+		
+		return sinistrerepos.findSinistreByState(state_Sinistre_Claim);
 	}
 
 }
