@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import tn.esprit.spring.entity.Offer;
-import tn.esprit.spring.service.Implementation.OfferServiceImpl;
 import tn.esprit.spring.service.Interface.IOfferService;
 
 

@@ -1,4 +1,4 @@
-package tn.esprit.spring.service.Implementation;
+/*package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import tn.esprit.spring.service.Interface.ContractRequestService;
 @Service
 public class ContractRequestServiceImpl implements ContractRequestService {
 	@Autowired
-	ContractRequestRepository crr;
+	ContractRequestRepository contractRequestRepository;
 
 	@Override
 	public List<ContractRequest> retrieveALLContractsRequest() {
@@ -48,3 +48,4 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	
 
 }
+*/
