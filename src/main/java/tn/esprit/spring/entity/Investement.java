@@ -34,6 +34,7 @@ public class Investement implements Serializable{
 	private Date End_date;
 	@Temporal(TemporalType.DATE)
 	private Date Current_date;
+	
 	private Long rachat_amount;
 	private Long cumule_amount;
 	@Enumerated(EnumType.STRING)
@@ -41,10 +42,12 @@ public class Investement implements Serializable{
 	@Enumerated(EnumType.STRING)
 	private Prime_choice prime_choice ;
 	
+
+	
 	public int getActif_Id() {
 		return Actif_Id;
 	}
-	public void setActif_Id(Integer actif_Id) {
+	public void setActif_Id(int actif_Id) {
 		Actif_Id = actif_Id;
 	}
 	public Long getActifs() {
@@ -104,7 +107,5 @@ public class Investement implements Serializable{
 	
 	@ManyToOne
 	private User user;
-	
-	
 }
 */

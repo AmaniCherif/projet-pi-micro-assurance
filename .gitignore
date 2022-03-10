@@ -31,3 +31,5 @@ build/
 ### VS Code ###
 .vscode/
 src/main/java/tn/esprit/spring/entity/Offers.java
+pom.xml
+pom.xml

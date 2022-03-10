@@ -14,8 +14,8 @@ public class TransactionServiceImpl implements TransactionService{
 	TransactionRepository transactionRepository;
 	@Override
 	public Transaction addTransaction(Transaction t) {
-		Transaction transaction =transactionRepository.save(t);
-		return transaction;
+		transactionRepository.save(t);
+		return t;
 	}
 
 	@Override
