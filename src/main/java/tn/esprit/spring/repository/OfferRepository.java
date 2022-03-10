@@ -8,4 +8,5 @@ import tn.esprit.spring.entity.Offer;
 @Repository
 public interface OfferRepository extends CrudRepository<Offer, Long> {
 
+
 }
