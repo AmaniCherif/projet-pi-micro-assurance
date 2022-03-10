@@ -16,17 +16,17 @@ public class SinistreServiceImpl implements ISinistreService{
 
 	@Autowired
 	SinistreRepository sinistrerepos;
-	
+
 	@Override
 	public List<Sinistre> retrieveALLSinistre() {
-		List<Sinistre> sinistres =(List<Sinistre>)sinistrerepos.findAll();
-		return sinistres;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public Sinistre addSinistre(Sinistre s) {
-		sinistrerepos.save(s);
-		return s;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -37,8 +37,8 @@ public class SinistreServiceImpl implements ISinistreService{
 
 	@Override
 	public Sinistre updateSinistre(Sinistre s) {
-		sinistrerepos.save(s);
-		return s;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -46,6 +46,7 @@ public class SinistreServiceImpl implements ISinistreService{
 		
 		return sinistrerepos.findById(id).get();
 	}
+	
 
 	@Override
 	public List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim) {
