@@ -41,10 +41,10 @@ public class UserController {
 	  User user = userService.addUser(u);
   return user;
   }
-  @PutMapping("/modify-user")
-  
-  public User modifyUser(@RequestBody User user) {
-  return userService.updateUser(user);
+  @PutMapping("/modify-user/{idUser}")
+ 
+  public User modifyUser(@RequestBody User user, @PathVariable("idUser") Long idUser) {
+  return userService.updateUser(user, idUser);
   }
   @DeleteMapping("/remove-user/{user-id}")
   public void removeUser (@PathVariable("user-id")Long userId) {
