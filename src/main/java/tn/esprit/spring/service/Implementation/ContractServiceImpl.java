@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tn.esprit.spring.entity.Contract;
 import tn.esprit.spring.repository.ContractRepository;
 import tn.esprit.spring.service.Interface.ContractService;
+
 @Service
 public class ContractServiceImpl implements ContractService {
 	@Autowired
