@@ -16,24 +16,6 @@ import javax.persistence.OneToOne;
 public class Provision implements Serializable{
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-@Entity
-
-import javax.persistence.OneToOne;
-@Entity
-
-public class Provisions implements Serializable{
-@Id
-
-
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-@Entity
-public class Provisions implements Serializable{
-@Id
-
 	private int id_provision;
 	private String type;
 	private String descreption;

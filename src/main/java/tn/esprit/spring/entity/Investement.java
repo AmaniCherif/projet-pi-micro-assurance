@@ -34,8 +34,9 @@ public class Investement implements Serializable{
 	private Date End_date;
 	@Temporal(TemporalType.DATE)
 	private Date Current_date;
+	
 	private Double rachat_amount;
-	private Long cumule_amount;
+	private Double cumule_amount;
 	@Enumerated(EnumType.STRING)
 	private Fond fond;
 	@Enumerated(EnumType.STRING)
@@ -96,10 +97,10 @@ public class Investement implements Serializable{
 	public void setRachat_amount(Double rachat_amount) {
 		this.rachat_amount = rachat_amount;
 	}
-	public Long getCumule_amount() {
+	public Double getCumule_amount() {
 		return cumule_amount;
 	}
-	public void setCumule_amount(Long cumule_amount) {
+	public void setCumule_amount(Double cumule_amount) {
 		this.cumule_amount = cumule_amount;
 	}
 	

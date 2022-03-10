@@ -9,9 +9,5 @@ import tn.esprit.spring.entity.ReinsuranceContract;
 public interface ReinsuranceContractRepository extends CrudRepository<ReinsuranceContract,Long>{
 
 
-import tn.esprit.spring.entity.ReinsuranceContract;
-
-@Repository
-public interface ReinsuranceContractRepositor>>>>>>> dff5f07 (commit)
 
 }

@@ -72,12 +72,8 @@ public class ContractOffer {
 	@OneToOne(mappedBy="offer")
 	private Offer offer;
 
-	@OneToOne(mappedBy="contOff")
-	private Offer offers;
+	
 
-
-	@OneToOne(mappedBy="contOff")
-	private Offer offers;
 
 	
 	@ManyToOne
