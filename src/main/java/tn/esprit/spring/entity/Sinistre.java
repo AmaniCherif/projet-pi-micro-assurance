@@ -30,7 +30,7 @@ public class Sinistre implements Serializable{
 	@OneToOne(mappedBy = "sinistre")
 	private SinistreReport sinistreReport;
 	@OneToOne
-	private Provisions provisions;
+	private Provision provisions;
 	
 	public int getId_Sinistre_claim() {
 		return id_Sinistre_claim;
@@ -62,10 +62,10 @@ public class Sinistre implements Serializable{
 	public void setSinistreReport(SinistreReport sinistreReport) {
 		this.sinistreReport = sinistreReport;
 	}
-	public Provisions getProvisions() {
+	public Provision getProvisions() {
 		return provisions;
 	}
-	public void setProvisions(Provisions provisions) {
+	public void setProvisions(Provision provisions) {
 		this.provisions = provisions;
 	}
 	
