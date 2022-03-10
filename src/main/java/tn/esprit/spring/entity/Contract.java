@@ -37,10 +37,6 @@ public class Contract implements Serializable {
 	private int acceptReq;
 	private int reassure;
 	
-	
-	
-	
-	
 	public int getScoring() {
 		return scoring;
 	}
@@ -124,13 +120,4 @@ public class Contract implements Serializable {
 //	@OneToOne
 //	private SinistreReport sinistreReport;
 
-	
-	
-	
-	
-
-	
-	
-	
-	
 }

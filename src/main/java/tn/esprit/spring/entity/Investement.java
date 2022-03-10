@@ -1,4 +1,4 @@
-package tn.esprit.spring.entity;
+/*package tn.esprit.spring.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -35,8 +35,8 @@ public class Investement implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date Current_date;
 	
-	private Double rachat_amount;
-	private Double cumule_amount;
+	private Long rachat_amount;
+	private Long cumule_amount;
 	@Enumerated(EnumType.STRING)
 	private Fond fond;
 	@Enumerated(EnumType.STRING)
@@ -92,21 +92,20 @@ public class Investement implements Serializable{
 	public void setCurrent_date(Date current_date) {
 		Current_date = current_date;
 	}
-	public Double getRachat_amount() {
+	public Long getRachat_amount() {
 		return rachat_amount;
 	}
-	public void setRachat_amount(Double rachat_amount) {
+	public void setRachat_amount(Long rachat_amount) {
 		this.rachat_amount = rachat_amount;
 	}
-	public Double getCumule_amount() {
+	public Long getCumule_amount() {
 		return cumule_amount;
 	}
-	public void setCumule_amount(Double cumule_amount) {
+	public void setCumule_amount(Long cumule_amount) {
 		this.cumule_amount = cumule_amount;
 	}
 	
 	@ManyToOne
 	private User user;
-	
-	
 }
+*/
