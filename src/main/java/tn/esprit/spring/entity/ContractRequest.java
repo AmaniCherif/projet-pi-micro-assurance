@@ -33,8 +33,15 @@ public class ContractRequest {
 
 	 //beneficiaire
 	 private String beneficiary;
+	 private int traite ;
 
-	 private int cinBeneficiary ;
+	public int getTraite() {
+		return traite;
+	}
+	public void setTraite(int traite) {
+		this.traite = traite;
+	}
+	private int cinBeneficiary ;
 	 private String reaseon;
 	 private int alcoholic;
 	 private int smoker;

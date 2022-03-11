@@ -11,6 +11,10 @@ public interface ContractRequestService {
 	void deleteContractRequest(int numRequest);
 	ContractRequest updateContractRequest(ContractRequest cr);
 	ContractRequest retrieveContractRequest(int numRequest);
+	static void verifeEtatContractRequest(int numRequest) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 }
