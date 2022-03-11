@@ -1,5 +1,7 @@
 package tn.esprit.spring.service.Implementation;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,14 +21,14 @@ public class SinistreServiceImpl implements ISinistreService{
 
 	@Override
 	public List<Sinistre> retrieveALLSinistre() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Sinistre> sinistres= (List<Sinistre>)sinistrerepos.findAll();
+		return sinistres;
 	}
 
 	@Override
 	public Sinistre addSinistre(Sinistre s) {
-		// TODO Auto-generated method stub
-		return null;
+		sinistrerepos.save(s);
+		return s;
 	}
 
 	@Override
@@ -37,8 +39,8 @@ public class SinistreServiceImpl implements ISinistreService{
 
 	@Override
 	public Sinistre updateSinistre(Sinistre s) {
-		// TODO Auto-generated method stub
-		return null;
+		sinistrerepos.save(s);
+		return s;
 	}
 
 	@Override
@@ -53,5 +55,6 @@ public class SinistreServiceImpl implements ISinistreService{
 		
 		return sinistrerepos.findSinistreByState(state_Sinistre_Claim);
 	}
+
 
 }
