@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tn.esprit.spring.entity.Contract;
 import tn.esprit.spring.repository.ContractRepository;
 import tn.esprit.spring.service.Interface.ContractService;
+
 @Service
 public class ContractServiceImpl implements ContractService {
 	@Autowired
@@ -18,7 +19,7 @@ public class ContractServiceImpl implements ContractService {
 	public List<Contract> retrieveALLContracts() {
 		List<Contract> contract=(List<Contract>) (contractRep.findAll());
 		// TODO Auto-generated method stub
-		return null;
+		return contract;
 	}
 
 	@Override
