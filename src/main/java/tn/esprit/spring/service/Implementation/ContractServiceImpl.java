@@ -15,6 +15,7 @@ import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.repository.ContractRepository;
 import tn.esprit.spring.repository.ContractRequestRepository;
 import tn.esprit.spring.service.Interface.ContractService;
+
 @Service
 public class ContractServiceImpl implements ContractService {
 	@Autowired
