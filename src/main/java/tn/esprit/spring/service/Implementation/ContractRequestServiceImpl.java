@@ -7,10 +7,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import tn.esprit.spring.entity.Contract;
+
 import tn.esprit.spring.entity.ContractRequest;
 
-import tn.esprit.spring.repository.ContractRepository;
+
 import tn.esprit.spring.repository.ContractRequestRepository;
 import tn.esprit.spring.service.Interface.ContractRequestService;
 
@@ -36,9 +36,9 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	}
 
 	@Override
-	public void deleteContractRequest(int numRequest) {
+	public void deleteContractRequest(int id) {
 		// TODO Auto-generated method stub
-		contractRequestRep.deleteById(numRequest);
+		contractRequestRep.deleteById(id);
 	}
 
 
@@ -49,14 +49,14 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	}
 
 	@Override
-	public ContractRequest retrieveContractRequest(int numRequest) {
+	public ContractRequest retrieveContractRequest(int id) {
 		// TODO Auto-generated method stub
-		return (ContractRequest) contractRequestRep.findById(numRequest).get();
+		return (ContractRequest) contractRequestRep.findById(id).get();
 	}
 	
 	//verifer l etat de la demande contrat ( en cours ... )
 //	@Transactional
-//	public void verifeEtatDemandeContrat(int numRequest){
+//	public void verifeEtatContractRequest(int numRequest){
 //		ContractRequest r = contractRequestRep.findById(numRequest).get();
 //		if (r.getTraite()== 0) {
 //			System.out.println("demande n'est pas traité");}
@@ -64,4 +64,12 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 //			System.out.println("demande traité");
 //		}
 //	}
+	// lister les demande  Contrat en cours ( non traite )
+	
+
+	@Override
+	public List<ContractRequest> IretreiveContratRequestTraite(int nb) {
+		List<ContractRequest> contractRequestTraite = (List<ContractRequest>) contractRequestRep.IretreiveContratRequestTraite(nb);
+		return contractRequestTraite;
+	}
 }
