@@ -5,14 +5,17 @@ import java.util.List;
 import tn.esprit.spring.entity.Contract;
 
 public interface ContractService {
+	List<Contract> getContracts();
+	
+	Contract addContract(Contract car);
+	
+	void deleteContract(Long id);
+	
+	Contract updateContract(Long id, Contract car);
+	
+	Contract getContract(Long id);
+	
+	void insertTableMortal();
+	void insertTableMortal2();
 
-	List<Contract>retrieveALLContracts();
-
-	Contract addContract(Contract contract);
-	
-	void deleteContract(int ref_contrat);
-	
-	Contract updateContract(Contract contract);
-	
-	Contract retrieveContract(int ref_contrat);
 }

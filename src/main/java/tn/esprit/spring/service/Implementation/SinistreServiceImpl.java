@@ -1,4 +1,4 @@
-package tn.esprit.spring.service.Implementation;
+/*package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
 
@@ -55,3 +55,4 @@ public class SinistreServiceImpl implements ISinistreService{
 	}
 
 }
+*/

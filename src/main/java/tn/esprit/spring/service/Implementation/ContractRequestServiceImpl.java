@@ -36,9 +36,9 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	}
 
 	@Override
-	public void deleteContractRequest(int id) {
+	public void deleteContractRequest(int numRequest) {
 		// TODO Auto-generated method stub
-		contractRequestRep.deleteById(id);
+		contractRequestRep.deleteById(numRequest);
 	}
 
 
@@ -48,11 +48,7 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 		return null;
 	}
 
-	@Override
-	public ContractRequest retrieveContractRequest(int id) {
-		// TODO Auto-generated method stub
-		return (ContractRequest) contractRequestRep.findById(id).get();
-	}
+	
 	
 	//verifer l etat de la demande contrat ( en cours ... )
 //	@Transactional
@@ -71,5 +67,12 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	public List<ContractRequest> IretreiveContratRequestTraite(int nb) {
 		List<ContractRequest> contractRequestTraite = (List<ContractRequest>) contractRequestRep.IretreiveContratRequestTraite(nb);
 		return contractRequestTraite;
+	}
+
+
+	@Override
+	public ContractRequest retrieveContractRequest(int numRequest) {
+		// TODO Auto-generated method stub
+		return (ContractRequest) contractRequestRep.findById(numRequest).get();
 	}
 }

@@ -22,23 +22,41 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name="Contract")
 public class Contract implements Serializable {
 
-	private static final long serialVersionUID= 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column( name = "id")
-	private int ref_contract; 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;
+
 	@Temporal (TemporalType.DATE)
 	private Date dateExpiration;
+
 	private int duration;
+	
 	private String state;
+	
 	private String type;
+	
 	private Float primeCommercial;
+	
 	private Float primePure;
+	
 	private int scoring;
+	
 	private int acceptReq;
+	
 	private float reassure;
+	
+	public Long getId() {
+		return id;
+	}
 	
 	public int getScoring() {
 		return scoring;
@@ -55,18 +73,15 @@ public class Contract implements Serializable {
 	public void setAcceptReq(int acceptReq) {
 		this.acceptReq = acceptReq;
 	}
+	
 	public float getReassure() {
 		return reassure;
 	}
+
 	public void setReassure(float reassure) {
 		this.reassure = reassure;
 	}
-	public int getRef_contract() {
-		return ref_contract;
-	}
-	public void setRef_contract(int ref_contract) {
-		this.ref_contract = ref_contract;
-	}
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}

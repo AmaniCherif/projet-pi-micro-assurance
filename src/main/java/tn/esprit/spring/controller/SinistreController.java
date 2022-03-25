@@ -1,4 +1,4 @@
-package tn.esprit.spring.controller;
+/*package tn.esprit.spring.controller;
 
 import java.util.List;
 
@@ -24,3 +24,4 @@ public class SinistreController {
 	}
 	
 }
+*/
