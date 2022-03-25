@@ -108,6 +108,7 @@ public class Contract implements Serializable {
 	
 	@OneToMany(mappedBy="contract")
 	private Set<Transaction> transaction;
+
 	
 	
 	@OneToOne(mappedBy="contract")
@@ -121,5 +122,6 @@ public class Contract implements Serializable {
 	private Contract contract;
 //	@OneToOne
 //	private SinistreReport sinistreReport;
+
 
 }

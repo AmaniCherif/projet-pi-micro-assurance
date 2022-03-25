@@ -1,3 +1,4 @@
+
 package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
@@ -7,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Contract;
 import tn.esprit.spring.entity.ContractRequest;
+
 import tn.esprit.spring.repository.ContractRepository;
+
 import tn.esprit.spring.repository.ContractRequestRepository;
 import tn.esprit.spring.service.Interface.ContractRequestService;
 
@@ -28,7 +31,15 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 		// TODO Auto-generated method stub
 		contractRequestRep.save(cr);
 		return cr;
+
+
+	@Override
+	public List<ContractRequest> retrieveALLContractsRequest() {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
 
 	@Override
 	public void deleteContractRequest(int numRequest) {
@@ -38,13 +49,18 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 
 	@Override
 	public ContractRequest updateContractRequest(ContractRequest cr) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+
 	public ContractRequest retrieveContractRequest(int numRequest) {
 		// TODO Auto-generated method stub
 		return (ContractRequest) contractRequestRep.findById(numRequest).get();
 	}
+
+	
+	
+
 }
+

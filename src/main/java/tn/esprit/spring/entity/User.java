@@ -11,7 +11,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+
+
+
+
 import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
@@ -142,18 +145,6 @@ public class User implements Serializable {
 
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffers;
-
-	@OneToMany(mappedBy="user")
-	private Set<Claim_report>claimsReport;
-	
-
-
-
-}
-
-
-
-
 
 
 }

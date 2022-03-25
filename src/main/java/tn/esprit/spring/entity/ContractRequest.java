@@ -14,7 +14,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+
 @Table(name="ContractRequest")
+
+
 public class ContractRequest {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
@@ -43,7 +46,10 @@ public class ContractRequest {
 	 private CityUser cityUser;
 	 @Enumerated(EnumType.STRING)
 	 private InsuranceType insuranceType;
+	 
+	 
 	 private String nomContract;
+	 
 	 private String insurancebackground;
 	 private double height;
 	 private double weight;
@@ -158,4 +164,5 @@ public class ContractRequest {
 	 
 	 @ManyToOne
 	 private User user;
+
 }

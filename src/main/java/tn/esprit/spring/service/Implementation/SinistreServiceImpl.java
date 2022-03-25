@@ -49,6 +49,7 @@ public class SinistreServiceImpl implements ISinistreService{
 		
 		return sinistrerepos.findById(id).get();
 	}
+/*
 	
 //////////////////////////////////////////////////////////////////////////////////////////
 	@Override
@@ -56,7 +57,7 @@ public class SinistreServiceImpl implements ISinistreService{
 		
 		return sinistrerepos.findSinistreByState(state_Sinistre_Claim);
 	}
-	
+	*/
 	public int findContractRequestDurationBySinistre(Integer id,ContractType str) {
 		int result = sinistrerepos.findContractRequestDurationBySinistre(id, str);
 		return result;

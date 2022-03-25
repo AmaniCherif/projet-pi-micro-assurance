@@ -9,9 +9,6 @@ import tn.esprit.spring.entity.ContractType;
 import tn.esprit.spring.entity.Sinistre;
 import tn.esprit.spring.entity.State_Sinistre_Claim;
 
-
-
-
 @Repository
 public interface SinistreRepository extends CrudRepository<Sinistre, Integer>{
 	

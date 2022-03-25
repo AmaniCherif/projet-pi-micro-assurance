@@ -69,13 +69,14 @@ public class ContractOffer {
 	}
 
 
+
 	@OneToOne(mappedBy="offer")
 	private Offer offer;
 
 	
 
 
-	
+
 	@ManyToOne
 	private User user;
 }
