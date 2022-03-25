@@ -32,7 +32,7 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public void deleteContract(String ref_contrat) {
 		// TODO Auto-generated method stub
-		contractRep.deleteById(ref_contrat);
+		//contractRep.deleteById(ref_contrat);
 		
 		
 	}
@@ -46,8 +46,8 @@ public class ContractServiceImpl implements ContractService {
 	@Override
 	public Contract retrieveContract(String ref_contrat) {
 		// TODO Auto-generated method stub
-		//return null;
-		return contractRep.findById(ref_contrat).get();
+		return null;
+		//return contractRep.findById(ref_contrat).get();
 	}
 	
 

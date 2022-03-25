@@ -44,8 +44,8 @@ public class ContractRequest {
 	 private String chronicDiseases;
 	 @Enumerated(EnumType.STRING)
 	 private CityUser cityUser;
-	 @Enumerated(EnumType.STRING)
-	 private InsuranceType insuranceType;
+//	 @Enumerated(EnumType.STRING)
+//	 private InsuranceType insuranceType;
 	 
 	 
 	 private String nomContract;

@@ -31,14 +31,7 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 		// TODO Auto-generated method stub
 		contractRequestRep.save(cr);
 		return cr;
-
-
-	@Override
-	public List<ContractRequest> retrieveALLContractsRequest() {
-		// TODO Auto-generated method stub
-		return null;
 	}
-
 
 
 	@Override

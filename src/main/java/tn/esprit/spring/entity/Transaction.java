@@ -35,7 +35,7 @@ public class Transaction implements Serializable {
  
 
 	@ManyToOne
-	private Contract contract;
+	private Contract contracts;
 	
     
 	
