@@ -21,6 +21,12 @@ public class ContractRequest {
 	private int numRequest; // ClÃ© primaire
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	private String duration ;  // des question pour distinction du type de contrat
 	private String incomeLevel;
 	
@@ -43,13 +49,34 @@ public class ContractRequest {
 	 private CityUser cityUser;
 	 @Enumerated(EnumType.STRING)
 	 private InsuranceType insuranceType;
-	 private String nomContract;
+	 public String getTypeContract() {
+		return typeContract;
+	}
+	public void setTypeContract(String typeContract) {
+		this.typeContract = typeContract;
+	}
+	private String nomContract;
+	 private String typeContract;
 	 private String insurancebackground;
 	 private double height;
 	 private double weight;
 	 private int healthChekup;
 	 private int sport;
-	 @Enumerated(EnumType.STRING)
+	 private int accepted;
+	 private int capitalOrAnnuity ;
+	 public int getCapitalOrAnnuity() {
+		return capitalOrAnnuity;
+	}
+	public void setCapitalOrAnnuity(int capitalOrAnnuity) {
+		this.capitalOrAnnuity = capitalOrAnnuity;
+	}
+	public int getAccepted() {
+		return accepted;
+	}
+	public void setAccepted(int accepted) {
+		this.accepted = accepted;
+	}
+	@Enumerated(EnumType.STRING)
 	 private ContractType contractType;
 	public int getNumRequest() {
 		return numRequest;

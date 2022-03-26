@@ -1,5 +1,6 @@
 package tn.esprit.spring.service.Implementation;
 
+
 import java.util.List;
 
 
@@ -7,17 +8,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import tn.esprit.spring.entity.Offer;
 import tn.esprit.spring.repository.OfferRepository;
-import tn.esprit.spring.service.Interface.IOfferService;
+import tn.esprit.spring.repository.UserRepository;
+import tn.esprit.spring.service.Interface.OfferService;
 
 import org.springframework.stereotype.Service;
 
 
 
 @Service
-public class OfferServiceImpl implements IOfferService {
+public class OfferServiceImpl implements OfferService {
 	@Autowired 
 	OfferRepository offerRepository;
-
+	@Autowired 
+	UserRepository userRepository;
+	
+	
 	@Override
 	public List<Offer> retrieveAll_Offers() {
 		
@@ -33,13 +38,13 @@ public class OfferServiceImpl implements IOfferService {
 	}
 
 	@Override
-	public void delete_Offers(Long IdOffer) {
+	public void delete_Offers(int IdOffer) {
 
 		offerRepository.deleteById(IdOffer);
 	}
 
 	@Override
-	public Offer update_Offers(Offer o, Long id ) {
+	public Offer update_Offers(Offer o, int id ) {
 		Offer offreModif = offerRepository.findById(id).get(); 
 		offreModif.setDate_debut(o.getDate_debut());
 		offreModif.setDate_fin(o.getDate_fin());
@@ -54,14 +59,11 @@ public class OfferServiceImpl implements IOfferService {
 	}
 
 	@Override
-	public Offer retrieve_Offer(Long IdOffer) {
+	public Offer retrieve_Offer(int IdOffer) {
 		Offer O = offerRepository.findById(IdOffer).get();
 		return O ;
 		
 	}
 	
 	
-	
-	
-
 }
