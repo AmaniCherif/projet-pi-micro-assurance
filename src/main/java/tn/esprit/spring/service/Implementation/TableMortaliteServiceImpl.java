@@ -63,15 +63,15 @@ public class TableMortaliteServiceImpl implements ITableMortalitéService {
 			 System.out.println("3" );
 
 		 float d = tr.findBySurvivantsLx(ageClient);
-		 System.out.println("77" );
+		
 		 float d_anne = tr.findBySurvivantsLx(ageClient+annee);
-		 System.out.println("3" );
+		 
 
 		double s = puissance(1/(1+interet), annee);
-		 System.out.println("4" );
+		 System.out.println("fffff"+(d_anne/d)*s);
 
-		p = (float) (capital * s) *  ( d_anne/ d) ;
-		 System.out.println("5" );
+		//p = (float) (capital * (( d_anne/ d)*s ) ;
+		p = (float) (capital*(d_anne/d)*s);
 
 		// d_anne.getLxF();
 		 System.out.println("======== "+p );
@@ -116,12 +116,86 @@ public class TableMortaliteServiceImpl implements ITableMortalitéService {
 			}				
 		return p;
 	}
-	
-	
-	private double puissance(double d, int annee) {
-		double x1 = d ;
+	// prime unique ------------------------------------------ Rente viagere ----------------------------------------------------------------------	
+	public double calculePURenteillimteRente(float rente,int age ,  double interet , String sexe){ // à terme échue)
+		double somme = 0 ;
+		float d = tr.findBySurvivantsLx(age);
+		if(sexe.equals(homme) ){
+		for ( int i= 1 ; i <(104-age)+1; i ++ ){	
+			float d_anne = tr.findBySurvivantsLx(age+i);
+			double s = puissance(1/(1+interet), i);
+			
+			somme = somme + ((d_anne/d)*s) ;
+		}		
+		System.out.println("******"+somme*rente);}
+		else if (sexe.equals(femme)   ){
+			for ( int i= 1 ; i <(104-age)+1; i ++ ){	
+				float d_anne = tr.findBySurvivantsLx(age+i);
+				double s = puissance(1/(1+interet), i);
+				
+				somme = somme + ((d_anne/d)*s);
+			}		
+			System.out.println("******"+somme*rente);}
+		
+		return somme*rente;
+	}
+	// prime unique ------------------------------------------ vie entiere  ----------------------------------------------------------------------	
+
+		public double calculePUVieEntiereCapital(float capital,int age ,  double interet ,String sexe){
+			double somme = 0 ;
+			float d = tr.findBySurvivantsLx(age);
+			if(sexe.equals(homme)  ){
+			for ( int i= 0 ; i <(104-age); i ++ ){	
+				float d_anne = tr.findByDecesDx(age+i);
+				double s = puissance(1/(1+interet), (i+0.5));
+				System.out.println("----------"+s);
+				somme = somme + (d_anne/d)*s;
+			}	
+			System.out.println("******"+somme*capital);
+			}
+			else if (sexe.equals(femme)   ){
+				for ( int i= 0 ; i <(104-age); i ++ ){	
+					float d_anne = tr.findByDecesDx(age+i);
+					double s = puissance(1/(1+interet), (i+0.5));
+					System.out.println("----------"+s);
+					somme = somme + (d_anne/d)*s;
+				}	
+				System.out.println("******"+somme*capital);
+			}
+			return somme*capital;
+		}
+		public double calculePUVieEntierePrime(float prime ,int age ,  double interet ,String sexe){
+			double somme = 0 ;
+			float d = tr.findBySurvivantsLx(age);
+			if(sexe.equals(homme)  ){
+			for ( int i= 0 ; i <(104-age); i ++ ){	
+				float d_anne = tr.findByDecesDx(age+i);
+				double s = puissance(1/(1+interet), (i+0.5));
+				System.out.println("----------"+s);
+				somme = somme + (d_anne/d)*s;
+			}	
+			System.out.println("******"+prime/somme);
+			}
+			else if (sexe.equals(femme)  ){
+				for ( int i= 0 ; i <(104-age); i ++ ){	
+					float d_anne = tr.findByDecesDx(age+i);
+					double s = puissance(1/(1+interet), (i+0.5));
+					System.out.println("----------"+s);
+					somme = somme + (d_anne/d)*s;
+				}	
+				System.out.println("******"+prime/somme);
+			}
+			return prime/somme;
+		}
+		
+		
+		
+		
+		
+	private double puissance(double i, double p) {
+		double x1 = i ;
 		double x2 = Math.log(( x1) ) ;
-		double x3 = x2*annee ;
+		double x3 = x2*p ;
 		double taux = Math.exp((x3));	
 		return   taux ;
 	}
