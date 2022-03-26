@@ -73,5 +73,52 @@ public class TableMortalitéController {
 			return new ResponseEntity<TableMortalité>(HttpStatus.OK);
 		}	
 		
+		////////////////prime Periodique : capital differé ////////////
+				
+		@GetMapping("/calccapitaldiffere/{capital}/{p}/{age}/{annee}/{inte}/{sexe}")
+		@ResponseBody
+		public ResponseEntity<TableMortalité> calculePPCapital_vie(@PathVariable("capital") float capital,
+			@PathVariable("p") float p, 
+			@PathVariable("age") int age,	
+			@PathVariable("annee") int annee,	
+		
+			@PathVariable("inte") double inte
+		,@PathVariable("sexe") String sexe
+			){
+				
+		tri.calculePPCapital_vie( capital,p, age, annee,  inte , sexe );
+		return new ResponseEntity<TableMortalité>(HttpStatus.OK);
+		}
+		
+		@GetMapping("/calculePPRente/{p}/{rente}/{age}/{annee}/{inte}/{sexe}")
+		@ResponseBody
+		public ResponseEntity<TableMortalité> calculePPRente(
+			@PathVariable("p") float p, 
+			@PathVariable("rente") float rente,
+			@PathVariable("age") int age,	
+			@PathVariable("annee") int annee,	
+		
+			@PathVariable("inte") double inte
+		,@PathVariable("sexe") String sexe
+			){
+				
+		tri.calculePPRente(p,rente , age, annee,  inte , sexe );
+		return new ResponseEntity<TableMortalité>(HttpStatus.OK);
+		}
+		@GetMapping("/calculePPVieEntiere/{p}/{capital}/{age}/{annee}/{inte}/{sexe}")
+		@ResponseBody
+		public ResponseEntity<TableMortalité> calculePPVieEntiere(
+			@PathVariable("p") float p, 
+			@PathVariable("capital") float capital,
+			@PathVariable("age") int age,	
+			@PathVariable("annee") int annee,	
+		
+			@PathVariable("inte") double inte
+		,@PathVariable("sexe") String sexe
+			){
+				
+		tri.calculePPVieEntiere(p,capital , age, annee,  inte , sexe );
+		return new ResponseEntity<TableMortalité>(HttpStatus.OK);
+		}
 
 }
