@@ -1,36 +1,41 @@
 package tn.esprit.spring.entity;
-
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-
-
-
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-@SuppressWarnings("serial")
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 
-public class User implements Serializable {
+public class User {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-
-	private Long idUser;
-	public Long getIdUser() {
+	@Column(name="id_user")
+	private int idUser;
+	private int age ;
+	public int getAge() {
+		return age;
+	}
+	public void setAge(int age) {
+		this.age = age;
+	}
+	public int getIdUser() {
 		return idUser;
 	}
-	public void setIdUser(Long idUser) {
+	public void setIdUser(int idUser) {
 		this.idUser = idUser;
 	}
 	private String firstname;
@@ -138,14 +143,12 @@ public class User implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private CityUser cityUser;
 	@OneToMany(mappedBy="user")
-	///private Set<Investement>investements;
-	//@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractRequest;
 	@OneToMany(mappedBy="user")
-	private Set<ContractOffer>ContractOffers;
-	@OneToMany(mappedBy="user")
 	private Set<Claim_report>claimsReport;
-	
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
+	private List<Contract> contracts;
 
 
 

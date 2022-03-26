@@ -13,5 +13,5 @@ public interface ISinistreService {
 	Sinistre updateSinistre(Sinistre s);
 	Sinistre retrieveSinistre(Integer id);
 	//
-	List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim);
+	//List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim);
 }
