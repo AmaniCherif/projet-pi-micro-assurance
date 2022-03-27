@@ -1,4 +1,4 @@
-package tn.esprit.spring.service.Implementation;
+/*package tn.esprit.spring.service.Implementation;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -56,6 +56,11 @@ public class SinistreServiceImpl implements ISinistreService{
 		
 		return sinistrerepos.findSinistreByState(state_Sinistre_Claim);
 	}
+
+
+
+
+
 	
 	public int findContractRequestDurationBySinistre(Integer id,ContractType str) {
 		int result = sinistrerepos.findContractRequestDurationBySinistre(id, str);
@@ -67,3 +72,4 @@ public class SinistreServiceImpl implements ISinistreService{
 		return sinistres;
 	}
 }
+*/
