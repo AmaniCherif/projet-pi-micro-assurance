@@ -1,10 +1,13 @@
 /*package tn.esprit.spring.service.Implementation;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import tn.esprit.spring.entity.ContractType;
 import tn.esprit.spring.entity.Sinistre;
 import tn.esprit.spring.entity.State_Sinistre_Claim;
 import tn.esprit.spring.repository.SinistreRepository;
@@ -19,14 +22,14 @@ public class SinistreServiceImpl implements ISinistreService{
 
 	@Override
 	public List<Sinistre> retrieveALLSinistre() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Sinistre> sinistres= (List<Sinistre>)sinistrerepos.findAll();
+		return sinistres;
 	}
 
 	@Override
 	public Sinistre addSinistre(Sinistre s) {
-		// TODO Auto-generated method stub
-		return null;
+		sinistrerepos.save(s);
+		return s;
 	}
 
 	@Override
@@ -37,8 +40,8 @@ public class SinistreServiceImpl implements ISinistreService{
 
 	@Override
 	public Sinistre updateSinistre(Sinistre s) {
-		// TODO Auto-generated method stub
-		return null;
+		sinistrerepos.save(s);
+		return s;
 	}
 
 	@Override
@@ -47,12 +50,26 @@ public class SinistreServiceImpl implements ISinistreService{
 		return sinistrerepos.findById(id).get();
 	}
 	
-
+//////////////////////////////////////////////////////////////////////////////////////////
 	@Override
 	public List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim) {
 		
 		return sinistrerepos.findSinistreByState(state_Sinistre_Claim);
 	}
 
+
+
+
+
+	
+	public int findContractRequestDurationBySinistre(Integer id,ContractType str) {
+		int result = sinistrerepos.findContractRequestDurationBySinistre(id, str);
+		return result;
+	}
+	
+	public List<Sinistre> findSinistresByStateReclamation(){
+		List<Sinistre> sinistres= sinistrerepos.findSinistresByStateReclamation();
+		return sinistres;
+	}
 }
 */
