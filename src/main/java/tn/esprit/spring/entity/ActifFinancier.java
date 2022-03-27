@@ -13,13 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@SuppressWarnings("serial")
 @Entity
 public class ActifFinancier implements Serializable {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 
-	private int id ;
+	private Long id ;
 	
 	@Temporal(TemporalType.DATE)
 	private Date date_debut ; //wa9teh_yebda_contrat_investissement
@@ -47,11 +48,11 @@ public class ActifFinancier implements Serializable {
 	
 	private String etat ; // resiliation_ou_encours
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

@@ -58,13 +58,13 @@ public class SinistreServiceImpl implements ISinistreService{
 		return sinistrerepos.findSinistreByState(state_Sinistre_Claim);
 	}
 	*/
-	public int findContractRequestDurationBySinistre(Integer id,ContractType str) {
-		int result = sinistrerepos.findContractRequestDurationBySinistre(id, str);
-		return result;
-	}
-	
-	public List<Sinistre> findSinistresByStateReclamation(){
-		List<Sinistre> sinistres= sinistrerepos.findSinistresByStateReclamation();
-		return sinistres;
-	}
+//	public int findContractRequestDurationBySinistre(Integer id,ContractType str) {
+//		int result = sinistrerepos.findContractRequestDurationBySinistre(id, str);
+//		return result;
+//	}
+//	
+//	public List<Sinistre> findSinistresByStateReclamation(){
+//		List<Sinistre> sinistres= sinistrerepos.findSinistresByStateReclamation();
+//		return sinistres;
+//	}
 }

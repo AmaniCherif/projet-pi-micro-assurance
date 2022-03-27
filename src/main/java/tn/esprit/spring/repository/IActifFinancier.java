@@ -12,7 +12,7 @@ import tn.esprit.spring.entity.Fond;
 import tn.esprit.spring.entity.User;
 
 @Repository
-public interface IActifFinancier extends JpaRepository<ActifFinancier, Integer>{
+public interface IActifFinancier extends JpaRepository<ActifFinancier, Long>{
 	
 List<ActifFinancier> findByNomFond(Fond nom_fond) ;
 	

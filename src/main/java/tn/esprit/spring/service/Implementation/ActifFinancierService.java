@@ -3,7 +3,7 @@ package tn.esprit.spring.service.Implementation;//YosserBenameur
 import java.util.ArrayList;
 
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -15,7 +15,7 @@ import tn.esprit.spring.entity.ActifFinancier;
 import tn.esprit.spring.entity.Fond;
 import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.Rendement;
-import tn.esprit.spring.entity.User;
+
 import tn.esprit.spring.repository.IActifFinancier;
 import tn.esprit.spring.repository.IDataFondEURORepo;
 import tn.esprit.spring.repository.IRendement;
@@ -51,7 +51,7 @@ public class ActifFinancierService {
 		//actif.setUserActif(u);
 		actifFinancierRepo.save(actif);
     }
-	////////////////Lister_tous_les_fonds////////////////////////
+	///////Lister_tous_les_fonds//////////
 	@Transactional
 	public List<ActifFinancier> listetouslesfond(){ //tous_les_fonds
 		return actifFinancierRepo.findAll();}
@@ -80,7 +80,7 @@ public class ActifFinancierService {
 	    }
      
 	////////////////////////////calcul_fondeuro////////////
-	public ActifFinancier montant_actuelFondEuro(int id){		
+	public ActifFinancier montant_actuelFondEuro(Long id){		
 		double frais_gestion = 0.03 ;
 		ActifFinancier a = actifFinancierRepo.findById(id).get();
 		float primerelle = (float) (a.getMontant_investi() - (a.getMontant_investi()*frais_gestion)) ;
@@ -196,7 +196,7 @@ public class ActifFinancierService {
 		return a ;
 	}
 	
-public void FondEuro_to_EuroCroissance(int id){
+public void FondEuro_to_EuroCroissance(Long id){
 	  	montant_actuelFondEuro(id);
 	  	ActifFinancier a_croissance = new ActifFinancier() ;
 		ActifFinancier a = actifFinancierRepo.findById(id).get();
@@ -215,7 +215,7 @@ public void FondEuro_to_EuroCroissance(int id){
 	   
 }
 
-public ActifFinancier montant_actuelEuroCroissance(int id){		
+public ActifFinancier montant_actuelEuroCroissance(Long id){		
 	double frais_gestion = 0.03 ;
 	ActifFinancier a = actifFinancierRepo.findById(id).get();
 	float primerelle = (float) (a.getMontant_investi() - (a.getMontant_investi()*frais_gestion)) ;
