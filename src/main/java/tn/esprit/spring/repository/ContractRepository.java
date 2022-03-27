@@ -12,4 +12,5 @@ import tn.esprit.spring.entity.Contract;
 public interface ContractRepository  extends CrudRepository<Contract, Double>{
 
 
+
 }
