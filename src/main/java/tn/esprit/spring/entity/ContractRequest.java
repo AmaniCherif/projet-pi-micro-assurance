@@ -1,6 +1,8 @@
 package tn.esprit.spring.entity;
 
 import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -16,18 +18,23 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="ContractRequest")
 public class ContractRequest {
+	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
+	@Column( name = "id")
 	private int numRequest; // ClÃ© primaire
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
+
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
 	}
-	private String duration ;  // des question pour distinction du type de contrat
+
+
+	private int duration ;  // des question pour distinction du type de contrat
 	private String incomeLevel;
 	
      @Enumerated(EnumType.STRING)
@@ -35,12 +42,17 @@ public class ContractRequest {
      
 	 @Enumerated(EnumType.STRING)
 	 private Prime choixPrime ;
-	
+	 private float val_prime;
 
-	 //beneficiaire
+	// question pour la tarification
+	private float capitalAssure ;
+	private int capitalOuRente ;
+	 
+	 
+	//beneficiaire
 	 private String beneficiary;
-
-	 private int cinBeneficiary ;
+	 private int traite ;
+	private int cinBeneficiary ;
 	 private String reaseon;
 	 private int alcoholic;
 	 private int smoker;
@@ -90,10 +102,10 @@ public class ContractRequest {
 	public void setDateRequest(Date dateRequest) {
 		this.dateRequest = dateRequest;
 	}
-	public String getDuration() {
+	public int getDuration() {
 		return duration;
 	}
-	public void setDuration(String duration) {
+	public void setDuration(int duration) {
 		this.duration = duration;
 	}
 	public String getIncomeLevel() {
@@ -180,9 +192,53 @@ public class ContractRequest {
 	public void setContractType(ContractType contractType) {
 		this.contractType = contractType;
 	}
+	public int getTraite() {
+		return traite;
+	}
+	public void setTraite(int traite) {
+		this.traite = traite;
+	}
 	 @OneToOne
 	 private Contract contract;
 	 
 	 @ManyToOne
 	 private User user;
+	
+	public Prime getChoixPrime() {
+		return choixPrime;
+	}
+	public void setChoixPrime(Prime choixPrime) {
+		this.choixPrime = choixPrime;
+	}
+	public Contract getContract() {
+		return contract;
+	}
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public float getVal_prime() {
+		return val_prime;
+	}
+	public void setVal_prime(float val_prime) {
+		this.val_prime = val_prime;
+	}
+	public int getCapitalOuRente() {
+		return capitalOuRente;
+	}
+	public void setCapitalOuRente(int capitalOuRente) {
+		this.capitalOuRente = capitalOuRente;
+	}
+	public float getCapitalAssure() {
+		return capitalAssure;
+	}
+	public void setCapitalAssure(float capitalAssure) {
+		this.capitalAssure = capitalAssure;
+	}
+	
 }

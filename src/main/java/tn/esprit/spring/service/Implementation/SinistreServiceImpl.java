@@ -1,4 +1,4 @@
-package tn.esprit.spring.service.Implementation;
+/*package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
 
@@ -50,10 +50,13 @@ public class SinistreServiceImpl implements ISinistreService{
 /*	@Override
 	public List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim) {
 		
+
 		return sinistreRepository.findSinistreByState(state_Sinistre_Claim);
 	}*/
-	
-	
+
+
+
+
 	/* public float TDEMPRUNTEUR(Long idS) {
 			int k;
 			float prime = 0;
@@ -141,6 +144,14 @@ public class SinistreServiceImpl implements ISinistreService{
 		else {
 		return res1 ;
 		}
-	}*/
+	}
 
 }
+
+	public List<Sinistre> findSinistresByStateReclamation(){
+		List<Sinistre> sinistres= sinistrerepos.findSinistresByStateReclamation();
+		return sinistres;
+	}
+}
+*/
+

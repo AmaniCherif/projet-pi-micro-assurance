@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,12 +24,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name="Contract")
 public class Contract implements Serializable {
 
-	private static final long serialVersionUID= 1L;
-	@Id @GeneratedValue(generator="system-uuid")
-	@GenericGenerator(name="system-uuid", strategy = "uuid")
-	private String ref_contract;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;
+
 	public Date getDateFin() {
 		return dateFin;
 	}
@@ -39,17 +46,38 @@ public class Contract implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date dateFin ;
+
+
+	@Temporal (TemporalType.DATE)
+
 	private Date dateExpiration;
+
 	private int duration;
+
+	
 	private String state;
+	
+
 	private String type;
+	
 	private Float primeCommercial;
+	
 	private Float primePure;
+	
 	private int scoring;
+	
 	private int acceptReq;
-	private int reassure;
+
 	private int NumContrat;
 	private float remboursement;
+
+	
+	private float reassure;
+	
+	public Long getId() {
+		return id;
+	}
+
 	
 	public float getRemboursement() {
 		return remboursement;
@@ -66,27 +94,27 @@ public class Contract implements Serializable {
 	public int getScoring() {
 		return scoring;
 	}
+
 	public void setScoring(int scoring) {
 		this.scoring = scoring;
 	}
+
 	public int getAcceptReq() {
 		return acceptReq;
 	}
+
 	public void setAcceptReq(int acceptReq) {
 		this.acceptReq = acceptReq;
 	}
-	public int getReassure() {
+	
+	public float getReassure() {
 		return reassure;
 	}
-	public void setReassure(int reassure) {
+
+	public void setReassure(float reassure) {
 		this.reassure = reassure;
 	}
-	public String getRef_contract() {
-		return ref_contract;
-	}
-	public void setRef_contract(String ref_contract) {
-		this.ref_contract = ref_contract;
-	}
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -131,10 +159,16 @@ public class Contract implements Serializable {
 		this.primePure = primePure;
 	}
 	
+	public ContractRequest getContractRequest() {
+		return contractRequest;
+	}
+	public void setContractRequest(ContractRequest contractRequest) {
+		this.contractRequest = contractRequest;
+	}
+
 	@OneToMany(mappedBy="contract")
 	private Set<Transaction> transaction;
-	
-	
+
 	@OneToOne(mappedBy="contract")
 	private ContractRequest contractRequest;
 	
@@ -143,6 +177,7 @@ public class Contract implements Serializable {
 	
 	@OneToOne
 	private ReinsuranceContract reinsuranceContract;
+
 //	@OneToOne
 //	private SinistreReport sinistreReport;
 	@JsonIgnore

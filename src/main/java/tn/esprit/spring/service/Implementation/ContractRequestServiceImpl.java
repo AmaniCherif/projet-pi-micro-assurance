@@ -3,9 +3,17 @@ package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import tn.esprit.spring.entity.ContractRequest;
+
+
+import tn.esprit.spring.entity.ContractRequest;
+
+
 import tn.esprit.spring.repository.ContractRequestRepository;
 import tn.esprit.spring.service.Interface.ContractRequestService;
 
@@ -17,6 +25,7 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	UserRepository userRep;*/
 
 	@Override
+	// lister les demande Contrat
 	public List<ContractRequest> retrieveALLContractsRequest() {
 		List<ContractRequest> contractRequest = (List<ContractRequest>) contractRequestRep.findAll();
 		// TODO Auto-generated method stub
@@ -24,6 +33,7 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 	}
 
 	@Override
+	@Transactional
 	public ContractRequest addContractRequest(ContractRequest cr) {
 		// TODO Auto-generated method stub
 		contractRequestRep.save(cr);
@@ -36,11 +46,34 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 		contractRequestRep.deleteById(numRequest);
 	}
 
+
 	@Override
 	public ContractRequest updateContractRequest(ContractRequest cr) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
+	
+	//verifer l etat de la demande contrat ( en cours ... )
+//	@Transactional
+//	public void verifeEtatContractRequest(int numRequest){
+//		ContractRequest r = contractRequestRep.findById(numRequest).get();
+//		if (r.getTraite()== 0) {
+//			System.out.println("demande n'est pas traité");}
+//		else {
+//			System.out.println("demande traité");
+//		}
+//	}
+	// lister les demande  Contrat en cours ( non traite )
+	
+
+	@Override
+	public List<ContractRequest> IretreiveContratRequestTraite(int nb) {
+		List<ContractRequest> contractRequestTraite = (List<ContractRequest>) contractRequestRep.IretreiveContratRequestTraite(nb);
+		return contractRequestTraite;
+	}
+
 
 	@Override
 	public ContractRequest retrieveContractRequest(int numRequest) {
