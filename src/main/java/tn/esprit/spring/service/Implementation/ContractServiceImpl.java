@@ -32,7 +32,7 @@ public class ContractServiceImpl implements ContractService {
 	ITableMortalitéService tr; 
 	
 	@Autowired
-	TableMortaliteServiceImpl dataService;
+	TableMortaliteServiceImpl tri;
 	
 	//CONTRATS EN CAS DE VIE
 	String CapitalDiffere = "capital differe";
@@ -84,18 +84,105 @@ public class ContractServiceImpl implements ContractService {
 		if(d.getNomContract().equals(CapitalDiffere)){  // choix du contrat
 			if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
 					if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculé les primes
-		//public double calculePUCapital_vieCapital(float capital ,int age , int annee, double interet , String sexe){
-		//				double calculPUCapital_viePrime = dataService.calculePUCapital_vieCapital(d.getCapitalAssure(),age, d.getDuration(),interet, sexe) ;
-			//			c.setReassure(d.getCapitalAssure());
-				//		c.setPrimePure((float) calculPUCapital_viePrime);
-						//Prime pure + frais de gestion
-					//	c.setPrimeCommercial((float) (calculPUCapital_viePrime+calculPUCapital_viePrime*frais)) ; 
-						
-					}
+	//	public double calculePUCapital_vieCapital(float capital ,int age , int annee, double interet , String sexe){
+						double calculPUCapital_viePrime = tri.calculePUCapital_vieCapital(d.getCapitalAssure(),age, d.getDuration(),interet, sexe) ;
+						c.setReassure(d.getCapitalAssure());
+						c.setPrimePure((float) calculPUCapital_viePrime);
+						c.setPrimeCommercial((float) (calculPUCapital_viePrime+calculPUCapital_viePrime*frais)) ; }
+					else{
+						float primeP = (float) (d.getVal_prime()-d.getVal_prime()*frais) ;
+						double calculePUCapital_vieCapital = tri.calculePUCapital_viePrime(primeP,age ,d.getDuration(),interet , sexe );
+						c.setPrimeCommercial(d.getVal_prime());
+						c.setPrimePure(primeP);
+						c.setReassure((float) calculePUCapital_vieCapital); }
+			
 			}
-		}
-		}	
-	}
+			else if (d.getChoixPrime().equals(primePeriodique)){
+				if(d.getCapitalAssure() != 0){
+					double calculePPCapital_viePrime = tri.calculePPCapital_vie( d.getCapitalAssure()  , 0 , age ,  d.getDuration(),  interet ,  sexe);
+					double primeCommerciale = calculePPCapital_viePrime +calculePPCapital_viePrime*frais ;
+					c.setReassure(d.getCapitalAssure());
+					c.setPrimePure((float) calculePPCapital_viePrime);
+					c.setPrimeCommercial((float) primeCommerciale);}
+				else {
+					double primePure = d.getVal_prime()-d.getVal_prime()*frais ;
+					double calculePPCapital_vieCapital = tri.calculePPCapital_vie( 0,(float) primePure , age ,  d.getDuration(),  interet ,  sexe);
+					c.setReassure((float) calculePPCapital_vieCapital);
+					c.setPrimePure((float) primePure);
+					c.setPrimeCommercial(d.getVal_prime()); }
+				}
+			}
+////////////////////////////////////////////rente  Viagere /////////////////////////////////////////////
+		else if(d.getNomContract().equals(renteViagere)){ 
+			if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
+				if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculÃ© les primes
+//public double calculePURenteillimteRente(float rente,int age ,  double interet , String sexe){ // Ã  terme Ã©chue)						
+					double calculePURenteillimtePrime = tri.calculePURenteillimteRente(d.getCapitalAssure(),age ,interet , sexe );
+					double calculePURenteillimtePrimeCommerciale =  calculePURenteillimtePrime + calculePURenteillimtePrime*frais ;
+					c.setReassure(d.getCapitalAssure());
+					c.setPrimePure((float) calculePURenteillimtePrime);
+					c.setPrimeCommercial((float) calculePURenteillimtePrimeCommerciale);	}
+				else{
+	//	public double calculePURenteillimtePrime(float prime,int age ,  double interet , String sexe){ // Ã  terme Ã©chue)
+						float primeP = (float) (d.getVal_prime()-d.getVal_prime()*frais) ;
+						double calculePURenteillimteRente = tri.calculePURenteillimteRente(primeP,age,interet , sexe );
+						c.setPrimeCommercial(d.getVal_prime());
+						c.setPrimePure(primeP);
+						c.setReassure((float) calculePURenteillimteRente); }
+			}
+			else if (d.getChoixPrime().equals(primePeriodique)){
+//				public double calculePPRente( float rente, float prime ,int age , int annee, double interet , String sexe ){// a terme dâ€™avance
+							if(d.getCapitalAssure() != 0){
+								double calculePPRentePrime = tri.calculePPRente( d.getCapitalAssure()  , 0 , age ,  d.getDuration(),  interet ,  sexe);
+								double primeCommerciale = calculePPRentePrime +calculePPRentePrime*frais ;
+								c.setReassure(d.getCapitalAssure()); // ici le capital est considere come des rente viagere !!! attention ..
+								c.setPrimePure((float) calculePPRentePrime);
+								c.setPrimeCommercial((float) primeCommerciale);}
+							else {
+								double primePure = d.getVal_prime()-d.getVal_prime()*frais ;
+								double calculePPRenteCapital = tri.calculePPRente( 0,(float) primePure , age ,  d.getDuration(),  interet ,  sexe);
+								c.setReassure((float) calculePPRenteCapital);
+								c.setPrimePure((float) primePure);
+								c.setPrimeCommercial(d.getVal_prime()); }
+						}		
+					}
+		//////////////////////////////////////////// Vie entiere /////////////////////////////////////////////
+					else if(d.getNomContract().equals(vieEntiere)){  // choix du contrat
+						if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
+							if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculÃ© les primes
+//		 	public double calculePUVieEntiereCapital(float capital,int age ,  double interet ,String sexe){
+									double calculePUVieEntierePrime = tri.calculePUVieEntiereCapital(d.getCapitalAssure(),age ,interet , sexe );
+									c.setReassure(d.getCapitalAssure());
+									c.setPrimePure((float) calculePUVieEntierePrime);
+									c.setPrimeCommercial((float) (calculePUVieEntierePrime+calculePUVieEntierePrime*frais));	}
+								else{
+			//  	public double calculePUVieEntierePrime(float prime ,int age ,  double interet ,String sexe){
+									float primeP = (float) (d.getVal_prime()-d.getVal_prime()*frais) ;
+									double calculePUVieEntiereCapital = tri.calculePUVieEntierePrime(primeP,age ,interet , sexe );
+									c.setPrimeCommercial(d.getVal_prime());
+									c.setPrimePure(primeP);
+									c.setReassure((float) calculePUVieEntiereCapital); }
+						}
+						else if (d.getChoixPrime().equals(primePeriodique)){
+//				public double calculePPVieEntiere(float prime ,float capital ,int age , int annee, double interet , String sexe ){// a terme dâ€™avance
+								if(d.getCapitalAssure() != 0){
+									double calculePPVieEntierePrime = tri.calculePPVieEntiere(0, d.getCapitalAssure()   , age ,  d.getDuration(),  interet ,  sexe);
+									double primeCommerciale = calculePPVieEntierePrime +calculePPVieEntierePrime*frais ;
+									c.setReassure(d.getCapitalAssure());
+									c.setPrimePure((float) calculePPVieEntierePrime);
+									c.setPrimeCommercial((float) primeCommerciale);}
+								else {
+									double primePure = d.getVal_prime()-d.getVal_prime()*frais ;
+									double calculePPVieEntiereCapital = tri.calculePPVieEntiere( (float) primePure, 0 , age ,  d.getDuration(),  interet ,  sexe);
+									c.setReassure((float) calculePPVieEntiereCapital);
+									c.setPrimePure((float) primePure);
+									c.setPrimeCommercial(d.getVal_prime()); }
+						}				
+					}}
+				
+			}
+			
+	
 	
 	/* calcul de l'age depuis la date de naissance*/
 	public int age(Date birthdate){

@@ -54,7 +54,7 @@ public class TableMortaliteServiceImpl implements ITableMortalitéService {
 	String homme = "homme";
 	String femme = "femme";
 	// prime unique ------------------------------------------ Capital differe ----------------------------------------------------------------------	
-	public float calculePUCapital_vieCapital(float capital ,int ageClient , int annee, float interet , String sexe){
+	public float calculePUCapital_vieCapital(float capital ,int ageClient , int annee, double interet , String sexe){
 		int k=0;
 		float p = 0 ;
 		 System.out.println("2" );
