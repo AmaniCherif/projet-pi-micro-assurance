@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entity.Contract;
@@ -26,7 +26,14 @@ public class ContractController {
 
 	@Autowired 
 	ITableMortalitéService tr; 
-
+	
+	
+	@GetMapping("/calculeContrat/{id}")
+	public ResponseEntity<Contract> calculeContratController(@PathVariable("id") int   id	){
+				
+		contractServiceImpl.tarificationContrat(id);
+		return new ResponseEntity<Contract>(HttpStatus.OK);
+	}
 	@GetMapping("/")
 	public List<Contract> getContracts() {			
 		return contractServiceImpl.getContracts();

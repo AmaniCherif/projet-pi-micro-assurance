@@ -9,16 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.GenericGenerator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name="Contract")
@@ -37,27 +35,13 @@ public class Contract implements Serializable {
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;
 
-	public Date getDateFin() {
-		return dateFin;
-	}
-	public void setDateFin(Date dateFin) {
-		this.dateFin = dateFin;
-	}
-
-	@Temporal(TemporalType.DATE)
-	private Date dateFin ;
-
-
 	@Temporal (TemporalType.DATE)
-
 	private Date dateExpiration;
 
 	private int duration;
-
 	
 	private String state;
 	
-
 	private String type;
 	
 	private Float primeCommercial;
@@ -67,30 +51,13 @@ public class Contract implements Serializable {
 	private int scoring;
 	
 	private int acceptReq;
-
-	private int NumContrat;
-	private float remboursement;
-
 	
 	private float reassure;
 	
 	public Long getId() {
 		return id;
 	}
-
 	
-	public float getRemboursement() {
-		return remboursement;
-	}
-	public void setRemboursement(float remboursement) {
-		this.remboursement = remboursement;
-	}
-	public int getNumContrat() {
-		return NumContrat;
-	}
-	public void setNumContrat(int numContrat) {
-		NumContrat = numContrat;
-	}
 	public int getScoring() {
 		return scoring;
 	}
@@ -133,7 +100,6 @@ public class Contract implements Serializable {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-
 	public String getState() {
 		return state;
 	}
@@ -177,12 +143,8 @@ public class Contract implements Serializable {
 	
 	@OneToOne
 	private ReinsuranceContract reinsuranceContract;
-
+	
 //	@OneToOne
 //	private SinistreReport sinistreReport;
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "USER_ID")
-	 private User user;
 
 }
