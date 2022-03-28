@@ -12,11 +12,11 @@ import tn.esprit.spring.service.Interface.ISinistreService;
 @RestController
 public class SinistreController {
 
-	@Autowired
-	ISinistreService sinistreservice;
+//	@Autowired
+//	ISinistreService sinistreservice;
 	@ResponseBody
 	public void addSinistre(@RequestBody Sinistre s) {
-		sinistreservice.addSinistre(s);
+//		sinistreservice.addSinistre(s);
 	}
 	
 }
