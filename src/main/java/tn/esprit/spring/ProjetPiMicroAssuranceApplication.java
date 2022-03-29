@@ -8,8 +8,10 @@ import org.springframework.context.annotation.ComponentScan;
 
 
 @SpringBootApplication
+
 //@ComponentScan(basePackages = {"tn.esprit.spring.service.Interface"})
 //@EnableSwagger2
+
 public class ProjetPiMicroAssuranceApplication {
 
 	

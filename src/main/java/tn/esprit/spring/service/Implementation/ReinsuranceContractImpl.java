@@ -1,9 +1,14 @@
 package tn.esprit.spring.service.Implementation;
 
+
+import java.util.List;
+import java.util.Optional;
+
 import java.util.Date;
 import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,12 +24,12 @@ import tn.esprit.spring.service.Interface.ReinsuranceContractService;
 
 @Service
 public class ReinsuranceContractImpl implements ReinsuranceContractService {
-
 	@Autowired
 	ReinsuranceContractRepository reinsuranceRepository;
 	
 	
 	private static final Logger l = LogManager.getLogger(ReinsuranceContractService.class);
+
 
 	@Override
 	public List<ReinsuranceContract>retrieveALLContracts(){

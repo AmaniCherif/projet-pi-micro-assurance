@@ -92,4 +92,12 @@ public class Offer  {
 	public void setDescription(String description) {
 		Description = description;
 	}
+
+	@OneToOne
+	private ContractOffer offer;
+
+
 }
+
+}
+

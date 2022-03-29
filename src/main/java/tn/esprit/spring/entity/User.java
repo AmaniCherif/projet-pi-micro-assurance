@@ -2,7 +2,6 @@ package tn.esprit.spring.entity;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,6 +16,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+
+
+@SuppressWarnings("serial")
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -145,15 +147,25 @@ public class User {
 	
 	@Enumerated(EnumType.STRING)
 	private CityUser cityUser;
+
+
 	
+	@OneToMany(mappedBy="user")
+  private Set<ContractRequest>contractRequest;
+
+	@OneToMany(mappedBy="user")
+	private Set<ContractOffer>ContractOffers;
+
 	@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractRequest;
 	
 	@OneToMany(mappedBy="user")
 	private Set<Claim_report>claimsReport;
-//	
-//	@JsonIgnore
-//	private List<Contract> contracts;
+
+@OneToMany(mappedBy="user")
+@JsonIgnore
+private List<Contract> contracts;
+
 
 
 

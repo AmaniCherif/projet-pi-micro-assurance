@@ -58,7 +58,7 @@ public class Contract implements Serializable {
 		return id;
 	}
 
-	public float getRemboursement() {
+	/*public float getRemboursement() {
 		return remboursement;
 	}
 	public void setRemboursement(float remboursement) {
@@ -69,7 +69,7 @@ public class Contract implements Serializable {
 	}
 	public void setNumContrat(int numContrat) {
 		NumContrat = numContrat;
-	}
+	}*/
 
 
 	public int getScoring() {
@@ -176,7 +176,6 @@ public class Contract implements Serializable {
 	@OneToMany(mappedBy="contract")
 	private Set<Transaction> transaction;
 
-
 	@OneToOne(mappedBy="contract")
 	private ContractRequest contractRequest;
 	
@@ -188,5 +187,6 @@ public class Contract implements Serializable {
 	
 //	@OneToOne
 //	private SinistreReport sinistreReport;
+
 
 }

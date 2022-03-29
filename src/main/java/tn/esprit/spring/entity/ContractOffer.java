@@ -93,6 +93,12 @@ public class ContractOffer implements Serializable{
 		this.offers = offers;
 	}
 
+
+
+	@OneToOne(mappedBy="offer")
+	private Offer offer;
+	@ManyToOne
+	private User user;
     @JsonIgnore
     @ManyToOne
     private User users;
