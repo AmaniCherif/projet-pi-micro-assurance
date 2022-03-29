@@ -1,4 +1,9 @@
+
+/*
+import java.util.List;
+
 package tn.esprit.spring.controller;
+
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,3 +25,4 @@ public class SinistreController {
 	}
 	
 }
+*/

@@ -1,4 +1,4 @@
-package tn.esprit.spring.repository;
+/*package tn.esprit.spring.repository;
 
 import java.util.List;
 
@@ -26,3 +26,4 @@ public interface SinistreRepository extends CrudRepository<Sinistre, Integer>{
 
 
 }
+*/
