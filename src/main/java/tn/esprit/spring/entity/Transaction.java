@@ -83,6 +83,16 @@ public class Transaction implements Serializable {
 
 
 
+	
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+/*
 	public Contract getContract() {
 		return contract;
 	}
@@ -93,13 +103,7 @@ public class Transaction implements Serializable {
 		this.contract = contract;
 	}
 
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
+*/
 
 	public Transaction() {
 		super();

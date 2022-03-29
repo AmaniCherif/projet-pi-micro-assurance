@@ -1,4 +1,4 @@
-package tn.esprit.spring.repository;
+/*package tn.esprit.spring.repository;
 
 import java.util.List;
 
@@ -15,3 +15,4 @@ import tn.esprit.spring.entity.State_Sinistre_Claim;
 public interface SinistreRepository extends CrudRepository<Sinistre, Integer>{
 	List<Sinistre> findSinistreByState(State_Sinistre_Claim state_Sinistre_Claim);
 }
+*/
