@@ -58,19 +58,18 @@ public class Contract implements Serializable {
 		return id;
 	}
 
-	/*public float getRemboursement() {
-		return remboursement;
-	}
-	public void setRemboursement(float remboursement) {
-		this.remboursement = remboursement;
-	}
-	public int getNumContrat() {
-		return NumContrat;
-	}
-	public void setNumContrat(int numContrat) {
-		NumContrat = numContrat;
-	}*/
-
+//	public float getRemboursement() {
+//		return remboursement;
+//	}
+//	public void setRemboursement(float remboursement) {
+//		this.remboursement = remboursement;
+//	}
+//	public int getNumContrat() {
+//		return NumContrat;
+//	}
+//	public void setNumContrat(int numContrat) {
+//		NumContrat = numContrat;
+//	}
 
 
 	public void setId(Long id) {
