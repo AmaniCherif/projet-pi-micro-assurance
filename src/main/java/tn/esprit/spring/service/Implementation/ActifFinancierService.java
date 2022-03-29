@@ -59,8 +59,8 @@ public class ActifFinancierService {
 	////////////////////////Lister_les_fonds_par_type/////////////////////////////////////////
 	public List<ActifFinancier> listemontant_actuelFond(Fond f){ //par type
 	  	  List<ActifFinancier> l = new ArrayList<>();
-	  	  if(f == Fond.Fond_Euro){
-	  		  l =  actifFinancierRepo.findByNomFond(Fond.Fond_Euro);
+	  	  if(f == Fond.Fond_euro){
+	  		  l =  actifFinancierRepo.findByNomFond(Fond.Fond_euro);
 	  	  }
 	  	  else{
 	  		  l =  actifFinancierRepo.findByNomFond(Fond.Euro_Croissance);
@@ -70,7 +70,7 @@ public class ActifFinancierService {
 	/////////////////////////////////Montant_ac_dufond_par_user///////////////////////////////////////////////////////////
 	public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,int idUser){ /*** user  : all par fond */
 	   	  List<ActifFinancier> l ;
-	  	  if(f == Fond.Fond_Euro){
+	  	  if(f == Fond.Fond_euro){
 	  	  l = actifFinancierRepo.listemontant_actuelFondEuroparUser(idUser) ;
 	  	  }
 	  	  else {
@@ -121,7 +121,7 @@ public class ActifFinancierService {
 			double t1 = r1.getRendementBTA()*((double) days11/(double)365);
 			double t2 = r2.getRendementBTA()*((double)days2/(double)365);
 			double m =( t1+t2 - TMG )* 0.85 ;	  
-			if(a.getChoixPrime() == Prime.periodic_premium){
+			if(a.getChoixPrime() == Prime.Prime_Periodique){
 			montant_investi = montant_investi + a.getMontant_investi();
 					if ( m < 0){ 	primerelle =  primerelle+(float) (primerelle*TMG) ;
 										primerelle = (float) (primerelle - primerelle*frais_gestion) ;}
@@ -131,7 +131,7 @@ public class ActifFinancierService {
 			primerelle = montant_add_pp +  primerelle ;
 
 			}
-			else if(a.getChoixPrime() == Prime.unique_prime){
+			else if(a.getChoixPrime() == Prime.Prime_Unique){
 				if ( m < 0){ primerelle =  primerelle+(float) (primerelle*TMG) ;
 				primerelle = (float) (primerelle - primerelle*frais_gestion) ;}
 				else {	primerelle = 	primerelle+(float) (primerelle*(m+TMG)) ;	
@@ -153,12 +153,12 @@ public class ActifFinancierService {
 			primefinale = primerelle+(float) (primerelle*TMG*(q)*0.85) ;
 
 			primerelle = (float) (primerelle - primerelle*frais_gestion) ;
-			if(a.getChoixPrime() == Prime.unique_prime){
+			if(a.getChoixPrime() == Prime.Prime_Unique){
 				double rachat =   primerelle - (rach - a.getMontant_investi())*0.8  ;
 				a.setMontant_rachat((float) rachat);
 
 			}
-			else if(a.getChoixPrime() == Prime.periodic_premium){
+			else if(a.getChoixPrime() == Prime.Prime_Periodique){
 				double rachat =   primerelle - (rach - montant_investi)*0.8  ;
 				System.out.println("heeeeeeeeeeeeeeeyyyy    " + rach  + " noooooooooooo    "  + montant_investi);
 
@@ -178,11 +178,11 @@ public class ActifFinancierService {
 			primefinale =	primefinale+(float) (primefinale*TMG*(q2)*0.85) ;
 			primerelle = (float) (primerelle - primerelle*frais_gestion) ;
 			
-			if(a.getChoixPrime() == Prime.unique_prime){
+			if(a.getChoixPrime() == Prime.Prime_Unique){
 				double rachat =   primerelle - (rach - a.getMontant_investi())*0.8  ;	
 				a.setMontant_rachat((float) rachat);
 			}
-			else if(a.getChoixPrime() == Prime.periodic_premium){
+			else if(a.getChoixPrime() == Prime.Prime_Periodique){
 				double rachat =   primerelle - (rach - montant_investi)*0.8  ;	
 				a.setMontant_rachat((float) rachat);
 			}
@@ -205,7 +205,7 @@ public void FondEuro_to_EuroCroissance(Long id){
 		a_croissance.setUserActif(a.getUserActif());
 		a_croissance.setMontant_investi(a.getMontant_cumule());
 		a_croissance.setAccepte_rachat(0);
-		a_croissance.setChoixPrime(Prime.periodic_premium);
+		a_croissance.setChoixPrime(Prime.Prime_Periodique);
 		a_croissance.setDate_debut(new Date());
 		a_croissance.setNomFond(Fond.Euro_Croissance);
 		a_croissance.setMaturite(8);
@@ -256,25 +256,25 @@ public ActifFinancier montant_actuelEuroCroissance(Long id){
 		double t1 = r1.getRendement()*((double) days11/(double)365);
 		double t2 = r2.getRendement()*((double)days2/(double)365);
 		double m =( t1+t2 )* 0.85 ;	
-		if(a.getChoixPrime() == Prime.periodic_premium){
+		if(a.getChoixPrime() == Prime.Prime_Periodique){
 		montant_investi = montant_investi + a.getMontant_investi();
 					primerelle =	primerelle+(float) (primerelle*m) ;	
 					primerelle = (float) (primerelle - primerelle*frais_gestion) ;
 		System.out.println("calcule prime cumulÃ© " + primerelle  + " yeaaaar  : " + i + "           " + m);
 		primerelle = montant_add_pp +  primerelle ;
 }
-		else if(a.getChoixPrime() == Prime.unique_prime){
+		else if(a.getChoixPrime() == Prime.Prime_Unique){
 			primerelle = 	primerelle+(float) (primerelle*m) ;	
 			primerelle = (float) (primerelle - primerelle*frais_gestion) ;
 	System.out.println("calcule prime cumulÃ© " + primerelle  + " yeaaaar  : " + i + "           " + m);	}		
 	}
 	
 	if (nombre_annee >= 8 ){
-		if(a.getChoixPrime() == Prime.periodic_premium){
+		if(a.getChoixPrime() == Prime.Prime_Periodique){
 			if (primerelle <montant_investi){	primerelle= montant_investi ;}
 		}
 			}
-			else if(a.getChoixPrime() == Prime.unique_prime){
+			else if(a.getChoixPrime() == Prime.Prime_Unique){
 				if (primerelle <a.getMontant_investi()){
 					primerelle = a.getMontant_investi();
 				}
@@ -289,12 +289,12 @@ public ActifFinancier montant_actuelEuroCroissance(Long id){
 		System.out.println("qqqqqqqqqqq    " + q);
 		primefinale = primerelle+(float) (primerelle*rend.getRendement()*(q)*0.85) ;
 		primerelle = (float) (primerelle - primerelle*frais_gestion) ;
-		if(a.getChoixPrime() == Prime.unique_prime){
+		if(a.getChoixPrime() == Prime.Prime_Unique){
 			double rachat =   primerelle - (rach - a.getMontant_investi())*0.8  ;
 			a.setMontant_rachat((float) rachat);
 
 		}
-		else if(a.getChoixPrime() == Prime.unique_prime){
+		else if(a.getChoixPrime() == Prime.Prime_Unique){
 			double rachat =   primerelle - (rach - montant_investi)*0.8  ;
 			a.setMontant_rachat((float) rachat);
 		}
@@ -312,11 +312,11 @@ public ActifFinancier montant_actuelEuroCroissance(Long id){
 		primefinale =	primefinale+(float) (primefinale*rend2.getRendement()*(q2)*0.85) ;
 		primerelle = (float) (primerelle - primerelle*frais_gestion) ;
 		
-		if(a.getChoixPrime() == Prime.unique_prime){
+		if(a.getChoixPrime() == Prime.Prime_Unique){
 			double rachat =   primerelle - (rach - a.getMontant_investi())*0.8  ;	
 			a.setMontant_rachat((float) rachat);
 		}
-		else if(a.getChoixPrime() == Prime.periodic_premium){
+		else if(a.getChoixPrime() == Prime.Prime_Periodique){
 			double rachat =   primerelle - (rach - montant_investi)*0.8  ;	
 			a.setMontant_rachat((float) rachat);
 		}
