@@ -22,9 +22,7 @@ import javax.persistence.TemporalType;
 @Table(name="Contract")
 public class Contract implements Serializable {
 
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -32,6 +30,7 @@ public class Contract implements Serializable {
 	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
 	
+
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;
 
@@ -52,12 +51,27 @@ public class Contract implements Serializable {
 	
 	private int acceptReq;
 	
+
 	private float reassure;
 	
 	public Long getId() {
 		return id;
 	}
-	
+
+	public float getRemboursement() {
+		return remboursement;
+	}
+	public void setRemboursement(float remboursement) {
+		this.remboursement = remboursement;
+	}
+	public int getNumContrat() {
+		return NumContrat;
+	}
+	public void setNumContrat(int numContrat) {
+		NumContrat = numContrat;
+	}
+
+
 	public int getScoring() {
 		return scoring;
 	}
@@ -124,16 +138,50 @@ public class Contract implements Serializable {
 	public void setPrimePure(Float primePure) {
 		this.primePure = primePure;
 	}
+
+	public Set<Transaction> getTransaction() {
+		return transaction;
+	}
+	public void setTransaction(Set<Transaction> transaction) {
+		this.transaction = transaction;
+	}
+	public Contract getContract() {
+		return contract;
+	}
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	
 	public ContractRequest getContractRequest() {
+
 		return contractRequest;
 	}
 	public void setContractRequest(ContractRequest contractRequest) {
 		this.contractRequest = contractRequest;
 	}
 
+	public Set<SinistreReport> getSinistreReport() {
+		return sinistreReport;
+	}
+	public void setSinistreReport(Set<SinistreReport> sinistreReport) {
+		this.sinistreReport = sinistreReport;
+	}
+	public ReinsuranceContract getReinsuranceContract() {
+		return reinsuranceContract;
+	}
+	public void setReinsuranceContract(ReinsuranceContract reinsuranceContract) {
+		this.reinsuranceContract = reinsuranceContract;
+	}
+
+
 	@OneToMany(mappedBy="contract")
 	private Set<Transaction> transaction;
+
 
 	@OneToOne(mappedBy="contract")
 	private ContractRequest contractRequest;
