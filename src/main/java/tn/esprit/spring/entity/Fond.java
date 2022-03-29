@@ -1,6 +1,6 @@
-package tn.esprit.spring.entity; //yosserBenameur
+package tn.esprit.spring.entity;
 
 public enum Fond {
- 
-	Fond_Euro , Euro_Croissance
+	Fond_euro,Euro_Croissance
+
 }

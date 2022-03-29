@@ -18,7 +18,7 @@ import javax.persistence.TemporalType;
 
 
 
-@SuppressWarnings("serial")
+//@SuppressWarnings("serial")
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -156,15 +156,11 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffers;
 
-	@OneToMany(mappedBy="user")
-	private Set<ContractRequest>contractRequest;
-	
-	@OneToMany(mappedBy="user")
-	private Set<Claim_report>claimsReport;
 
-@OneToMany(mappedBy="user")
-@JsonIgnore
-private List<Contract> contracts;
+
+	@OneToMany(mappedBy="user")
+	@JsonIgnore
+	private List<Contract> contracts;
 
 
 
