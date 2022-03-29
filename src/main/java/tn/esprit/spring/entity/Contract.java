@@ -145,12 +145,6 @@ public class Contract implements Serializable {
 	public void setTransaction(Set<Transaction> transaction) {
 		this.transaction = transaction;
 	}
-	public Contract getContract() {
-		return contract;
-	}
-	public void setContract(Contract contract) {
-		this.contract = contract;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
