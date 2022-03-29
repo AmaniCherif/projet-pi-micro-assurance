@@ -7,17 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToMany;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 
 public class User {
@@ -138,17 +139,21 @@ public class User {
 	}
 	@Enumerated(EnumType.STRING)
 	private RoleUser roleUser;
+	
 	@Enumerated(EnumType.STRING)
 	private StatusUser statusUser;
+	
 	@Enumerated(EnumType.STRING)
 	private CityUser cityUser;
+	
 	@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractRequest;
+	
 	@OneToMany(mappedBy="user")
 	private Set<Claim_report>claimsReport;
-	@OneToMany(mappedBy="user")
-	@JsonIgnore
-	private List<Contract> contracts;
+//	
+//	@JsonIgnore
+//	private List<Contract> contracts;
 
 
 
