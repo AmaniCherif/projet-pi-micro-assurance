@@ -39,15 +39,15 @@ public class ContractServiceImpl implements ContractService {
 	String renteViagere = "Rente viagère";
 	//CONTRATS EN CAS DE DECé
 	String vieEntiere ="Vie Entiere";
-
-	Prime primeUnique = Prime.Prime_Unique ;
-	Prime primePeriodique =  Prime.Prime_Periodique;
+	
+//	Prime primeUnique = Prime.Prime_Unique ;
+//	Prime primePeriodique =  Prime.Prime_Periodique;
 
 // faire le calcul et la tarification , si l assurance accpete la demande (elle peut refuser)
 	public void tarificationContrat(int id) {	
 		System.out.println(id);
 		ContractRequest d = contractRequest.findById(id).get();
-		System.out.println("okhrej ay");
+		System.out.println("okhrej12322 ay");
 		
 		double interet = 0.002; /// 0.2 % j'ai choisis le taux d'interet 2% 
 		String sexe = d.getUser().getSex();
@@ -55,12 +55,14 @@ public class ContractServiceImpl implements ContractService {
 		double frais = 0.03;// on va considerer tous les frais du contrat .. 3 %
 		//Date currentUtilDate = new Date();
 		Date currentUtilDate = d.getDateRequest();
+		System.out.println("aya fok aaaaadddd");
+		int a = currentUtilDate.getYear() + d.getDuration();
 		
-		int a = currentUtilDate.getYear() + d.getDuration();		
 		Date currentUtilDate2 = new Date();
+		System.out.println(a);
 		currentUtilDate2.setYear(a);
 		String nomContract = d.getNomContract();
-		System.out.println("okhrej ay");
+		System.out.println("ohhh lalalala");
 		if ( (2000*10) == d.getCapitalAssure() ) {
 			String s ="votre demande est annulé , votre salaire "
 					+ "ne peut pas supporter votre demande de capital assuré";
@@ -82,7 +84,7 @@ public class ContractServiceImpl implements ContractService {
 
 			
 		if(d.getNomContract().equals(CapitalDiffere)){  // choix du contrat
-			if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
+			if(d.getChoixPrime().equals(Prime.Prime_Unique)){ // choix type de prime 		
 					if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculé les primes
 	//	public double calculePUCapital_vieCapital(float capital ,int age , int annee, double interet , String sexe){
 						double calculPUCapital_viePrime = tri.calculePUCapital_vieCapital(d.getCapitalAssure(),age, d.getDuration(),interet, sexe) ;
@@ -97,7 +99,7 @@ public class ContractServiceImpl implements ContractService {
 						c.setReassure((float) calculePUCapital_vieCapital); }
 			
 			}
-			else if (d.getChoixPrime().equals(primePeriodique)){
+			else if (d.getChoixPrime().equals(Prime.Prime_Periodique)){
 				if(d.getCapitalAssure() != 0){
 					double calculePPCapital_viePrime = tri.calculePPCapital_vie( d.getCapitalAssure()  , 0 , age ,  d.getDuration(),  interet ,  sexe);
 					double primeCommerciale = calculePPCapital_viePrime +calculePPCapital_viePrime*frais ;
@@ -114,7 +116,7 @@ public class ContractServiceImpl implements ContractService {
 			}
 ////////////////////////////////////////////rente  Viagere /////////////////////////////////////////////
 		else if(d.getNomContract().equals(renteViagere)){ 
-			if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
+			if(d.getChoixPrime().equals(Prime.Prime_Unique)){ // choix type de prime 		
 				if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculÃ© les primes
 //public double calculePURenteillimteRente(float rente,int age ,  double interet , String sexe){ // Ã  terme Ã©chue)						
 					double calculePURenteillimtePrime = tri.calculePURenteillimteRente(d.getCapitalAssure(),age ,interet , sexe );
@@ -130,7 +132,7 @@ public class ContractServiceImpl implements ContractService {
 						c.setPrimePure(primeP);
 						c.setReassure((float) calculePURenteillimteRente); }
 			}
-			else if (d.getChoixPrime().equals(primePeriodique)){
+			else if (d.getChoixPrime().equals(Prime.Prime_Periodique)){
 //				public double calculePPRente( float rente, float prime ,int age , int annee, double interet , String sexe ){// a terme dâ€™avance
 							if(d.getCapitalAssure() != 0){
 								double calculePPRentePrime = tri.calculePPRente( d.getCapitalAssure()  , 0 , age ,  d.getDuration(),  interet ,  sexe);
@@ -148,7 +150,7 @@ public class ContractServiceImpl implements ContractService {
 					}
 		//////////////////////////////////////////// Vie entiere /////////////////////////////////////////////
 					else if(d.getNomContract().equals(vieEntiere)){  // choix du contrat
-						if(d.getChoixPrime().equals(primeUnique)){ // choix type de prime 		
+						if(d.getChoixPrime().equals(Prime.Prime_Unique)){ // choix type de prime 		
 							if(d.getCapitalAssure() != 0){ // on a  ici calculer le capital demande et on va calculÃ© les primes
 //		 	public double calculePUVieEntiereCapital(float capital,int age ,  double interet ,String sexe){
 									double calculePUVieEntierePrime = tri.calculePUVieEntiereCapital(d.getCapitalAssure(),age ,interet , sexe );
@@ -163,7 +165,7 @@ public class ContractServiceImpl implements ContractService {
 									c.setPrimePure(primeP);
 									c.setReassure((float) calculePUVieEntiereCapital); }
 						}
-						else if (d.getChoixPrime().equals(primePeriodique)){
+						else if (d.getChoixPrime().equals(Prime.Prime_Periodique)){
 //				public double calculePPVieEntiere(float prime ,float capital ,int age , int annee, double interet , String sexe ){// a terme dâ€™avance
 								if(d.getCapitalAssure() != 0){
 									double calculePPVieEntierePrime = tri.calculePPVieEntiere(0, d.getCapitalAssure()   , age ,  d.getDuration(),  interet ,  sexe);

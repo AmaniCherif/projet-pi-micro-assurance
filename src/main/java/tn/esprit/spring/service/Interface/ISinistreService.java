@@ -1,4 +1,4 @@
-package tn.esprit.spring.service.Interface;
+/*package tn.esprit.spring.service.Interface;
 
 import java.util.List;
 
@@ -15,3 +15,4 @@ public interface ISinistreService {
 
 	//List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim);
 }
+*/
