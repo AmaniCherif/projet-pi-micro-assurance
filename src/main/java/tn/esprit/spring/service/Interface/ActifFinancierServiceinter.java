@@ -11,8 +11,8 @@ public interface ActifFinancierServiceinter {
 	public List<ActifFinancier> listetouslesfond();
 	public List<ActifFinancier> listemontant_actuelFond(Fond f);
 	public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,int idUser);
-	public ActifFinancier montant_actuelFondEuro(int id);
-	public void FondEuro_to_EuroCroissance(int id);
-	public ActifFinancier montant_actuelEuroCroissance(int id);
+	public ActifFinancier montant_actuelFondEuro(Long id);
+	public void FondEuro_to_EuroCroissance(Long id);
+	public ActifFinancier montant_actuelEuroCroissance(Long id);
 	
 }

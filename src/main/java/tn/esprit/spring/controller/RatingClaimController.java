@@ -10,42 +10,53 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import tn.esprit.spring.entity.Claims;
 import tn.esprit.spring.entity.Ratingclaim;
-import tn.esprit.spring.service.Implementation.RatingclaimServiceImpl;
+import tn.esprit.spring.service.Implementation.RatingClaimServiceImpl;
+import tn.esprit.spring.service.Interface.RatingClaimService;
+
 
 @RestController
-@RequestMapping("/RatingClaim")
 public class RatingClaimController {
 	@Autowired
-	RatingclaimServiceImpl csi;
+	RatingClaimService ratingService ; 
 	
-@GetMapping("/getAllRatingClaim")
-	public List<Ratingclaim> getAllRatingclaims() {			
-	return csi.RetrieveAllRatingclaim();
-}
-
-@PostMapping("/addRatingClaim")
-	public Ratingclaim AddRatingClaim(@RequestBody Ratingclaim c)
-		{csi.AddRatingclaim(c);
-		return c;
+	
+	
+	@GetMapping("/GetAllRating")
+	@ResponseBody
+	public List<Ratingclaim> GetAllRating() {
+	 
+	 return ratingService.RetrieveAllRatingclaim(); 
+	 }
+	
+	@PutMapping("/updateRating/{RatingId}")
+	   @ResponseBody
+	   public Ratingclaim updateRating(@RequestBody Ratingclaim Rating , @PathVariable("RatingId") Long RatingId){
+		   return  ratingService.UpdateRatingclaim(Rating, RatingId); 
+		   
+	   }
+	
+	
+	 @PostMapping("/addRating")
+		@ResponseBody	
+		public Ratingclaim addRating(@RequestBody Ratingclaim rating) {
+		return ratingService.AddRatingclaim(rating); 
 		}
-
-@DeleteMapping("/deleteById/{ref_claims}")  
-public void DeleteRatingclaimById(@PathVariable("ref_claims")String ref_claims) {
-	csi.DeleteRatingclaim(ref_claims);}
-
-@PutMapping("/updateClaims")
-public Claims UpdateClaims(@RequestBody Claims c) {
-	return csi.UpdateClaims(c);
-	}
-@GetMapping("/retrieve-claims")
-public Claims RetrieveClaims(@PathVariable("id") Double id) {
-return csi.RetrieveClaims(id);
-} 
-	
-	
+	 
+	 @DeleteMapping("/removeRating/{RatingId}")
+	    public void removeRating(@PathVariable("RatingId") Long RatingId){
+		 ratingService.DeleteRatingclaim(RatingId); 
+	        
+	    }
+	 
+	 @GetMapping("/retrieveRating/{RatingId}")
+	    public Ratingclaim retrieveRating(@PathVariable("RatingId") Long RatingId) {
+	        return ratingService.RetrieveRatingclaim(RatingId); 
+	    }
 	
 	
 }

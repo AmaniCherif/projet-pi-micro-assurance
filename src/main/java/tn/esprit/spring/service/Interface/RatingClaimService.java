@@ -4,13 +4,11 @@ import java.util.List;
 
 import tn.esprit.spring.entity.Ratingclaim;
 
-
-
-public interface RatingclaimService {
+public interface RatingClaimService {
 	List<Ratingclaim> RetrieveAllRatingclaim(); 
 	Ratingclaim AddRatingclaim(Ratingclaim c);
-	Ratingclaim DeleteRatingclaim(Double id);
-	Ratingclaim UpdateRatingclaim(Ratingclaim c);
-	Ratingclaim RetrieveRatingclaim(Double id);
+	void DeleteRatingclaim(Long id);
+	Ratingclaim UpdateRatingclaim(Ratingclaim c , Long id );
+	Ratingclaim RetrieveRatingclaim(Long id);
 
 }

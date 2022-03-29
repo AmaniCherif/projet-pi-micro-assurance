@@ -61,21 +61,21 @@ public class ActifFinancierController {
 //	
 	@GetMapping("/change/{id}")
 	@ResponseBody
-	public ResponseEntity<ActifFinancier>FondEuro_to_EuroCroissance(@PathVariable("id") int    id){
+	public ResponseEntity<ActifFinancier>FondEuro_to_EuroCroissance(@PathVariable("id") Long id){
 		actifFinancierService.FondEuro_to_EuroCroissance(id);
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);		
 	}
 	
 	@GetMapping("/actifactuel/{id}")
 	@ResponseBody
-	public ResponseEntity<ActifFinancier>montant_actuelFondEuro(@PathVariable("id") int    id){
+	public ResponseEntity<ActifFinancier>montant_actuelFondEuro(@PathVariable("id") Long id){
 		actifFinancierService.montant_actuelFondEuro(id);
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);		
 	}
 	
 	@GetMapping("/actifactuelC/{id}")
 	@ResponseBody
-	public ResponseEntity<ActifFinancier>montant_actuelEuroCroissance(@PathVariable("id") int    id){
+	public ResponseEntity<ActifFinancier>montant_actuelEuroCroissance(@PathVariable("id") Long id){
 		actifFinancierService.montant_actuelEuroCroissance(id);
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);		
 	}

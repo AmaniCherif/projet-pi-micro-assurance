@@ -8,8 +8,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+
+
 @Entity
 public class Ratingclaim implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY )
 	private Long idRclaim;
@@ -37,14 +43,18 @@ public class Ratingclaim implements Serializable{
 	}
 	
 	@OneToOne(mappedBy="ratingclaim")
-	private Claims Claims;
+	private Claims claims ;
 
 
 	public Claims getClaims() {
-		return Claims;
+		return claims;
 	}
 	public void setClaims(Claims claims) {
-		Claims = claims;
+		this.claims = claims;
+	}
+	public Ratingclaim() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	

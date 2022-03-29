@@ -230,6 +230,7 @@ public ActifFinancier montant_actuelEuroCroissance(Long id){
 	djanv.setYear(debut.getYear());
 	////////////////////////////////////////////////////////// na9smou l intervale de temps sur 2 : loul ndwrou 3lih l for w etheni ne5dmouh wa7dou
 	float res  =  ((d1.getTime() -  a.getDate_debut().getTime())/ (1000 * 60 * 60 * 24)) ;
+	System.out.println(res);
 	int nombre_annee = (int) (res/365);
 	float tit = res/365 -  nombre_annee ;
 	int jours_restantes = (int) (tit * 365);

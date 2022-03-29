@@ -4,13 +4,10 @@ import java.util.List;
 
 import tn.esprit.spring.entity.Claims;
 
-
-
 public interface ClaimsService {
-	List<Claims> RetrieveAllClaims(); 
-	Claims AddClaimsEtAffectationUser(Claims c, Long IdUser);
-	void DeleteClaims(Double id);
-	Claims UpdateClaims(Claims c , Long idClaim );
-	Claims RetrieveClaims(Long id);
-
+	List<Claims> retrieveAllClaims();
+	Claims addClaim(Claims c , long userId);
+	void deleteClaim(Long id);
+	Claims updateClaim(Claims c , Long IdClaim);
+	Claims retrieveClaim(Long id);
 }

@@ -1,11 +1,11 @@
 package tn.esprit.spring.repository;
 
 import org.springframework.data.repository.CrudRepository;
-
 import org.springframework.stereotype.Repository;
 
-import tn.esprit.spring.entity.Offer;
+import tn.esprit.spring.entity.Claims;
+
 @Repository
-public interface OfferRepository extends CrudRepository<Offer, Long> {
+public interface ClaimsRepository extends CrudRepository<Claims,Long> {
 
 }

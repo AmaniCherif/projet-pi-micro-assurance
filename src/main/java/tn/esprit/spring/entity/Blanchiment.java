@@ -45,5 +45,10 @@ public class Blanchiment implements Serializable{
 	}
 
 	
-	
 }
+
+// les cas sont : prime kbira , montant unique kbir , rachat total , barcha marat rachat partiel ,
+//prime par espece , barcha des contrat f wa9et 9sir ,
+// montat kbir w paiement de l etranger , eli mich ya3ti l 
+//prime mouch houa mich ye5ou lflous mb3d , tbadal l eli mich ye5ou l flous me8ir ma ykoun 3aandou
+//3ale9a bil souscripteur
