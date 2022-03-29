@@ -26,12 +26,6 @@ public class ContractRequest {
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
 
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 
 	private int duration ;  // des question pour distinction du type de contrat

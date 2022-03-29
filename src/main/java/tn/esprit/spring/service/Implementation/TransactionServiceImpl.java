@@ -81,7 +81,7 @@ public class TransactionServiceImpl implements TransactionService{
 		Transaction transactionUptaded =transactionRepository.findById(id).get();
 		transactionUptaded.setTransactionAmount(t.getTransactionAmount());
 		transactionUptaded.setTransactionDate(t.getTransactionDate());
-		transactionUptaded.setTypeTransaction(t.getTypeTransaction());
+		//transactionUptaded.setTypeTransaction(t.getTypeTransaction());
 		transactionRepository.save(transactionUptaded);
 		return transactionUptaded;
 	}
