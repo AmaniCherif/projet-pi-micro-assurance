@@ -26,8 +26,8 @@ public class Transaction implements Serializable {
 	private Date transactionDate;
 
 	private float transactionAmount;
-	//@Enumerated(EnumType.STRING)
-	//TypeTransaction typeTransaction ;
+	@Enumerated(EnumType.STRING)
+	TypeTransaction typeTransaction ;
  
 
 	@ManyToOne
@@ -71,7 +71,7 @@ public class Transaction implements Serializable {
 
 
 
-	/*public TypeTransaction getTypeTransaction() {
+	public TypeTransaction getTypeTransaction() {
 		return typeTransaction;
 	}
 
@@ -80,7 +80,7 @@ public class Transaction implements Serializable {
 	public void setTypeTransaction(TypeTransaction typeTransaction) {
 		this.typeTransaction = typeTransaction;
 	}
-	*/
+	
 
 
 	
@@ -92,7 +92,7 @@ public class Transaction implements Serializable {
 	}
 
 
-/*
+
 	public Contract getContract() {
 		return contract;
 	}
@@ -103,7 +103,7 @@ public class Transaction implements Serializable {
 		this.contract = contract;
 	}
 
-*/
+
 
 	public Transaction() {
 		super();

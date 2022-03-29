@@ -27,7 +27,6 @@ public class ContractRequest {
 	private Date dateRequest;
 
 
-
 	private int duration ;  // des question pour distinction du type de contrat
 	private String incomeLevel;
 	
