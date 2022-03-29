@@ -1,5 +1,6 @@
 package tn.esprit.spring.entity;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,10 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
 
 
 @Entity
@@ -23,7 +26,7 @@ public class Offer  {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 
-	private Long id; 
+	private int id; 
 	
 	@Temporal(TemporalType.DATE)
 	private Date date_debut ;
@@ -34,11 +37,11 @@ public class Offer  {
 	private String Description ;
 	
 	
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -62,22 +65,9 @@ public class Offer  {
 	
 	@Enumerated(EnumType.STRING)
 	TypeOffer typeOffer ;
-	
-	
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	@Enumerated(EnumType.STRING)
 	State_Offer state_offers;
-	
-	@ManyToOne
-	private User user; 
-	
 //getters et Setters 
 	public Date getDate_debut() {
 		return date_debut;
@@ -102,7 +92,4 @@ public class Offer  {
 	public void setDescription(String description) {
 		Description = description;
 	}
-	@OneToOne
-	private ContractOffer offer;
-
 }

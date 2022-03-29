@@ -4,69 +4,118 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.hibernate.annotations.GenericGenerator;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="Contract")
 public class Contract implements Serializable {
 
-	private static final long serialVersionUID= 1L;
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String ref_contract;
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
+
 	@Temporal (TemporalType.DATE)
 	private Date dateDebut;
+
+	public Date getDateFin() {
+		return dateFin;
+	}
+	public void setDateFin(Date dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	@Temporal(TemporalType.DATE)
+	private Date dateFin ;
+
+
 	@Temporal (TemporalType.DATE)
+
 	private Date dateExpiration;
+
 	private int duration;
-	private int state;
+
+	
+	private String state;
+	
+
 	private String type;
+	
 	private Float primeCommercial;
+	
 	private Float primePure;
+	
 	private int scoring;
+	
 	private int acceptReq;
-	private int reassure;
+
+	private int NumContrat;
+	private float remboursement;
+
 	
+
+	private float reassure;
 	
-	@OneToMany(mappedBy="contract")
-	private Set<Transaction> transaction;
+	public Long getId() {
+		return id;
+	}
+
 	
+	public float getRemboursement() {
+		return remboursement;
+	}
+	public void setRemboursement(float remboursement) {
+		this.remboursement = remboursement;
+	}
+	public int getNumContrat() {
+		return NumContrat;
+	}
+	public void setNumContrat(int numContrat) {
+		NumContrat = numContrat;
+	}
+
 	public int getScoring() {
 		return scoring;
 	}
+
 	public void setScoring(int scoring) {
 		this.scoring = scoring;
 	}
+
 	public int getAcceptReq() {
 		return acceptReq;
 	}
+
 	public void setAcceptReq(int acceptReq) {
 		this.acceptReq = acceptReq;
 	}
-	public int getReassure() {
+	
+	public float getReassure() {
 		return reassure;
 	}
-	public void setReassure(int reassure) {
+
+	public void setReassure(float reassure) {
 		this.reassure = reassure;
 	}
-	public String getRef_contract() {
-		return ref_contract;
-	}
-	public void setRef_contract(String ref_contract) {
-		this.ref_contract = ref_contract;
-	}
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}
@@ -85,10 +134,11 @@ public class Contract implements Serializable {
 	public void setDuration(int duration) {
 		this.duration = duration;
 	}
-	public int getState() {
+
+	public String getState() {
 		return state;
 	}
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
 	public String getType() {
@@ -109,7 +159,7 @@ public class Contract implements Serializable {
 	public void setPrimePure(Float primePure) {
 		this.primePure = primePure;
 	}
-	
+
 	public Set<Transaction> getTransaction() {
 		return transaction;
 	}
@@ -127,12 +177,15 @@ public class Contract implements Serializable {
 		return serialVersionUID;
 	}
 
-	/*public ContractRequest getContractRequest() {
+	
+	public ContractRequest getContractRequest() {
+
 		return contractRequest;
 	}
 	public void setContractRequest(ContractRequest contractRequest) {
 		this.contractRequest = contractRequest;
 	}
+
 	public Set<SinistreReport> getSinistreReport() {
 		return sinistreReport;
 	}
@@ -145,10 +198,12 @@ public class Contract implements Serializable {
 	public void setReinsuranceContract(ReinsuranceContract reinsuranceContract) {
 		this.reinsuranceContract = reinsuranceContract;
 	}
-*/
-	
-	
-	
+
+
+	@OneToMany(mappedBy="contract")
+	private Set<Transaction> transaction;
+
+
 	@OneToOne(mappedBy="contract")
 	private ContractRequest contractRequest;
 	
@@ -157,8 +212,12 @@ public class Contract implements Serializable {
 	
 	@OneToOne
 	private ReinsuranceContract reinsuranceContract;
-	private Contract contract;
+
 //	@OneToOne
 //	private SinistreReport sinistreReport;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "USER_ID")
+	 private User user;
 
 }

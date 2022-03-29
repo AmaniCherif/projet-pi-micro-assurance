@@ -31,7 +31,7 @@ public class UserController {
   }
   @GetMapping("/retrieveUser/{user-id}")
   
-  public User retrieveUser(@PathVariable("user-id") Long userId) {
+  public User retrieveUser(@PathVariable("user-id") int userId) {
 	  return userService.retrieveUser(userId);
   }
   @PostMapping("/addUser")
@@ -43,11 +43,11 @@ public class UserController {
   }
   @PutMapping("/modify-user/{idUser}")
  
-  public User modifyUser(@RequestBody User user, @PathVariable("idUser") Long idUser) {
+  public User modifyUser(@RequestBody User user, @PathVariable("idUser") int idUser) {
   return userService.updateUser(user, idUser);
   }
   @DeleteMapping("/remove-user/{user-id}")
-  public void removeUser (@PathVariable("user-id")Long userId) {
+  public void removeUser (@PathVariable("user-id")int userId) {
 	  userService.deleteUser(userId);
   
   }
