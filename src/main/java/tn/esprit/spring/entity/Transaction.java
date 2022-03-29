@@ -84,6 +84,16 @@ public class Transaction implements Serializable {
 	public void setTypeTransaction(TypeTransaction typeTransaction) {
 		this.typeTransaction = typeTransaction;
 	}
+	
+
+
+	
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 
 
 
@@ -95,12 +105,6 @@ public class Transaction implements Serializable {
 
 	public void setContract(Contract contract) {
 		this.contract = contract;
-	}
-
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 	@ManyToOne

@@ -2,7 +2,8 @@ package tn.esprit.spring.service.Interface;
 
 import java.util.List;
 
-import tn.esprit.spring.entity.Contract;
+import org.springframework.data.repository.query.Param;
+
 import tn.esprit.spring.entity.ContractRequest;
 
 public interface ContractRequestService {
@@ -11,8 +12,10 @@ public interface ContractRequestService {
 	void deleteContractRequest(int numRequest);
 	ContractRequest updateContractRequest(ContractRequest cr);
 	ContractRequest retrieveContractRequest(int numRequest);
+	List<ContractRequest> IretreiveContratRequestTraite(@Param("nb") int nb);
+
+		
+		
+	}
 	
-
-}
-
 

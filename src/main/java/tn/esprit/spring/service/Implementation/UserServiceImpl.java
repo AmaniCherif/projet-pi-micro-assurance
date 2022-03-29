@@ -29,14 +29,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUser(Long id) {
+	public void deleteUser(int id) {
 		userRep.deleteById(id);
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public User updateUser(User u , Long id ) {
+	public User updateUser(User u , int id ) {
 		User userModif = userRep.findById(id).get(); 
 		userModif.setAddress(u.getAddress());
 		userModif.setBirthdate(u.getBirthdate());
@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User retrieveUser(Long id) {
+	public User retrieveUser(int id) {
 		// TODO Auto-generated method stub
 		return userRep.findById(id).get();
 	}
