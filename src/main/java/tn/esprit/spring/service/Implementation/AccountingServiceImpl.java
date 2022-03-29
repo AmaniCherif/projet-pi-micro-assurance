@@ -217,7 +217,7 @@ public class AccountingServiceImpl implements AccountingService{
 		List<Contract> contract= contractRepository.findByAcceptReq(1);
 		for (Contract c : contract ){
 			int nb= d.getYear()- c.getDateDebut().getYear();
-			if((c.getDateFin().getYear()-currentDate.getYear() )>1){
+			if((c.getDateExpiration().getYear()-currentDate.getYear() )>1){
 				if(nb>1)
 				{ 
 					prevision=prevision + nb* c.getPrimeCommercial();
