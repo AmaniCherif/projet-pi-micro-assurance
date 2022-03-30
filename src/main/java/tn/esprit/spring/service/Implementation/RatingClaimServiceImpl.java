@@ -17,7 +17,7 @@ public class RatingClaimServiceImpl implements RatingClaimService{
 	@Autowired
 	RatingclaimRepository ratingRepo ; 
 	
- ///hello_word//
+ ///hello_word22//
 	@Override
 	public List<Ratingclaim> RetrieveAllRatingclaim() {
 		// TODO Auto-generated method stub
