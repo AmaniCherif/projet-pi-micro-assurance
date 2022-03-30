@@ -65,13 +65,14 @@ public class ContractRequest {
 
 	 @Enumerated(EnumType.STRING)
 	 private InsuranceType insuranceType;
+	 
 	 public String getTypeContract() {
 		return typeContract;
 	}
 	public void setTypeContract(String typeContract) {
 		this.typeContract = typeContract;
 	}
-	private String nomContract;
+
 	 private String typeContract;
 
 	 private String insurancebackground;

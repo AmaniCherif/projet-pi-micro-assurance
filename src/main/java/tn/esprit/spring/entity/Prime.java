@@ -1,6 +1,5 @@
 package tn.esprit.spring.entity;
 
 public enum Prime {
-	unique_prime,periodic_premium
-
+	Prime_Unique , Prime_Periodique
 }

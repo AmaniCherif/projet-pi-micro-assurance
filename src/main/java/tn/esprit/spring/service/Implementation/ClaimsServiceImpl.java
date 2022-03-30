@@ -33,8 +33,8 @@ public class ClaimsServiceImpl implements ClaimsService{
 	@Override
 	public Claims addClaim(Claims c , long userId) {
 		// TODO Auto-generated method stub
-		User user=userRepo.findById(userId).get();
-		c.setUser(user);
+	//	User user=userRepo.findById(userId).get();
+	//	c.setUser(user);
 		claimRep.save(c);
 		return c;
 	}

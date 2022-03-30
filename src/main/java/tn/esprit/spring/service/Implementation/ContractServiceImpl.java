@@ -40,8 +40,8 @@ public class ContractServiceImpl implements ContractService {
 	//CONTRATS EN CAS DE DECé
 	String vieEntiere ="Vie Entiere";
 	
-//	Prime primeUnique = Prime.Prime_Unique ;
-//	Prime primePeriodique =  Prime.Prime_Periodique;
+	Prime primeUnique = Prime.Prime_Unique ;
+	Prime primePeriodique =  Prime.Prime_Periodique;
 
 // faire le calcul et la tarification , si l assurance accpete la demande (elle peut refuser)
 	public void tarificationContrat(int id) {	
@@ -211,11 +211,7 @@ public class ContractServiceImpl implements ContractService {
 		contractRep.deleteById(id);
 	}
 
-	@Override
-	public void deleteContract(String ref_contrat) {
-		// TODO Auto-generated method stub
-		//contractRep.deleteById(ref_contrat);
-		
+
 
 	public Contract updateContract(Long id, Contract newContract) {
 		Contract contractModified = contractRep.findById(id).get();
