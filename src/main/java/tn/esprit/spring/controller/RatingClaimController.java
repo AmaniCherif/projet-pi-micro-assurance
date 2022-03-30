@@ -24,7 +24,7 @@ public class RatingClaimController {
 	@Autowired
 	RatingClaimService ratingService ; 
 	
-	
+	//yosser//
 	
 	@GetMapping("/GetAllRating")
 	@ResponseBody
