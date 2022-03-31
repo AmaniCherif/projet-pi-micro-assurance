@@ -16,6 +16,8 @@ public class ReinsuranceContract {
 	private double commerPrem ;
 	private double purePrem ;
 	private double repayment ;
+	@OneToOne(mappedBy="reinsuranceContract")
+	private Contract contract;
 	public long getReinContId() {
 		return reinContId;
 	}
@@ -46,8 +48,14 @@ public class ReinsuranceContract {
 	public void setRepayment(double repayment) {
 		this.repayment = repayment;
 	}
-	@OneToOne(mappedBy="reinsuranceContract")
-	private Contract contract;
-	
-	
+
+	public Contract getContract() {
+		return contract;
+	}
+	public void setContract(Contract contract) {
+		this.contract = contract;
+	}
+
+	public ReinsuranceContract() {
+	}
 }

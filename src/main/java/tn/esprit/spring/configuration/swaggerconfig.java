@@ -10,6 +10,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 
 @Configuration
 public class swaggerconfig {
+
 	@Bean
 	public Docket api() {
 		return new Docket(DocumentationType.SWAGGER_2)
@@ -17,5 +18,6 @@ public class swaggerconfig {
 			.apis(RequestHandlerSelectors.any())
 			.paths(PathSelectors.any())
 			.build();
-	}
+
+}
 }

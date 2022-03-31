@@ -32,6 +32,7 @@ import java.util.List;
  @RequestMapping("/users")
 public class UserController {
 
+
     @Autowired
     public UserService userService ;
     @Autowired
@@ -88,5 +89,6 @@ public class UserController {
          User newUser = userService.addUser(user);
          return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
      }
+
 
 }

@@ -1,87 +1,71 @@
 package tn.esprit.spring.service.Implementation;
 
+
+import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.repository.CrudRepository;
+import java.util.Date;
+import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.spring.entity.Contract;
+import tn.esprit.spring.entity.ContractRequest;
 import tn.esprit.spring.entity.ReinsuranceContract;
+import tn.esprit.spring.entity.Sinistre;
+import tn.esprit.spring.entity.User;
+import tn.esprit.spring.repository.ReinsuranceContractRepository;
+import tn.esprit.spring.service.Interface.ReinsuranceContractService;
 
 
-
-public class ReinsuranceContractImpl implements CrudRepository<ReinsuranceContract, String> {
-
-	@Override
-	public <S extends ReinsuranceContract> S save(S entity) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <S extends ReinsuranceContract> Iterable<S> saveAll(Iterable<S> entities) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<ReinsuranceContract> findById(String id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existsById(String id) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Iterable<ReinsuranceContract> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Iterable<ReinsuranceContract> findAllById(Iterable<String> ids) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public long count() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void deleteById(String id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void delete(ReinsuranceContract entity) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAllById(Iterable<? extends String> ids) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAll(Iterable<? extends ReinsuranceContract> entities) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
-	}
-
+@Service
+public class ReinsuranceContractImpl implements ReinsuranceContractService {
+	@Autowired
+	ReinsuranceContractRepository reinsuranceRepository;
 	
+	
+	private static final Logger l = LogManager.getLogger(ReinsuranceContractService.class);
 
+
+	@Override
+	public List<ReinsuranceContract>retrieveALLContracts(){
+		List<ReinsuranceContract> reins =  (List<ReinsuranceContract>) reinsuranceRepository.findAll();
+		for(ReinsuranceContract rein : reins)
+		{
+			l.info("user ++ :"+rein);
+		}
+		return reins;
+	}
+	@Override
+	public ReinsuranceContract addReinsuranceContract(ReinsuranceContract reinCont) {
+		ReinsuranceContract reinSaved = null;
+		reinSaved=reinsuranceRepository.save(reinCont);
+		return reinSaved;
+	}
+	@Override
+	public void deleteReinsuranceContract(Long id) {
+		
+		reinsuranceRepository.deleteById(id);
+	}
+	
+	@Override
+	public ReinsuranceContract updateReinsuranceContract(ReinsuranceContract reinCont) {
+		ReinsuranceContract reinAdded = reinsuranceRepository.save(reinCont);
+		return reinAdded;
+		
+	}
+	@Override
+	public ReinsuranceContract retrieveReinsuranceContract(Long id) {
+		ReinsuranceContract r = reinsuranceRepository.findById(id).get();
+		return r;
+	}
+	@Override
+	public void deleteReinOffers(Long id) {
+		reinsuranceRepository.deleteById(id);
+		
+	}
 }

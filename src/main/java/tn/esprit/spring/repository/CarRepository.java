@@ -2,10 +2,9 @@ package tn.esprit.spring.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import tn.esprit.spring.entity.Account;
+import tn.esprit.spring.entity.Car;
 
 @Repository
-public interface AccountRepository extends CrudRepository<Account,Integer>{
+public interface CarRepository  extends CrudRepository<Car, Long>{
 
 }
