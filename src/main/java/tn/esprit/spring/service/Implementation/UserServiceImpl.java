@@ -1,65 +1,114 @@
 package tn.esprit.spring.service.Implementation;
 
+
+
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+
+
+import lombok.extern.slf4j.Slf4j;
+
+import tn.esprit.spring.entity.RoleUser;
 import tn.esprit.spring.entity.User;
+//import tn.esprit.spring.exceptions.UsernameAlreadyExistsException;
+import tn.esprit.spring.exceptions.CinAlreadyExisteException;
+import tn.esprit.spring.exceptions.UsernameAlreadyExistsException;
+import tn.esprit.spring.exceptions.UsernameAlreadyExistsResponse;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.service.Interface.UserService;
 
 @Service
+
 public class UserServiceImpl implements UserService {
+
 	@Autowired
-	UserRepository userRep;
+	UserRepository userRepository;
+
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
 	@Override
-	public List<User> retrieveAllUsers() {
-		List<User> users=(List<User>) (userRep.findAll());
-		// TODO Auto-generated method stub
+	public User addAdmin(User user) {
+
+		 if  (userRepository.findByUsername(user.getUsername())!= null){
+			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
+		}
+		else {
+			
+			
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			user.setRoleUser(RoleUser.Administrator);
+			System.out.print("hello"+user);
+			return userRepository.save(user);
+		}
+	}
+
+	@Override
+	public List<User> getAllUserRole(RoleUser role) {
+		List<User> user=(List<User>)userRepository.findByRoleUser(role);
+		return user;
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public void verifyAccount(String token) {
+
+	}
+
+	@Override
+	public User updateUser(User u) {
+		return userRepository.save(u);
+	}
+
+	@Override
+	public User findById(Long id) {
+		return this.userRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public String getUserId(User user) {
 		return null;
 	}
 
 	@Override
-	public User addUser(User u) {
-		userRep.save(u);
-		// TODO Auto-generated method stub
-		return (u);
+	public String DeleteAccount(String id) {
+		return null;
 	}
 
 	@Override
-	public void deleteUser(Long id) {
-		userRep.deleteById(id);
-		// TODO Auto-generated method stub
+	public User UpdateUser(User user) {
+		return userRepository.save(user);
+
+	}
+
+	@Override
+	public void changeUserPassword(User user, String password) {
+
+	}
+
+
+	@Override
+	public User addUser(User user) {
+		
+		 if  (userRepository.findByUsername(user.getUsername())!= null){
+			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
+		}
+		else {
+			
+			
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			return userRepository.save(user);
+		}
 		
 	}
-
-	@Override
-	public User updateUser(User u , Long id ) {
-		User userModif = userRep.findById(id).get(); 
-		userModif.setAddress(u.getAddress());
-		userModif.setBirthdate(u.getBirthdate());
-		userModif.setCin(u.getCin());
-		userModif.setConfirmPassword(u.getConfirmPassword());
-		userModif.setDepartement(u.getDepartement());
-		userModif.setEmail(u.getEmail());
-		userModif.setFirstname(u.getFirstname());
-		userModif.setJob(u.getJob());
-		userModif.setLastname(u.getLastname());
-		userModif.setPhoneNumber(u.getPhoneNumber());
-		userModif.setPassword(u.getPassword());
-		userModif.setPostalCode(u.getPostalCode());
-		userModif.setSex(u.getSex());
-		userRep.save(userModif); 
-		
-		return userModif;
-	}
-
-	@Override
-	public User retrieveUser(Long id) {
-		// TODO Auto-generated method stub
-		return userRep.findById(id).get();
-	}
-
 }
