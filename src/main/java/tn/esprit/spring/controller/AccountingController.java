@@ -12,13 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entity.Accounting;
-import tn.esprit.spring.service.Implementation.AccountingServiceImpl;
 import tn.esprit.spring.service.Interface.AccountingService;
 
 @RestController
 public class AccountingController {
 	@Autowired
-	AccountingServiceImpl accountingService;
+	AccountingService accountingService;
 	
 	
 	@GetMapping("/accountings")
@@ -59,8 +58,8 @@ public class AccountingController {
 
 	@PutMapping("/affecterAccountingToUser/{accounting_id}}/{id_user}")
 	@ResponseBody
-	public void affecterAccountingToUser(@PathVariable("accounting_id}") int idp,@PathVariable("id_user") Long id) {
-		accountingService.affecterAccountingToUser(idp, id);
+	public void affecterAccountingToUser(@PathVariable("accounting_id}") int idp,@PathVariable("id_user") Long idUser) {
+		accountingService.affecterAccountingToUser(idp, idUser);
 	}
 	@GetMapping("/prime")
 	@ResponseBody
