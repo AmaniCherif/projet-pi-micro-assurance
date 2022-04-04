@@ -1,6 +1,7 @@
 package tn.esprit.spring.service.Interface;
 
 import java.util.List;
+import java.util.Map;
 
 import tn.esprit.spring.entity.Transaction;
 
@@ -16,13 +17,15 @@ public interface TransactionService {
     Transaction updateTransaction(Transaction t , int id);
 
 	List<Transaction> listAllAsd();
-	
-	List<Transaction> listTransactionByUserId(Long id) ;
+	public List<Transaction> listTransactionByContractId(long id);
+	//List<Transaction> Transaction(long id) ;
 
     List<Transaction> listTransactionByDate(int annee);
-
+ 
+    public void affecterPaymentToContract(int idt, long id);
+    
 	int addOrUpdateTransaction(Transaction t);
 	public List<Transaction> getAllTransById();
-	
+	public Map<Double, Double> StatisticMonthbyAmount(int year);
 } 
 

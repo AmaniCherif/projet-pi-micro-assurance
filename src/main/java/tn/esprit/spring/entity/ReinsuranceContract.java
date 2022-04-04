@@ -1,5 +1,6 @@
 package tn.esprit.spring.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,13 +11,13 @@ public class ReinsuranceContract {
 
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	
+	@Column(name = "reinContId", unique = true, nullable = false)
 	private long reinContId ;
 	private String type;
 	private double commerPrem ;
 	private double purePrem ;
 	private double repayment ;
-	@OneToOne(mappedBy="reinsuranceContract")
+	@OneToOne
 	private Contract contract;
 	public long getReinContId() {
 		return reinContId;

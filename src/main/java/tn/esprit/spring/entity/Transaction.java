@@ -7,9 +7,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 
 public class Transaction implements Serializable {
@@ -30,6 +33,9 @@ public class Transaction implements Serializable {
 	TypeTransaction typeTransaction ;
  
 
+	
+	//@JoinColumn(name = "id",referencedColumnName="id")
+	//@JsonIgnore
 	@ManyToOne
 	private Contract contract;
 	
@@ -82,14 +88,11 @@ public class Transaction implements Serializable {
 	}
 	
 
-
 	
 
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
+//	public static long getSerialversionuid() {
+//		return serialVersionUID;
+//	}
 
 
 
