@@ -1,3 +1,4 @@
+
 package tn.esprit.spring.repository;
 
 
@@ -15,6 +16,7 @@ import tn.esprit.spring.entity.ContractRequest;
 
 public interface ContractRequestRepository extends CrudRepository<ContractRequest, Integer>{
 
+
 	
 	@Query("SELECT c FROM ContractRequest c WHERE c.traite = :nb")
 	public List<ContractRequest> IretreiveContratRequestTraite(@Param("nb") int nb);
@@ -24,3 +26,4 @@ public interface ContractRequestRepository extends CrudRepository<ContractReques
 	
 
 }
+

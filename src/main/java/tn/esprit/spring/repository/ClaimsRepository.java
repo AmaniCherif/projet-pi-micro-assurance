@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import tn.esprit.spring.entity.Claims;
 
-
-
 @Repository
-public interface ClaimsRepository extends CrudRepository<Claims,Long>{
+public interface ClaimsRepository extends CrudRepository<Claims,Long> {
 
 }

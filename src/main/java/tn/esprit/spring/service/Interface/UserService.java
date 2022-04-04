@@ -2,6 +2,8 @@ package tn.esprit.spring.service.Interface;
 
 import java.util.List;
 
+
+import tn.esprit.spring.entity.RoleUser;
 import tn.esprit.spring.entity.User;
 
 
@@ -9,13 +11,30 @@ import tn.esprit.spring.entity.User;
 
 
 public interface UserService {
-	 
-		List<User> retrieveAllUsers();
+    public User addAdmin(User user);
+    public List<User> getAllUserRole(RoleUser role);
 
-		User addUser(User u);
+    public List<User> getAllUser();
 
-		void deleteUser(int id);
+    public void verifyAccount(String token);
 
-		User updateUser(User u , int id );
-		User retrieveUser(int id);
+    User updateUser(User u);
+    public User findById(Long id) ;
+
+    public String getUserId(User user);
+
+    public String DeleteAccount(String id) ;
+
+    public User UpdateUser(User user);
+
+    public void changeUserPassword(User user, String password);
+
+
+//    public List<User> findByFirstNameLikeOrLastNameLikeOrEmailLike(String keyword);
+
+
+    public User addUser(User user);
+
+		
 	}
+

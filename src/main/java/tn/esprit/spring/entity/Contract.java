@@ -58,18 +58,33 @@ public class Contract implements Serializable {
 		return id;
 	}
 
-//	public float getRemboursement() {
-//		return remboursement;
-//	}
-//	public void setRemboursement(float remboursement) {
-//		this.remboursement = remboursement;
-//	}
-//	public int getNumContrat() {
-//		return NumContrat;
-//	}
-//	public void setNumContrat(int numContrat) {
-//		NumContrat = numContrat;
-//	}
+
+	public float getRemboursement() {
+		return remboursement;
+	}
+	public void setRemboursement(float remboursement) {
+		this.remboursement = remboursement;
+	}
+	public int getNumContrat() {
+		return NumContrat;
+	}
+	public void setNumContrat(int numContrat) {
+		NumContrat = numContrat;
+	}
+
+	/*public float getRemboursement() {
+		return remboursement;
+	}
+	public void setRemboursement(float remboursement) {
+		this.remboursement = remboursement;
+	}
+	public int getNumContrat() {
+		return NumContrat;
+	}
+	public void setNumContrat(int numContrat) {
+		NumContrat = numContrat;
+	}*/
+
 
 
 	public void setId(Long id) {
@@ -176,11 +191,14 @@ public class Contract implements Serializable {
 	public void setReinsuranceContract(ReinsuranceContract reinsuranceContract) {
 		this.reinsuranceContract = reinsuranceContract;
 	}
-*/
+
 
 	@OneToMany(mappedBy="contract")
 	private Set<Transaction> transaction;
-/*
+
+
+
+
 
 	@OneToOne(mappedBy="contract")
 	private ContractRequest contractRequest;
@@ -198,5 +216,6 @@ public class Contract implements Serializable {
 	
 //	@OneToOne
 //	private SinistreReport sinistreReport;
+
 
 }

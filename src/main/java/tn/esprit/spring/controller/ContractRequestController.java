@@ -1,5 +1,6 @@
 package tn.esprit.spring.controller;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import tn.esprit.spring.service.Interface.ContractRequestService;
 @RestController
 @RequestMapping("/ContractRequest")
 public class ContractRequestController {
+
 	@Autowired
 	ContractRequestService crsi;
 	
@@ -53,12 +55,12 @@ public class ContractRequestController {
 	}
 	
 
-	@GetMapping("/liste/{nb}")
-	@ResponseBody
+	/*@GetMapping("/liste/{nb}")
+	//@ResponseBody
 	public List<ContractRequest> afficheContractRequestTraiteController(@PathVariable("nb") int nb){
 		List<ContractRequest> list = crsi.IretreiveContratRequestTraite(nb);
 		return list;		
-	}
+	}*/
 	
 	
 }

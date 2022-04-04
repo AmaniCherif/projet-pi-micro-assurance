@@ -1,4 +1,8 @@
+
 package tn.esprit.spring.controller;
+
+
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -52,4 +56,6 @@ public class ContractOfferController {
 		 ContractOfferService.AddContractMixte(c,userid);
 		 return("contract Added Successufuly");
 		}
+
 }
+
