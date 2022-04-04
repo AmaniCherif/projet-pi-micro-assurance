@@ -24,7 +24,7 @@ public class ContractRequest {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column( name = "id")
+	@Column( name = "numRequest")
 	private int numRequest; // ClÃ© primaire
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
