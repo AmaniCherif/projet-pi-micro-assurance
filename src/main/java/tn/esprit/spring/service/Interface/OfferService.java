@@ -10,9 +10,9 @@ public interface OfferService {
 	
 	 List<Offer> retrieveAll_Offers();
 	 Offer add_Offers(Offer f);
-	 void delete_Offers(int id);
-	 Offer update_Offers(Offer O, int id );
-	 Offer retrieve_Offer(int id);
+	 void delete_Offers(Long id);
+	 Offer update_Offers(Offer O, Long id );
+	 Offer retrieve_Offer(Long id);
 
 	 
 

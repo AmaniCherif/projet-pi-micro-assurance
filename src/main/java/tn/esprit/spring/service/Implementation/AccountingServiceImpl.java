@@ -73,7 +73,7 @@ public class AccountingServiceImpl implements AccountingService{
 
 	}
 	@Override
-	public void affecterAccountingToUser(int idp, int id) {
+	public void affecterAccountingToUser(int idp, Long id) {
 		Accounting accounting = accountingRepository.findById(idp).get();
 		User user = userRepository.findById(id).get();
 		if (!ObjectUtils.isEmpty(accounting) && !ObjectUtils.isEmpty(user))

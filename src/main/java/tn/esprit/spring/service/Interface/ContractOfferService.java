@@ -20,7 +20,7 @@ public interface ContractOfferService {
 	 ContractOffer retrieveContract_Offers(int id);
 	 public double Tarification_Mixte_PrimePeriodique(double vie_mixte,double dèces_mixte,int duree,int age );
 	 public Double Tarification_Mixte_PrimeUnique(double vie_mixte,double dèces_mixte,int duree,int age );
-	 ContractOffer AddContractMixte(ContractOffer c , int id);
+	 ContractOffer AddContractMixte(ContractOffer c ,Long id);
 	 void writeTableHeader(PdfPTable table) ;
 	 public void writeTableData(PdfPTable table, ContractOffer user);
 	 public void export(ContractOffer data,HttpServletResponse response) throws DocumentException, IOException ;

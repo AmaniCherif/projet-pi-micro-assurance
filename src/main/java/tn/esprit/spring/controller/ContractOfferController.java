@@ -60,7 +60,7 @@ public class ContractOfferController {
 	}
 	 @PostMapping("AddContractMixte/{userid}")  
 	 @ResponseBody
-		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")int userid)   
+		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")Long userid)   
 		{  		
 		 ContractOfferService.AddContractMixte(c,userid);
 		 return("contract Added Successufuly");

@@ -83,7 +83,7 @@ public class LeaveTestServiceImpl implements LeaveTestService{
 			}
 			
 			@Override
-			public void affecterUserALeave(int idl, int id) {
+			public void affecterUserALeave(int idl, Long id) {
 			LeaveTest leave = leaveTestRepository.findById(idl).get();
 			User user = userRepository.findById(id).get();
 			if (!ObjectUtils.isEmpty(leave) && !ObjectUtils.isEmpty(user))

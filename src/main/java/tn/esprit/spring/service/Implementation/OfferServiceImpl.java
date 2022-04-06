@@ -38,13 +38,13 @@ public class OfferServiceImpl implements OfferService {
 	}
 
 	@Override
-	public void delete_Offers(int IdOffer) {
+	public void delete_Offers(Long IdOffer) {
 
 		offerRepository.deleteById(IdOffer);
 	}
 
 	@Override
-	public Offer update_Offers(Offer o, int id ) {
+	public Offer update_Offers(Offer o, Long id ) {
 		Offer offreModif = offerRepository.findById(id).get(); 
 		 
 		offreModif.setDescription(o.getDescription());
@@ -57,7 +57,7 @@ public class OfferServiceImpl implements OfferService {
 	}
 
 	@Override
-	public Offer retrieve_Offer(int IdOffer) {
+	public Offer retrieve_Offer(Long IdOffer) {
 		Offer O = offerRepository.findById(IdOffer).get();
 		return O ;
 		

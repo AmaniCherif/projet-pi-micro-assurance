@@ -58,20 +58,6 @@ public class Contract implements Serializable {
 		return id;
 	}
 
-
-	public float getRemboursement() {
-		return remboursement;
-	}
-	public void setRemboursement(float remboursement) {
-		this.remboursement = remboursement;
-	}
-	public int getNumContrat() {
-		return NumContrat;
-	}
-	public void setNumContrat(int numContrat) {
-		NumContrat = numContrat;
-	}
-
 	/*public float getRemboursement() {
 		return remboursement;
 	}
@@ -157,7 +143,7 @@ public class Contract implements Serializable {
 	public void setPrimePure(Float primePure) {
 		this.primePure = primePure;
 	}
-/*
+
 	public Set<Transaction> getTransaction() {
 		return transaction;
 	}
@@ -165,13 +151,9 @@ public class Contract implements Serializable {
 	public void setTransaction(Set<Transaction> transaction) {
 		this.transaction = transaction;
 	}
-*/
-//	public static long getSerialversionuid() {
-//		return serialVersionUID;
-//	}
-//
-//	
-	/*public ContractRequest getContractRequest() {
+
+
+	public ContractRequest getContractRequest() {
 
 		return contractRequest;
 	}
@@ -208,7 +190,7 @@ public class Contract implements Serializable {
 	
 	@OneToOne(mappedBy="contract")
 	private ReinsuranceContract reinsuranceContract;
-*/
+
 	public Contract() {
 		super();
 		// TODO Auto-generated constructor stub

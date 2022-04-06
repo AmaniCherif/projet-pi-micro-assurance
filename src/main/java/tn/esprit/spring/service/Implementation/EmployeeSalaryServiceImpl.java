@@ -70,7 +70,7 @@ public class EmployeeSalaryServiceImpl implements EmployeeSalaryService{
 	}
 
 	@Override
-	public void affecterSalaryToUser(int idp, int id) {
+	public void affecterSalaryToUser(int idp, Long id) {
 		EmployeeSalary employeeSalary = salaryRepository.findById(idp).get();
 		User user = userRepository.findById(id).get();
 		if (!ObjectUtils.isEmpty(employeeSalary) && !ObjectUtils.isEmpty(user))

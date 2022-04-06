@@ -32,7 +32,7 @@ public class OfferController {
 	
 	@PutMapping("/updateoffer/{offerId}")
 	   @ResponseBody
-	   public Offer updateoffer(@RequestBody Offer o, @PathVariable("offerId") int offerId){
+	   public Offer updateoffer(@RequestBody Offer o, @PathVariable("offerId") Long offerId){
 		   return  offerService.update_Offers(o, offerId); 
 		   
 	   }
@@ -44,13 +44,13 @@ public class OfferController {
 			}
 		 
 		  @DeleteMapping("/removeoffer/{offerId}")
-		    public void removeoffer(@PathVariable("offerId") int offerId){
+		    public void removeoffer(@PathVariable("offerId") Long offerId){
 		        offerService.delete_Offers(offerId); 
 		    }
 	
 		  
 		  @GetMapping("/retrieveOffer/{offerId}")
-		    public Offer retrieveOffer(@PathVariable("offerId") int offerId) {
+		    public Offer retrieveOffer(@PathVariable("offerId") Long offerId) {
 		        return offerService.retrieve_Offer(offerId); 
 		    }
 			
