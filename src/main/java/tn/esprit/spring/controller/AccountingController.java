@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entity.Accounting;
+import tn.esprit.spring.service.Implementation.AccountingServiceImpl;
 import tn.esprit.spring.service.Interface.AccountingService;
 
 @RestController
 public class AccountingController {
 	@Autowired
-	AccountingService accountingService;
+	AccountingServiceImpl accountingService;
 	
 	
 	@GetMapping("/accountings")
