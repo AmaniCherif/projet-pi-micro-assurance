@@ -68,7 +68,7 @@ public class EmployeeSalaryController {
 	}
 	@PutMapping("/affecterSalaryToUser/{salary_id}/{id_user}")
 	@ResponseBody
-	public void affecterSalaryToUser(@PathVariable("salary_id") int idp,@PathVariable("id_user") int id) {
+	public void affecterSalaryToUser(@PathVariable("salary_id") int idp,@PathVariable("id_user") Long id) {
 		salaryService.affecterSalaryToUser(idp, id);
 	}
 	@GetMapping(value ="/bestEmployee")

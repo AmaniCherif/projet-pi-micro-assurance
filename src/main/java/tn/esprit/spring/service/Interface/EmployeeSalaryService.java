@@ -12,7 +12,7 @@ public interface EmployeeSalaryService {
 	EmployeeSalary retrieveSalary(String id) ;
 	public int salary();
 	List<EmployeeSalary> ficheDePaie(int id_user);
-	void affecterSalaryToUser(int idp, int id);
+	void affecterSalaryToUser(int idp, Long id);
 	List<?> BestEmployee();
 
 }

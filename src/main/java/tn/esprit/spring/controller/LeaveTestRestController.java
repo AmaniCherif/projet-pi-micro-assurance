@@ -78,7 +78,7 @@ public class LeaveTestRestController {
 
 	@PutMapping("/affecterUserToLeave/{Leave_ID}/{User_ID}")
 	@ResponseBody
-	public void affecterUserToLeave(@PathVariable("Leave_ID") int idl,@PathVariable("User_ID") int id) {
+	public void affecterUserToLeave(@PathVariable("Leave_ID") int idl,@PathVariable("User_ID") Long id) {
 		leaveTestService.affecterUserALeave(idl, id);
 	}
 	@PostMapping("/duration")

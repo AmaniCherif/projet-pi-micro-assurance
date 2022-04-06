@@ -11,7 +11,7 @@ public interface AccountingService {
 	public void deleteAccounting(String id) ;
 	public Accounting updateAccounting(Accounting s);
 	public Accounting retrieveAccounting(String id);
-	void affecterAccountingToUser(int idp, int id);
+	void affecterAccountingToUser(int idp, Long id);
 	public float assets();
 	public float liabilities();
 	public int exercise_result();

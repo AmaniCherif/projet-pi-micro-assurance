@@ -156,7 +156,7 @@ public class ContractOfferServiceImpl implements ContractOfferService{
 	}
 
 	@Override
-	public ContractOffer AddContractMixte(ContractOffer contract ,int userid) {
+	public ContractOffer AddContractMixte(ContractOffer contract ,Long userid) {
 		Offer o = offerRepository.findById(userid).get();
     	User user = userRepository.findById(userid).get();
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
