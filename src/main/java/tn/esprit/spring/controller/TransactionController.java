@@ -1,13 +1,13 @@
 package tn.esprit.spring.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lowagie.text.DocumentException;
+
 import tn.esprit.spring.entity.Transaction;
-import tn.esprit.spring.entity.TypeTransaction;
 import tn.esprit.spring.service.Interface.TransactionService;
+import tn.esprit.spring.service.Interface.PaymentPdf;
+
 @RestController
 public class TransactionController {
 	@Autowired
@@ -77,6 +80,26 @@ public class TransactionController {
 		  return transactionservice.StatisticMonthbyAmount(year);
 	  }
 	
-	//public Map<Double, Double> StatisticMonthbyAmount(int year)	
-
+	@PutMapping("/affecterPaymentToContract/{Transaction_ID}/{Contract_ID}")
+	@ResponseBody
+	public void affecterPaymentToContract(@PathVariable("Transaction_ID") int idp,@PathVariable("Contract_ID") int id) {
+		transactionservice.affecterPaymentToContract(idp, id);
+	}
+	@GetMapping("/amine/Hana/pdf")
+	public void PaymentPdf(HttpServletResponse response) throws DocumentException, IOException {
+	    response.setContentType("application/pdf");
+	    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	    String currentDateTime = dateFormatter.format(new Date());
+	     
+	    String headerKey = "Content-Disposition";
+	    String headerValue = "attachment; filename=payments" + currentDateTime + ".pdf";
+	    response.setHeader(headerKey, headerValue);
+	     
+	    List<Transaction> listPayment = transactionservice.retrieveAllTransactions();
+	     
+	    PaymentPdf exporter = new PaymentPdf(listPayment);
+	    exporter.export(response);
+	     
+	    
+	}
 }
