@@ -4,7 +4,16 @@ package tn.esprit.spring.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.zxing.WriterException;
+import com.lowagie.text.DocumentException;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,9 +23,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.entity.ContractOffer;
+import tn.esprit.spring.entity.State_Offer;
 import tn.esprit.spring.repository.ContractOfferRepository;
 import tn.esprit.spring.service.Interface.ContractOfferService;
 @RestController
@@ -56,6 +65,39 @@ public class ContractOfferController {
 		 ContractOfferService.AddContractMixte(c,userid);
 		 return("contract Added Successufuly");
 		}
+	 
+	 @GetMapping("ContratMixte/export/pdf/{id}")
+	    public void exportToPDF(HttpServletResponse response,@PathVariable("id") int id) throws DocumentException, IOException {
+	        response.setContentType("application/pdf");
+	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	        String currentDateTime = dateFormatter.format(new Date());
+	         
+	        String headerKey = "Content-Disposition";
+	        String headerValue = "attachment; filename=MixteContract_" + currentDateTime + ".pdf";
+	        response.setHeader(headerKey, headerValue);
+	        ContractOfferService.export(ContractOfferRepository.findById(id).orElse(null),response);
+	        		System.out.println("Pdf Generated successufully ");	       
+	         
+	    }
+	 @GetMapping("ContratMixte/nbtranche/{userid}")
+	    public String nbtranche(HttpServletResponse response,@PathVariable("userid")int userid ) throws DocumentException, IOException {
+		 ContractOffer d= ContractOfferService.Contract_OffersByUser(userid);
+		 String date = d.getDate_fin() ;
+		 double prime = d.getTarification(); // get prime mel base
+		 int nbr_tranche =  ContractOfferService.nbre_tranches_restantes(date);
+		 
+		 double montant_restant = prime * nbr_tranche;
+	         
+		 return ("You have " + nbr_tranche + " x " + prime + " more payments in your contract = " + montant_restant + " Dinars");
+	    }
+	 @PostMapping("ContratMixte/resilience/{userid}")
+	    public ContractOffer resilience(HttpServletResponse response,@PathVariable("userid")int userid)  {
+		 
+		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);
+		 o2.setState_offers(State_Offer.Resillier);
 
+		 ContractOffer updated = ContractOfferService.updateContract_Offers(o2);
+		 return updated;
+	    }
 }
 

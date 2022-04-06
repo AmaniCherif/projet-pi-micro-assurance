@@ -46,11 +46,9 @@ public class OfferServiceImpl implements OfferService {
 	@Override
 	public Offer update_Offers(Offer o, int id ) {
 		Offer offreModif = offerRepository.findById(id).get(); 
-		offreModif.setDate_debut(o.getDate_debut());
-		offreModif.setDate_fin(o.getDate_fin());
+		 
 		offreModif.setDescription(o.getDescription());
-		offreModif.setState_offers(o.getState_offers());
-		offreModif.setTarification(o.getTarification());
+	 
 		
 		
 		offerRepository.save(offreModif);

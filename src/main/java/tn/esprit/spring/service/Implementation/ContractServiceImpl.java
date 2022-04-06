@@ -50,7 +50,7 @@ public class ContractServiceImpl implements ContractService {
 		System.out.println("okhrej12322 ay");
 		
 		double interet = 0.002; /// 0.2 % j'ai choisis le taux d'interet 2% 
-		String sexe = d.getUser().getSex();
+		String sexe = d.getUser().getSexe();
 		int age = age(d.getUser().getBirthdate());
 		double frais = 0.03;// on va considerer tous les frais du contrat .. 3 %
 		//Date currentUtilDate = new Date();

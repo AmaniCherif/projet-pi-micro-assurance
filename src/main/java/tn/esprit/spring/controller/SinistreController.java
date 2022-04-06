@@ -18,4 +18,22 @@ public class SinistreController {
 		sinistreservice.addSinistre(s);
 	}
 	*/
+	
+	/*@GetMapping("/calculTDE/{idS}")
+		@ResponseBody
+		  public float TDEMPRUNTEUR(@PathVariable("idS") Long idS) throws ParseException{
+		float k = 0 ;
+		k = (float) sr.TDEMPRUNTEUR(idS) ; 
+		return k ;
+	  
+	}*/
+
+	/* @GetMapping("/creditsimul/{idS}/{idC}")
+		  @ResponseBody
+		  public float creditsimul(@PathVariable("idS") Long idS, @PathVariable("idC") Long idC){
+				float k = 0 ;
+				k = (float) sr.CreditSimulator( idS, idC) ; 
+				return k ;
+			  
+			}*/
 }

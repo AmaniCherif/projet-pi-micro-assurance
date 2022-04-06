@@ -1,6 +1,13 @@
 package tn.esprit.spring.service.Interface;
 
+import java.io.IOException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.zxing.WriterException;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.pdf.PdfPTable;
 
 import tn.esprit.spring.entity.ContractOffer;
 
@@ -14,4 +21,10 @@ public interface ContractOfferService {
 	 public double Tarification_Mixte_PrimePeriodique(double vie_mixte,double dèces_mixte,int duree,int age );
 	 public Double Tarification_Mixte_PrimeUnique(double vie_mixte,double dèces_mixte,int duree,int age );
 	 ContractOffer AddContractMixte(ContractOffer c , int id);
+	 void writeTableHeader(PdfPTable table) ;
+	 public void writeTableData(PdfPTable table, ContractOffer user);
+	 public void export(ContractOffer data,HttpServletResponse response) throws DocumentException, IOException ;
+	 public int nbre_tranches_restantes(String final_date);
+	
+
 }

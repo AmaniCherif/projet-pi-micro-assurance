@@ -1,12 +1,36 @@
 package tn.esprit.spring.service.Implementation;
 
+import java.awt.Color;
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import org.joda.time.LocalDate;
+import org.joda.time.Years;
+import com.google.zxing.qrcode.QRCodeWriter;
 import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.lowagie.text.Document;
+import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
+import com.lowagie.text.Paragraph;
+import com.lowagie.text.FontFactory;
+import com.lowagie.text.PageSize;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 
 import tn.esprit.spring.entity.ContractOffer;
 import tn.esprit.spring.entity.Offer;
@@ -149,7 +173,119 @@ public class ContractOfferServiceImpl implements ContractOfferService{
 		contractOfferRepository.save(contract);
 		return contract;
 	}
+	@Override
+	public void writeTableHeader(PdfPTable table) {
+        PdfPCell cell = new PdfPCell();
+        cell.setBackgroundColor(Color.BLUE);
+        cell.setPadding(5);
+         
+        Font font = FontFactory.getFont(FontFactory.HELVETICA);
+        font.setColor(Color.WHITE);
+         
+        cell.setPhrase(new Phrase("Ref", font));
+         
+        table.addCell(cell);
+         
+        cell.setPhrase(new Phrase("date debut", font));
+        table.addCell(cell);
+         
+        cell.setPhrase(new Phrase("date fin", font));
+        table.addCell(cell);
+         
+        cell.setPhrase(new Phrase("State Offer", font));
+        table.addCell(cell);
+         
+        cell.setPhrase(new Phrase("Tarif", font));
+        table.addCell(cell);       
+    }
+    @Override
+   public void writeTableData(PdfPTable table, ContractOffer user) {
+   	PdfPCell cell = new PdfPCell();
+      
+           
+       	cell.setPhrase(new Phrase(String.valueOf(user.getIdContractOffer())));
+       	table.addCell(cell);
+          
+           
+           cell.setPhrase(new Phrase(user.getDate_debut().toString()));
+           table.addCell(cell);
+          
+          
+           cell.setPhrase(new Phrase(user.getDate_fin().toString()));
+           table.addCell(cell);
+           
+           cell.setPhrase(new Phrase(user.getState_offers().toString()));
+          
+           table.addCell(cell);
+           
+           cell.setPhrase(new Phrase(String.valueOf(user.getTarification())+"  Dinar"));
+           
+            table.addCell(cell);
+           
+           
+       }
+    @Override
+   public void export(ContractOffer data,HttpServletResponse response) throws DocumentException, IOException {
+       Document document = new Document(PageSize.A4);
+       
+       PdfWriter.getInstance(document, response.getOutputStream());
+       
+        
+       document.open();
+       document.addTitle("MicroLeftContract");
+     
+       Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+       font.setSize(25);
+       font.setColor(Color.BLUE);
+       
+       //document.add(image);
+       Paragraph p = new Paragraph("Offer Mixte Contract ", font);
+       p.setSpacingBefore(30);
+       p.setAlignment(Paragraph.ALIGN_CENTER);
+       
+       document.add(p);
+        
+       PdfPTable table = new PdfPTable(5);
+       table.setWidthPercentage(100f);
+       table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f, 1.5f});
+       table.setSpacingBefore(50);
+        
+       writeTableHeader(table);
+       writeTableData(table,data);
+        
+       document.add(table);
+       Font font1 = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+       font1.setSize(15);
+       font1.setColor(Color.RED);
+       Paragraph p1 = new Paragraph("Offer Mixte Contract clause", font1);
+       p1.setSpacingBefore(30);
+       Paragraph p2 = new Paragraph("In Case Of Death after the end of contract, The relative of the client will get : "+data.getDeces_mixte() + " Dinar");
+       p1.setSpacingBefore(20);
+       Paragraph p3 = new Paragraph(" * In Case Of Survival after the end of contract, The client will get : "+data.getVie_mixte()+ " Dinar");
+       Paragraph p4 = new Paragraph("* The Duration of the Contract is determined to be for : "+data.getDuree()+ " Years");
+       Paragraph p6 = new Paragraph("* In case of termination the offer is not refundable");
+       p2.setSpacingBefore(20);
+       p3.setSpacingBefore(20);
+       p4.setSpacingBefore(20);
+       p6.setSpacingBefore(20);
+       document.add(p1);
+       document.add(p2);
+       document.add(p3);
+       document.add(p4);
+       document.add(p6);
 
-	
+
+       document.close();
+        
+   }
+
+	@Override
+	public int nbre_tranches_restantes(String final_date) {
+		LocalDate dt_final = new LocalDate(final_date);
+    	LocalDate now = new LocalDate(); 
+    	int monthsBetween = Years.yearsBetween(now, dt_final).getYears();
+    	
+    	return monthsBetween;
+	}
 
 }

@@ -50,9 +50,9 @@ public class AccountingServiceImpl implements AccountingService{
 	}
 	@Override
 	public Accounting addAccounting(Accounting s) {
-		Accounting accountingSaved = null;
-		accountingSaved=accountingRepository.save(s);
-		return accountingSaved;
+		 
+		
+		return accountingRepository.save(s);
 	}
 	@Override
 	public void deleteAccounting(String id) {
@@ -101,7 +101,7 @@ public class AccountingServiceImpl implements AccountingService{
 				List<ReinsuranceContract> listr = reinsuranceRepos.findAll();
 				Iterator<ReinsuranceContract> itr = listr.iterator();
 				while (itr.hasNext()) {
-					sc+=itr.next(). getCommerPrem()*0.3;
+					sc+=itr.next(). getCommerPrem()*0.3; //pour chaque contract va prendre un prime
 				}
 				float actifs=a+sc+autrescreances;
 

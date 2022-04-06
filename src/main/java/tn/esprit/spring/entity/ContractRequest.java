@@ -230,6 +230,12 @@ public class ContractRequest {
 	public void setVal_prime(float val_prime) {
 		this.val_prime = val_prime;
 	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getCapitalOuRente() {
 		return capitalOuRente;
 	}
