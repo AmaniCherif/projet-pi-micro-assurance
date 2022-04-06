@@ -217,8 +217,7 @@ public class User implements UserDetails {
 	private Set<ContractRequest>contractRequest;
 	@OneToMany(mappedBy="user")
 	private Set<ContractOffer>ContractOffers;
-	@OneToMany(mappedBy="user")
-	private Set<Claim_report>claimsReport;
+	
 
 	public RoleUser getRoleUser() {
 		return roleUser;
