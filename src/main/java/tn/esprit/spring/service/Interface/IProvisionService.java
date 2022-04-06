@@ -11,4 +11,7 @@ public interface IProvisionService {
 	void deleteProvision(Integer id);
 	Provision updateProvision(Provision provision);
 	Provision retrieveProvision(Integer id);
+	public float PCD(int idSinistrereport, double i);
+	public double PCRV(int idSinistrereport, double i);
+	public double PCVE(int idSinistrereport, double i);
 }
