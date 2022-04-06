@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
@@ -93,6 +94,12 @@ public class ContractOffer implements Serializable{
 		this.offers = offers;
 	}
 
+
+
+	@OneToOne(mappedBy="offer")
+	private Offer offer;
+	@ManyToOne
+	private User user;
     @JsonIgnore
     @ManyToOne
     private User users;

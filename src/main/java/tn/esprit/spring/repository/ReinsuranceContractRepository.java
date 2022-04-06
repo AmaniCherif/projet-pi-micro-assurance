@@ -9,6 +9,7 @@ import tn.esprit.spring.entity.ReinsuranceContract;
 
 @Repository
 public interface ReinsuranceContractRepository extends CrudRepository<ReinsuranceContract,Long>{
+
 	@Query("SELECT COUNT(c) FROM Contract c where c.reassure=1")
 	 List<Long> getReinc();
 	List<ReinsuranceContract> findAll();

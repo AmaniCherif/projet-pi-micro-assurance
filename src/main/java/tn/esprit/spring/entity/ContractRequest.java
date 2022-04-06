@@ -16,7 +16,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
+
 @Table(name="ContractRequest")
+
+
 public class ContractRequest {
 	
 	@Id
@@ -52,16 +55,26 @@ public class ContractRequest {
 	 private String chronicDiseases;
 	 @Enumerated(EnumType.STRING)
 	 private CityUser cityUser;
+
+//	 @Enumerated(EnumType.STRING)
+//	 private InsuranceType insuranceType;
+	 
+	 
+	 private String nomContract;
+	 
+
 	 @Enumerated(EnumType.STRING)
 	 private InsuranceType insuranceType;
+	 
 	 public String getTypeContract() {
 		return typeContract;
 	}
 	public void setTypeContract(String typeContract) {
 		this.typeContract = typeContract;
 	}
-	private String nomContract;
+
 	 private String typeContract;
+
 	 private String insurancebackground;
 	 private double height;
 	 private double weight;
@@ -196,6 +209,7 @@ public class ContractRequest {
 	 
 	 @ManyToOne
 	 private User user;
+
 	
 	public Prime getChoixPrime() {
 		return choixPrime;
@@ -234,4 +248,5 @@ public class ContractRequest {
 		this.capitalAssure = capitalAssure;
 	}
 	
+
 }

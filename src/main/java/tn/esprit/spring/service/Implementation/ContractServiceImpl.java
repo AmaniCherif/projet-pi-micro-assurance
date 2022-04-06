@@ -40,8 +40,8 @@ public class ContractServiceImpl implements ContractService {
 	//CONTRATS EN CAS DE DECé
 	String vieEntiere ="Vie Entiere";
 	
-//	Prime primeUnique = Prime.Prime_Unique ;
-//	Prime primePeriodique =  Prime.Prime_Periodique;
+	Prime primeUnique = Prime.Prime_Unique ;
+	Prime primePeriodique =  Prime.Prime_Periodique;
 
 // faire le calcul et la tarification , si l assurance accpete la demande (elle peut refuser)
 	public void tarificationContrat(int id) {	
@@ -211,6 +211,8 @@ public class ContractServiceImpl implements ContractService {
 		contractRep.deleteById(id);
 	}
 
+
+
 	public Contract updateContract(Long id, Contract newContract) {
 		Contract contractModified = contractRep.findById(id).get();
 		contractModified.setDuration(newContract.getDuration());
@@ -220,6 +222,7 @@ public class ContractServiceImpl implements ContractService {
 	
 	public Contract getContract(Long id) {
 		return contractRep.findById(id).get();
+
 	}
 
 	@Override
@@ -348,7 +351,7 @@ public class ContractServiceImpl implements ContractService {
 				
 	}
 
-	@Override
+
 	public void insertTableMortal2() {
 //		TableMortalité t0=new TableMortalité(100000,100000,1,1f);	TableMortalité tm0=tr.Addtm(t0);
 //		TableMortalité t1=new TableMortalité(97104,97660,2,0.99431f);	TableMortalité tm1=tr.Addtm(t1);
@@ -470,6 +473,6 @@ public class ContractServiceImpl implements ContractService {
 //		TableMortalité t117=new TableMortalité(0,0,118,0f);	TableMortalité tm117=tr.Addtm(t117);
 //		TableMortalité t118=new TableMortalité(0,0,119,0f);	TableMortalité tm118=tr.Addtm(t118);
 //		TableMortalité t119=new TableMortalité(0,0,120,0f);	TableMortalité tm119=tr.Addtm(t119);
-		
+
 	}
 }
