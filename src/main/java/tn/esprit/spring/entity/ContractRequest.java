@@ -223,17 +223,18 @@ public class ContractRequest {
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+
 	public float getVal_prime() {
 		return val_prime;
 	}
 	public void setVal_prime(float val_prime) {
 		this.val_prime = val_prime;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public int getCapitalOuRente() {
 		return capitalOuRente;

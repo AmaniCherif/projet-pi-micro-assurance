@@ -12,8 +12,8 @@ public interface ISinistreService {
 	void deleteSinistre(Integer id);
 	Sinistre updateSinistre(Sinistre s);
 	Sinistre retrieveSinistre(Integer id);
-
-
 	List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim);
-
+	//float TDEMPRUNTEUR(Long idS   ) throws ParseException ;
+	//float CreditSimulator( Long idS , Long idC) ;
+	
 }

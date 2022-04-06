@@ -72,12 +72,12 @@ public class User implements UserDetails {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-	private String sex;
-	public String getSex() {
-		return sex;
+	private String sexe;
+	public String getSexe() {
+		return sexe;
 	}
 	public void setSex(String sex) {
-		this.sex = sex;
+		this.sexe = sex;
 	}
 
 	private Long cin;

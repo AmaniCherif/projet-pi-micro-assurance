@@ -217,5 +217,5 @@ public class Contract implements Serializable {
 //	@OneToOne
 //	private SinistreReport sinistreReport;
 
-
+	
 }

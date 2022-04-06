@@ -1,6 +1,12 @@
 package tn.esprit.spring.controller;
 
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import com.lowagie.text.DocumentException;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.entity.EmployeeSalary;
 import tn.esprit.spring.service.Implementation.EmployeeSalaryServiceImpl;
+import tn.esprit.spring.service.Implementation.FicheDePaiePdfServiceImpl;
 import tn.esprit.spring.service.Interface.EmployeeSalaryService;
 
 @RestController
@@ -68,6 +75,20 @@ public class EmployeeSalaryController {
 	public List<?> getBestEmployee() {
 
 		return salaryService.BestEmployee();
+
+	}
+	@GetMapping("/pdf-fiche")
+	public void FichedepaiePdf(HttpServletResponse response) throws DocumentException, IOException {
+		response.setContentType("application/pdf");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+		String currentDateTime = dateFormatter.format(new Date());
+
+		String headerKey = "Content-Disposition";
+		String headerValue = "attachment; filename=fiche_de_paie" + currentDateTime + ".pdf";
+		response.setHeader(headerKey, headerValue);
+		List<EmployeeSalary> listEmployeeSalary = salaryService.retrieveAllSalaries();
+		FicheDePaiePdfServiceImpl exporter = new FicheDePaiePdfServiceImpl(listEmployeeSalary);
+		exporter.export(response);
 
 	}
 }
