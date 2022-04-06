@@ -89,7 +89,7 @@ public class ProvisionServiceImpl implements IProvisionService{
 		
 		double result=0;
 		float v=(float)(1/(1+(i)));
-		String sexe=sinistrereport.getContract().getContractRequest().getUser().getSex();
+		String sexe=sinistrereport.getContract().getContractRequest().getUser().getSexe();
 		
 		//Pour les femmes
 		if(sexe.equalsIgnoreCase("femme"))
@@ -159,7 +159,7 @@ public class ProvisionServiceImpl implements IProvisionService{
 		int ag=104;//Age maximum
 		float v= (float) (1/(1+(i)));
 		float p2= (dateactuell.getYear()-sinistrereport.getContract().getDateDebut().getYear());
-		String sexe=sinistrereport.getContract().getContractRequest().getUser().getSex();
+		String sexe=sinistrereport.getContract().getContractRequest().getUser().getSexe();
 		double result1=0;
 		double result2=0;
 		
@@ -248,7 +248,7 @@ public class ProvisionServiceImpl implements IProvisionService{
 		float v=(float)(1/(1+(i)));
 		double result1=0;
 		double result2=0;
-		String sexe=sinistrereport.getContract().getContractRequest().getUser().getSex();
+		String sexe=sinistrereport.getContract().getContractRequest().getUser().getSexe();
 		//les Femmes
 		if(sexe.equalsIgnoreCase("Women"))
 		{
