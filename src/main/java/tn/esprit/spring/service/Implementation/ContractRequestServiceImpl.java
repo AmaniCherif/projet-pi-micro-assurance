@@ -1,4 +1,3 @@
-
 package tn.esprit.spring.service.Implementation;
 
 
@@ -11,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.ContractRequest;
 
-
-import tn.esprit.spring.repository.ContractRepository;
 
 import tn.esprit.spring.entity.ContractRequest;
 
@@ -43,16 +40,16 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 		return cr;
 	}
 
-
 	@Override
-	public void deleteContractRequest(int numRequest) {
+	public void deleteContractRequest(Long id) {
 		// TODO Auto-generated method stub
-		contractRequestRep.deleteById(numRequest);
+		contractRequestRep.deleteById(id);
 	}
 
 
 	@Override
 	public ContractRequest updateContractRequest(ContractRequest cr) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -79,12 +76,10 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 
 
 	@Override
-
-	public ContractRequest retrieveContractRequest(int numRequest) {
+	public ContractRequest retrieveContractRequest(Long id) {
 		// TODO Auto-generated method stub
-		return (ContractRequest) contractRequestRep.findById(numRequest).get();
+		return (ContractRequest) contractRequestRep.findById(id).get();
 	}
-
 	/*@Transactional
 	public void ajoutDemandeContrat(ContractRequest d , long id , String type , String nom){
 		Date date = new Date();
@@ -96,5 +91,5 @@ public class ContractRequestServiceImpl implements ContractRequestService {
 		ContractRequest.save(d);		
 	}*/
 
+	
 }
-

@@ -35,6 +35,8 @@ public interface UserService {
 
 
     public User addUser(User user);
+    
+    public void UserClassification();
 
 		
 	}
