@@ -42,7 +42,7 @@ public class ActifFinancierService {
 //	}
 	
 	////////////////Ajouter_l'actif_financier///////////////////
-	public void addActifFinancier( ActifFinancier actif , int idUser){
+	public void addActifFinancier( ActifFinancier actif , Long idUser){
 		//User u = userRepo.findById(idUser).get();	//Yasmine user
 		Date currentUtilDate = new Date();
 		int a = currentUtilDate.getYear() + actif.getMaturite() ;
@@ -72,7 +72,7 @@ public class ActifFinancierService {
 	  	  return l;
 	    }
 	/////////////////////////////////Montant_ac_dufond_par_user///////////////////////////////////////////////////////////
-	public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,int idUser){ /*** user  : all par fond */
+	public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,Long idUser){ /*** user  : all par fond */
 	   	  List<ActifFinancier> l ;
 	  	  if(f == Fond.Fond_euro){
 	  	  l = actifFinancierRepo.listemontant_actuelFondEuroparUser(idUser) ;

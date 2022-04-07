@@ -111,4 +111,11 @@ public class UserServiceImpl implements UserService {
 		}
 		
 	}
+
+	@Override
+	public User getcode(String email) {
+		User u=userRepository.getcode(email);
+        return u;
+		
+	}
 }
