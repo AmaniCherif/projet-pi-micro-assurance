@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.entity.ContractOffer;
@@ -29,6 +30,7 @@ import tn.esprit.spring.entity.State_Offer;
 import tn.esprit.spring.repository.ContractOfferRepository;
 import tn.esprit.spring.service.Interface.ContractOfferService;
 @RestController
+@RequestMapping("/contractOffer")
 public class ContractOfferController {
 	@Autowired
 	ContractOfferService ContractOfferService;
@@ -37,7 +39,7 @@ public class ContractOfferController {
 	@Autowired
    ContractOfferRepository ContractOfferRepository;
 	 
-	@GetMapping("AllContractOffers")
+	@GetMapping("/AllContractOffers")
 	 @ResponseBody
 	 public List<ContractOffer> getUsers() {
 	List<ContractOffer> listContractOffers = ContractOfferService.retrieveAll_Contractoffers();
@@ -58,7 +60,7 @@ public class ContractOfferController {
 	public void removeContractController(@PathVariable("idContractOffer") int id) {
 		ContractOfferService.deleteContract_Offers(id);
 	}
-	 @PostMapping("AddContractMixte/{userid}")  
+	 @PostMapping("/AddContractMixte/{userid}")  
 	 @ResponseBody
 		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")Long userid)   
 		{  		
@@ -66,7 +68,7 @@ public class ContractOfferController {
 		 return("contract Added Successufuly");
 		}
 	 
-	 @GetMapping("ContratMixte/export/pdf/{id}")
+	 @GetMapping("/ContratMixte/export/pdf/{id}")
 	    public void exportToPDF(HttpServletResponse response,@PathVariable("id") int id) throws DocumentException, IOException {
 	        response.setContentType("application/pdf");
 	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -79,7 +81,7 @@ public class ContractOfferController {
 	        		System.out.println("Pdf Generated successufully ");	       
 	         
 	    }
-	 @GetMapping("ContratMixte/nbtranche/{userid}")
+	 @GetMapping("/ContratMixte/nbtranche/{userid}")
 	    public String nbtranche(HttpServletResponse response,@PathVariable("userid")int userid ) throws DocumentException, IOException {
 		 ContractOffer d= ContractOfferService.Contract_OffersByUser(userid);
 		 String date = d.getDate_fin() ;
@@ -90,7 +92,7 @@ public class ContractOfferController {
 	         
 		 return ("You have " + nbr_tranche + " x " + prime + " more payments in your contract = " + montant_restant + " Dinars");
 	    }
-	 @PostMapping("ContratMixte/resilience/{userid}")
+	 @PostMapping("/ContratMixte/resilience/{userid}")
 	    public ContractOffer resilience(HttpServletResponse response,@PathVariable("userid")int userid)  {
 		 
 		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);

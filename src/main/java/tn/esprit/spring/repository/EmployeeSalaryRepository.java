@@ -18,7 +18,7 @@ public interface EmployeeSalaryRepository extends CrudRepository<EmployeeSalary,
 	//calcul salaire 
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE employee_salary set salary=(work_hours*15)+(extra_hours*20)",nativeQuery=true)
+	@Query(value="UPDATE employee_salary set salary=(work_hours*15)+(extra_hours*20)",nativeQuery=true) //sql
 	public int salary();
 	
 	//fiche de paie
