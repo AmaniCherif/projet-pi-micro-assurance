@@ -129,6 +129,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+
+	public User getcode(String email) {
+		User u=userRepository.getcode(email);
+        return u;
+
 	@Scheduled(fixedRate = 1000)
 	public void UserClassification() {
 		List<User> ls = getAllUser();
@@ -153,6 +158,7 @@ public class UserServiceImpl implements UserService {
 			
 			
 		}
+
 		
 	}
 }
