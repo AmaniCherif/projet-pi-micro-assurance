@@ -64,8 +64,8 @@ public class EmployeeSalaryServiceImpl implements EmployeeSalaryService{
 	}
 
 	@Override
-	public List<EmployeeSalary> ficheDePaie(int id_user) {
-		 List<EmployeeSalary> fiches =salaryRepository.ficheDePaie(id_user);
+	public List<EmployeeSalary> ficheDePaie(Long idUser) {
+		 List<EmployeeSalary> fiches =salaryRepository.ficheDePaie(idUser);
 			return fiches;
 	}
 

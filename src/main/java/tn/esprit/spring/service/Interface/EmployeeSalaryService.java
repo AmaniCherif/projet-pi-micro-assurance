@@ -11,8 +11,9 @@ public interface EmployeeSalaryService {
 	EmployeeSalary updateSalary(EmployeeSalary s);
 	EmployeeSalary retrieveSalary(String id) ;
 	public int salary();
-	List<EmployeeSalary> ficheDePaie(int id_user);
+	//List<EmployeeSalary> ficheDePaie(int id_user);
 	void affecterSalaryToUser(int idp, Long id);
 	List<?> BestEmployee();
+	List<EmployeeSalary> ficheDePaie(Long idUser);
 
 }
