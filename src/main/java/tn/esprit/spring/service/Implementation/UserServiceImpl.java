@@ -45,6 +45,9 @@ public class UserServiceImpl implements UserService {
 		 if  (userRepository.findByUsername(user.getUsername())!= null){
 			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
 		}
+		 if  (userRepository.findByCin(user.getCin())!= null){
+			throw new UsernameAlreadyExistsException("Cin '" + user.getCin() + "'is already exists");
+		}
 		else {
 			
 			
@@ -100,6 +103,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void changeUserPassword(User user, String password) {
 
+		user.setPassword(new BCryptPasswordEncoder().encode(password));
+		userRepository.save(user);
+
+
 	}
 
 
@@ -108,6 +115,9 @@ public class UserServiceImpl implements UserService {
 		
 		 if  (userRepository.findByUsername(user.getUsername())!= null){
 			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
+		}
+		 if  (userRepository.findByCin(user.getCin())!= null){
+			throw new UsernameAlreadyExistsException("Cin '" + user.getCin() + "'is already exists");
 		}
 		else {
 			

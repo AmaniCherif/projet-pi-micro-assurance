@@ -23,7 +23,7 @@ public class ActifFinancier implements Serializable {
 	private Long id ;
 	
 	@Temporal(TemporalType.DATE)
-	private Date date_debut ; //wa9teh_yebda_contrat_investissement
+	private Date date_debut ; //wa9teh_yebda_contrat_investissement_mte3i
 	
 	@Temporal(TemporalType.DATE) //wa9teh_youfa_contrat_investissement
 	private Date date_fin ;

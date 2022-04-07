@@ -88,12 +88,24 @@ protected void configure(AuthenticationManagerBuilder authenticationManagerBuild
 			"/**/*.js"
 			).permitAll()
 	.antMatchers(SecurityConstants.SIGN_UP_URLS).permitAll()
+	.antMatchers("/**").permitAll()
+	.antMatchers(SecurityConstants.CONTRACTOFFER).permitAll()
+	.antMatchers(SecurityConstants.ACCOUNTING).permitAll()
 	.antMatchers(SecurityConstants.H2_URL).permitAll()
 	.anyRequest().authenticated();
 	
 	
 	http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
+	  @Override
+	   public void configure(WebSecurity web) throws Exception {
+	       web.ignoring().antMatchers("/v2/api-docs",
+	                                  "/configuration/ui",
+	                                  "/swagger-resources/**",
+	                                  "/configuration/security",
+	                                  "/swagger-ui.html",
+	                                  "/webjars/**");
+	   }
 	
 
 }

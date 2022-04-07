@@ -10,6 +10,11 @@ import javax.persistence.Id;
 @Entity
 public class Rendement implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private int id; 
@@ -40,6 +45,11 @@ public class Rendement implements Serializable{
 	}
 	public void setRendementBTA(double rendementBTA) {
 		this.rendementBTA = rendementBTA;
+	}
+	@Override
+	public String toString() {
+		return "Rendement [id=" + id + ", annee=" + annee + ", rendement=" + rendement + ", rendementBTA="
+				+ rendementBTA + "]";
 	}
 	
 

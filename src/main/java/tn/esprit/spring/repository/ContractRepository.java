@@ -16,7 +16,9 @@ import tn.esprit.spring.entity.User;
 public interface ContractRepository  extends CrudRepository<Contract, Long>{
     List<Contract> findByState(String state);
 	List<Contract> findByAcceptReq(int acceptReq);
+
 	List <Contract> findByUser(User u);
+
 	
 
 

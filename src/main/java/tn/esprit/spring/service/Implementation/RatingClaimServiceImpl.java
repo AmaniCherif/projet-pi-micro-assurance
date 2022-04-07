@@ -2,57 +2,77 @@ package tn.esprit.spring.service.Implementation;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tn.esprit.spring.entity.Ratingclaim;
 
 import tn.esprit.spring.repository.RatingclaimRepository;
+import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.service.Interface.RatingClaimService;
 
 
+
+
 @Service
-public class RatingClaimServiceImpl implements RatingClaimService{
+public  class RatingClaimServiceImpl implements RatingClaimService{
 	
 	@Autowired
 	RatingclaimRepository ratingRepo ; 
+	@Autowired
+	UserRepository userrepo ;
 	
- ///hello_word22//
+     
+	/////////////////////////////////////////////////////////////////////////
+	/////////////////////Retrieve_All_Claims/////////////////////////////////
+	////////////////////////////////////////////////////////////////////////
+	private static final Logger L= LogManager.getLogger(RatingClaimServiceImpl.class);
 	@Override
 	public List<Ratingclaim> RetrieveAllRatingclaim() {
-		// TODO Auto-generated method stub
-		return (List<Ratingclaim>) ratingRepo.findAll();
+		List<Ratingclaim> users =(List<Ratingclaim>) ratingRepo.findAll();
+		for (Ratingclaim user : users){
+			L.info("user +++ :" + user);}
+		return users; 
 	}
+    ///////////////////////////////////////////////////////////////////////////
+	////////////////////Add_Rating_claims/////////////////////////////////////
+	/////////////////////////////////////////////////////////////////////////
+	@Override
+	public Ratingclaim AddRatingclaim(Ratingclaim cr) {
+		
+		ratingRepo.save(cr); 
+		return cr ;
+	}
+	////////////////////////////////////////////////////////////////////////
+	//////////////////////Delete_Rating_claim//////////////////////////////
+	///////////////////////////////////////////////////////////////////////
 
 	@Override
-	public Ratingclaim AddRatingclaim(Ratingclaim c) {
-		// TODO Auto-generated method stub
-		ratingRepo.save(c); 
-		return c ;
-	}
-
-	@Override
-	public void DeleteRatingclaim(Long id) {
-		// TODO Auto-generated method stub
-		Ratingclaim ratingClaim = ratingRepo.findById(id).get(); 
+	public void DeleteRatingclaim(String id) {
+		
+		ratingRepo.deleteById(Long.parseLong(id));; 
 		
 	}
 
 	@Override
-	public Ratingclaim UpdateRatingclaim(Ratingclaim c, Long id) {
+	public Ratingclaim UpdateRatingclaim(Ratingclaim cr, Long id) {
 		// TODO Auto-generated method stub
 		Ratingclaim ratingClaim = ratingRepo.findById(id).get(); 
-		ratingClaim.setDescription(c.getDescription());
-		ratingClaim.setNote(c.getNote());
+		ratingClaim.setDescription(cr.getDescription());
+		ratingClaim.setNote(cr.getNote());
 		ratingRepo.save(ratingClaim); 
 		
 		return ratingClaim;
 	}
 
 	@Override
-	public Ratingclaim RetrieveRatingclaim(Long id) {
-		// TODO Auto-generated method stub
-		return ratingRepo.findById(id).get();
+	public Ratingclaim RetrieveRatingclaim(String id) {
+		L.info("in RetrieveRatingclaim id = " + id);
+		Ratingclaim cr = ratingRepo.findById(Long.parseLong(id)).get();
+		L.info("Ratingclaim returned = : " + cr);
+		return cr;
 	}
 
 }

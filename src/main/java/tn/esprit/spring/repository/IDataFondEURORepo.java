@@ -17,12 +17,12 @@ public interface IDataFondEURORepo extends JpaRepository<DataFondEURO, Integer>{
 	List<DataFondEURO> findByTypBondeAndDateSouscriptionLessThanEqualAndDateEcheanceGreaterThanEqual(String typBonde , Date DateSouscription , Date ateEcheance);
 	List<DataFondEURO> findByTypBondeAndDateSouscriptionGreaterThanEqualAndDateEcheanceGreaterThanEqual(String typBonde , Date DateSouscription , Date ateEcheance);
 
-	@Query(value = "SELECT * FROM data_fondeuro WHERE extract(year from date_souscription)<=:s and extract(year from date_echeance)>=:s", nativeQuery = true)
+	@Query(value = "SELECT * FROM data_fondeuro WHERE extract(year from date_souscription)<=:s and extract(year from date_echeance)>=:s",nativeQuery = true)
 	public List<DataFondEURO> listeParAnnee(@Param("s") int s );
 	
 	
 
-	@Query(value = "SELECT * FROM data_fondeuro WHERE typ_bonde='BTA' and extract(year from date_souscription)<=:s and extract(year from date_echeance)>=:s", nativeQuery = true)
+	@Query(value = "SELECT * FROM data_fondeuro WHERE typ_bonde='BTA' and extract(year from date_souscription)<=:s and extract(year from date_echeance)>=:s",nativeQuery = true)
 	public List<DataFondEURO> listeParAnneeBTA(@Param("s") int s );
 	
 	
@@ -30,13 +30,17 @@ public interface IDataFondEURORepo extends JpaRepository<DataFondEURO, Integer>{
 	List<DataFondEURO> findAllByOrderByDateSouscriptionDesc();
 	
 
-	@Query(value = "SELECT count(*) FROM data_fondeuro WHERE typ_bonde='BTA' ", nativeQuery = true)
+	@Query(value = "SELECT count(*) FROM data_fondeuro WHERE typ_bonde='BTA' " ,nativeQuery = true)
 	public int listBTA( );
 
-	@Query(value = "SELECT count(*) FROM data_fondeuro WHERE typ_bonde='non BTA' ", nativeQuery = true)
+	@Query(value = "SELECT count(*) FROM data_fondeuro WHERE typ_bonde='non BTA' ",nativeQuery = true)
 	public int listNonBTA( );
 	
-	/*
-	List<DataFondEURO> findByTypBondeByOrderByDateEcheanceAsc(String typBonde);
-	List<DataFondEURO> findByTypBondeByOrderByDateEcheanceDesc(String typBonde);*/
+	
+	
+	
+	
+//	/*
+//	List<DataFondEURO> findByTypBondeByOrderByDateEcheanceAsc(String typBonde);
+//	List<DataFondEURO> findByTypBondeByOrderByDateEcheanceDesc(String typBonde);*/
 }
