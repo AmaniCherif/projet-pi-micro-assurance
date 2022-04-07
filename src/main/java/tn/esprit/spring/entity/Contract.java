@@ -18,9 +18,9 @@ import javax.persistence.TemporalType;
 
 
 
-@Entity
-@Table(name="Contract")
-public class Contract implements Serializable {
+	@Entity
+	@Table(name="Contract")
+	public class Contract implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;

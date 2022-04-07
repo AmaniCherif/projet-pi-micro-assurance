@@ -17,6 +17,9 @@ import tn.esprit.spring.entity.TableMortalité;
 		@Query("select t.Td_99 from TableMortalité t where t.x = ?1 ")
 		float findByDecesDx(int deces);
 		
+		
+//		////@Query("select t.x from TableMortalité  t  ")
+//				float findByLx(int age);
 		@Query("select t.proba from TableMortalité t where t.x = ?1 ")
 		float findProbaByAgeClient(int ageClient);
 		
