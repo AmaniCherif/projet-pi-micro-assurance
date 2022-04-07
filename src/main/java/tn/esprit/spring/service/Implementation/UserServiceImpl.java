@@ -6,19 +6,21 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
 
 import lombok.extern.slf4j.Slf4j;
-
+import tn.esprit.spring.entity.Classification;
 import tn.esprit.spring.entity.RoleUser;
 import tn.esprit.spring.entity.User;
 //import tn.esprit.spring.exceptions.UsernameAlreadyExistsException;
 import tn.esprit.spring.exceptions.CinAlreadyExisteException;
 import tn.esprit.spring.exceptions.UsernameAlreadyExistsException;
 import tn.esprit.spring.exceptions.UsernameAlreadyExistsResponse;
+import tn.esprit.spring.repository.ContractRepository;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.service.Interface.UserService;
 
@@ -31,6 +33,10 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Autowired
+	ContractRepository contractrepo ;
+	
+	
 
 
 	@Override
@@ -38,6 +44,9 @@ public class UserServiceImpl implements UserService {
 
 		 if  (userRepository.findByUsername(user.getUsername())!= null){
 			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
+		}
+		 if  (userRepository.findByCin(user.getCin())!= null){
+			throw new UsernameAlreadyExistsException("Cin '" + user.getCin() + "'is already exists");
 		}
 		else {
 			
@@ -94,6 +103,10 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void changeUserPassword(User user, String password) {
 
+		user.setPassword(new BCryptPasswordEncoder().encode(password));
+		userRepository.save(user);
+
+
 	}
 
 
@@ -103,12 +116,49 @@ public class UserServiceImpl implements UserService {
 		 if  (userRepository.findByUsername(user.getUsername())!= null){
 			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
 		}
+		 if  (userRepository.findByCin(user.getCin())!= null){
+			throw new UsernameAlreadyExistsException("Cin '" + user.getCin() + "'is already exists");
+		}
 		else {
 			
 			
 			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 			return userRepository.save(user);
 		}
+		
+	}
+
+	@Override
+
+	public User getcode(String email) {
+		User u=userRepository.getcode(email);
+        return u;
+
+	@Scheduled(fixedRate = 1000)
+	public void UserClassification() {
+		List<User> ls = getAllUser();
+		int i = 0;
+		
+		for (User user : ls) {
+			i = contractrepo.findByUser(user).size();	
+			
+			if (i<5 && user.getRoleUser().name().equals("LowinComeWomen")) {
+				user.setClassification(Classification.Bronz);
+				updateUser(user);
+			}
+			
+			else if (i>5 && i<=10 && user.getRoleUser().name().equals("LowinComeWomen")) {
+				user.setClassification(Classification.Silver);
+				updateUser(user);
+			}
+			else if  (i>10 && user.getRoleUser().name().equals("LowinComeWomen")){
+				user.setClassification(Classification.Gold);
+				updateUser(user);
+			}
+			
+			
+		}
+
 		
 	}
 }

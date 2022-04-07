@@ -52,9 +52,11 @@ public class Ratingclaim implements Serializable{
 	public void setClaims(Claims claims) {
 		this.claims = claims;
 	}
-	public Ratingclaim() {
+	public Ratingclaim(int note, String description) {
 		super();
-		// TODO Auto-generated constructor stub
+		this.note = note;
+		this.description = description;
+		
 	}
 	
 	

@@ -18,12 +18,12 @@ public interface EmployeeSalaryRepository extends CrudRepository<EmployeeSalary,
 	//calcul salaire 
 	@Transactional
 	@Modifying
-	@Query(value="UPDATE employee_salary set salary=(work_hours*15)+(extra_hours*20)",nativeQuery=true)
+	@Query(value="UPDATE employee_salary set salary=(work_hours*15)+(extra_hours*20)",nativeQuery=true) //sql
 	public int salary();
 	
 	//fiche de paie
 		@Query(value="SELECT * FROM employee_salary where user_id_user=:User_ID ",nativeQuery=true )
-		public List<EmployeeSalary>ficheDePaie(@Param ("User_ID")int User_ID);
+		public List<EmployeeSalary>ficheDePaie(@Param ("User_ID")Long idUser);
 		
 	//meilleur employee
 		@Query("select Max(u.workHours+u.extraHours), u.salaryId from EmployeeSalary u")  

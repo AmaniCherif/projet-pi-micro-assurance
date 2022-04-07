@@ -37,9 +37,13 @@ public class ActifFinancierService {
 	@Autowired
 	IDataFondEURORepo dataFondEURORepo ;
 	
+//	public Rendement test(int annee) {
+//		return rendement.findByAnnee(annee);
+//	}
+	
 	////////////////Ajouter_l'actif_financier///////////////////
-	public void addActifFinancier( ActifFinancier actif , int idUser){
-		//User u = userRepo.findById(idUser).get();	//mochkola	
+	public void addActifFinancier( ActifFinancier actif , Long idUser){
+		//User u = userRepo.findById(idUser).get();	//Yasmine user
 		Date currentUtilDate = new Date();
 		int a = currentUtilDate.getYear() + actif.getMaturite() ;
 		Date currentUtilDate2 = new Date();
@@ -68,7 +72,7 @@ public class ActifFinancierService {
 	  	  return l;
 	    }
 	/////////////////////////////////Montant_ac_dufond_par_user///////////////////////////////////////////////////////////
-	public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,int idUser){ /*** user  : all par fond */
+	public List<ActifFinancier> listemontant_actuelFondparUser(Fond f,Long idUser){ /*** user  : all par fond */
 	   	  List<ActifFinancier> l ;
 	  	  if(f == Fond.Fond_euro){
 	  	  l = actifFinancierRepo.listemontant_actuelFondEuroparUser(idUser) ;
@@ -86,7 +90,7 @@ public class ActifFinancierService {
 		float primerelle = (float) (a.getMontant_investi() - (a.getMontant_investi()*frais_gestion)) ;
 		float montant_add_pp = a.getMontant_investi() ;
 		float rach ;
-		double TMG = 0.015;
+		double TMG = 0.015; //TMG:Taux_minimum_garenti_ne54ouh_bel3am_wala_kol_8_ans_7asb_contrat
 		Date d1 = new Date(125,10,10);   // sys date frr
 		//Date d1 = new Date(); hethi es7i7a ..
 		Date debut = a.getDate_debut() ;
@@ -94,7 +98,14 @@ public class ActifFinancierService {
 		djanv.setMonth(0);
 		djanv.setDate(1);
 		djanv.setYear(debut.getYear());
-		////////////////////////////////////////////////////////// na9smou l intervale de temps sur 2 : loul ndwrou 3lih l for w etheni ne5dmouh wa7dou
+		////////// na9smou l intervale de temps sur 2 : loul ndwrou 3lih l for w etheni ne5dmouh wa7dou
+//		//////////Using milliseconds makes it easier to avoid overflow mistakes with Dates. So we first calculate how many 
+//		milliseconds are in a day. Then, given two distinct dates, get the difference in milliseconds
+//		between two dates and then divide by how many milliseconds are in a day. It will return the days between two distinct dates.
+		
+		
+		
+		
 		float res  =  ((d1.getTime() -  a.getDate_debut().getTime())/ (1000 * 60 * 60 * 24)) ;
 		int nombre_annee = (int) (res/365);
 		float tit = res/365 -  nombre_annee ;
@@ -112,22 +123,27 @@ public class ActifFinancierService {
 			System.out.println("Difference between  " + djanv + " and "+ debut+" is " + days11 + " days."  + days2 + " days.");
 			int annee1 =  debut.getYear()+ i+ 1900 ;
 			int annee2 = debut.getYear()+i+ 1901 ;
-			System.out.println("hellllllllllllllll    " + annee1);
-			System.out.println("hellllllllllllllll    " + i);	
+			System.out.println("helllll yala     " + annee1);
+			System.out.println("yalla2   " + i);	
 			Rendement r1 = rendement.findByAnnee(annee1);
 			Rendement r2 = rendement.findByAnnee(annee2);
-			System.out.println("  wwwooo  " + (double)days11/(double)365);	
-			System.out.println("  wwwooo2  " +  r1.getRendement());
+			System.out.println("  waywa  " + (double)days11/(double)365);	
+			System.out.println( "waywa22" + r1.getRendement());
 			double t1 = r1.getRendementBTA()*((double) days11/(double)365);
+			System.out.println( "*********************************************");
+
 			double t2 = r2.getRendementBTA()*((double)days2/(double)365);
-			double m =( t1+t2 - TMG )* 0.85 ;	  
+			System.out.println( "*********************************************");
+
+			double m =( t1+t2 - TMG )* 0.85 ;	//diff_bin_taux_eli_hia_reb7et_bih_w_taux_minimum_eli_3tathoulk_eli_bech_tal9ah
+			//na3tik_menou_85_pourcent
 			if(a.getChoixPrime() == Prime.Prime_Periodique){
 			montant_investi = montant_investi + a.getMontant_investi();
 					if ( m < 0){ 	primerelle =  primerelle+(float) (primerelle*TMG) ;
 										primerelle = (float) (primerelle - primerelle*frais_gestion) ;}
 					else {				primerelle =	primerelle+(float) (primerelle*(m+TMG)) ;	
 										primerelle = (float) (primerelle - primerelle*frais_gestion) ;}					
-			System.out.println("calcule prime cumulÃ© " + primerelle  + " yeaaaar  : " + i + "           " + m);	
+			System.out.println("calcule prime cumulee " + primerelle  + " yeaaaar  : " + i + "           " + m);	
 			primerelle = montant_add_pp +  primerelle ;
 
 			}
@@ -136,7 +152,7 @@ public class ActifFinancierService {
 				primerelle = (float) (primerelle - primerelle*frais_gestion) ;}
 				else {	primerelle = 	primerelle+(float) (primerelle*(m+TMG)) ;	
 				primerelle = (float) (primerelle - primerelle*frais_gestion) ;}					
-		System.out.println("calcule prime cumulÃ© " + primerelle  + " yeaaaar  : " + i + "           " + m);	}
+		System.out.println("calcule prime cumulee " + primerelle  + " yeaaaar  : " + i + "           " + m);	}
 			
 		}
 		System.out.println("ya miiiimtiiiii    " +  primerelle	);
@@ -145,7 +161,7 @@ public class ActifFinancierService {
 		float primefinale=0 ;
 		if(jours_restantes < days1){
 			rach = primerelle ; // rachat
-			System.out.println("9eiiiinnnnnnn    " +  jours_restantes	);
+			System.out.println("eiiiinnnnnnn    " +  jours_restantes	);
 			Rendement rend = rendement.findByAnnee(debut.getYear()+nombre_annee+1900);
 			double q = ((float)jours_restantes/(float)365) ;
 			System.out.println("qqqqqqqqqqq    " + q);
@@ -260,15 +276,15 @@ public ActifFinancier montant_actuelEuroCroissance(Long id){
 		montant_investi = montant_investi + a.getMontant_investi();
 					primerelle =	primerelle+(float) (primerelle*m) ;	
 					primerelle = (float) (primerelle - primerelle*frais_gestion) ;
-		System.out.println("calcule prime cumulÃ© " + primerelle  + " yeaaaar  : " + i + "           " + m);
+		System.out.println("calcule prime cumulee" + primerelle  + " yeaaaar  : " + i + "           " + m);
 		primerelle = montant_add_pp +  primerelle ;
 }
 		else if(a.getChoixPrime() == Prime.Prime_Unique){
 			primerelle = 	primerelle+(float) (primerelle*m) ;	
 			primerelle = (float) (primerelle - primerelle*frais_gestion) ;
-	System.out.println("calcule prime cumulÃ© " + primerelle  + " yeaaaar  : " + i + "           " + m);	}		
+	System.out.println("calcule prime cumulee " + primerelle  + " yeaaaar  : " + i + "           " + m);	}		
 	}
-	
+	//ki_nfout_8_ans_les_frais_twali_tetna7a_donc_7esba_sehla
 	if (nombre_annee >= 8 ){
 		if(a.getChoixPrime() == Prime.Prime_Periodique){
 			if (primerelle <montant_investi){	primerelle= montant_investi ;}

@@ -3,19 +3,21 @@ package tn.esprit.spring.controller;//YosserBenameurController
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 //import org.springframework.security.core.Authentication; /////yasmine
-import org.springframework.stereotype.Controller;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import tn.esprit.spring.entity.ActifFinancier;
 import tn.esprit.spring.entity.Fond;
+import tn.esprit.spring.entity.Rendement;
 import tn.esprit.spring.service.Implementation.ActifFinancierService;
 import tn.esprit.spring.service.Interface.UserService;
 
@@ -23,8 +25,7 @@ import tn.esprit.spring.service.Interface.UserService;
 
 
 
-@Scope(value = "session")
-@Controller(value = "actifFinancierController") // Name of the bean in Spring IoC
+@RestController
 
 public class ActifFinancierController {
 	
@@ -34,13 +35,15 @@ public class ActifFinancierController {
 	@Autowired
 	UserService userService;
 	
-//	@PostMapping("/addactif")
-//	@ResponseBody
-//	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a ,Authentication auth	){
-//		
-//		actifFinancierService.addActifFinancier(a, userService.getcode(auth.getName()).getUser_ID());
-//		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);
-//	}
+
+	
+	@PostMapping("/addactif")
+	@ResponseBody
+	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a ,Authentication auth	){
+		
+		actifFinancierService.addActifFinancier(a, userService.getcode(auth.getName()).getIdUser());
+		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);
+	}
 	
 	@GetMapping("/listeActifactuel")  //all  
 	@ResponseBody
@@ -53,12 +56,12 @@ public class ActifFinancierController {
 	public List<ActifFinancier>listemontant_actuelFond(@PathVariable("fond") Fond    fond){
 		return actifFinancierService.listemontant_actuelFond(fond);
 	}
-//	@GetMapping("/listeActifactuelparfondUser/{fond}")  /*** user  : all par fond  */
-//	@ResponseBody
-//	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,Authentication auth){
-//		return actifFinancierService.listemontant_actuelFondparUser(fond,userService.getcode(auth.getName()).getUser_ID());
-//	}	
-//	
+	@GetMapping("/listeActifactuelparfondUser/{fond}")  /*** user  : all par fond  */
+	@ResponseBody
+	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,Authentication auth){
+		return actifFinancierService.listemontant_actuelFondparUser(fond,userService.getcode(auth.getName()).getIdUser());
+	}		
+	
 	@GetMapping("/change/{id}")
 	@ResponseBody
 	public ResponseEntity<ActifFinancier>FondEuro_to_EuroCroissance(@PathVariable("id") Long id){

@@ -29,7 +29,7 @@ public class ContractController {
 	
 	
 	@GetMapping("/calculeContrat/{id}")
-	public ResponseEntity<Contract> calculeContratController(@PathVariable("id") int   id	){
+	public ResponseEntity<Contract> calculeContratController(@PathVariable("id") Long   id	){
 				
 		contractServiceImpl.tarificationContrat(id);
 		return new ResponseEntity<Contract>(HttpStatus.OK);

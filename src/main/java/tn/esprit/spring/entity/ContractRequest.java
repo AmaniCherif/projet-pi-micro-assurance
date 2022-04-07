@@ -1,5 +1,6 @@
 package tn.esprit.spring.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,18 +17,22 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-
 @Table(name="ContractRequest")
-
-
-public class ContractRequest {
+public class ContractRequest implements Serializable {
 	
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
-	@Column( name = "numRequest")
-	private int numRequest; // ClÃ© primaire
+	@Column( name = "id",unique = true, nullable = false)
+	private Long id; // ClÃ© primaire
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	@Temporal(TemporalType.DATE)
 	private Date dateRequest;
+
 
 
 	private int duration ;  // des question pour distinction du type de contrat
@@ -55,26 +60,16 @@ public class ContractRequest {
 	 private String chronicDiseases;
 	 @Enumerated(EnumType.STRING)
 	 private CityUser cityUser;
-
-//	 @Enumerated(EnumType.STRING)
-//	 private InsuranceType insuranceType;
-	 
-	 
-	 private String nomContract;
-	 
-
 	 @Enumerated(EnumType.STRING)
 	 private InsuranceType insuranceType;
-	 
 	 public String getTypeContract() {
 		return typeContract;
 	}
 	public void setTypeContract(String typeContract) {
 		this.typeContract = typeContract;
 	}
-
+	private String nomContract;
 	 private String typeContract;
-
 	 private String insurancebackground;
 	 private double height;
 	 private double weight;
@@ -96,12 +91,7 @@ public class ContractRequest {
 	}
 	@Enumerated(EnumType.STRING)
 	 private ContractType contractType;
-	public int getNumRequest() {
-		return numRequest;
-	}
-	public void setNumRequest(int numRequest) {
-		this.numRequest = numRequest;
-	}
+	
 	public Date getDateRequest() {
 		return dateRequest;
 	}
@@ -209,7 +199,6 @@ public class ContractRequest {
 	 
 	 @ManyToOne
 	 private User user;
-
 	
 	public Prime getChoixPrime() {
 		return choixPrime;
@@ -223,18 +212,17 @@ public class ContractRequest {
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}
-
-	public float getVal_prime() {
-		return val_prime;
-	}
-	public void setVal_prime(float val_prime) {
-		this.val_prime = val_prime;
-	}
 	public User getUser() {
 		return user;
 	}
 	public void setUser(User user) {
 		this.user = user;
+	}
+	public float getVal_prime() {
+		return val_prime;
+	}
+	public void setVal_prime(float val_prime) {
+		this.val_prime = val_prime;
 	}
 	public int getCapitalOuRente() {
 		return capitalOuRente;
@@ -249,5 +237,12 @@ public class ContractRequest {
 		this.capitalAssure = capitalAssure;
 	}
 	
-
 }
+
+
+
+
+
+
+
+
