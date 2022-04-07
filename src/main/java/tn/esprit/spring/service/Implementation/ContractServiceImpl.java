@@ -2,6 +2,7 @@ package tn.esprit.spring.service.Implementation;
 
 import org.springframework.stereotype.Service;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,19 +15,29 @@ import tn.esprit.spring.entity.Contract;
 import tn.esprit.spring.entity.ContractRequest;
 import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.TableMortalité;
-
+import tn.esprit.spring.entity.Typesante;
 import tn.esprit.spring.repository.ContractRepository;
 import tn.esprit.spring.repository.ContractRequestRepository;
-import tn.esprit.spring.service.Interface.ContractService;
+import tn.esprit.spring.repository.Data_santeRepo;
+import tn.esprit.spring.repository.TypesanteRepo;
+
 import tn.esprit.spring.service.Interface.ITableMortalitéService;
 
 @Service
-public class ContractServiceImpl implements ContractService {
+public class ContractServiceImpl implements Serializable {
+	
 	@Autowired
 	ContractRepository contractRep;
 	
 	@Autowired
 	ContractRequestRepository contractRequest;
+	
+	@Autowired
+	TypesanteRepo typesanteRepo;
+	@Autowired
+	Data_santeRepo data_santeRepo;
+//	@Autowired
+//	TableMortaliteRepository tmr;
 	
 	@Autowired 
 	ITableMortalitéService tr; 
@@ -34,20 +45,21 @@ public class ContractServiceImpl implements ContractService {
 	@Autowired
 	TableMortaliteServiceImpl tri;
 	
+	String sante = "Sante" ;
 	//CONTRATS EN CAS DE VIE
 	String CapitalDiffere = "capital differe";
 	String renteViagere = "Rente viagère";
 	//CONTRATS EN CAS DE DECé
 	String vieEntiere ="Vie Entiere";
 	
-	Prime primeUnique = Prime.Prime_Unique ;
-	Prime primePeriodique =  Prime.Prime_Periodique;
+//	Prime primeUnique = Prime.Prime_Unique ;
+//	Prime primePeriodique =  Prime.Prime_Periodique;
 
 // faire le calcul et la tarification , si l assurance accpete la demande (elle peut refuser)
-	public void tarificationContrat(int id) {	
+	public void tarificationContrat(Long id) {	
 		System.out.println(id);
 		ContractRequest d = contractRequest.findById(id).get();
-		System.out.println("okhrej12322 ay");
+		System.out.println("okhrej ay");
 		
 		double interet = 0.002; /// 0.2 % j'ai choisis le taux d'interet 2% 
 		String sexe = d.getUser().getSexe();
@@ -55,15 +67,16 @@ public class ContractServiceImpl implements ContractService {
 		double frais = 0.03;// on va considerer tous les frais du contrat .. 3 %
 		//Date currentUtilDate = new Date();
 		Date currentUtilDate = d.getDateRequest();
-		System.out.println("aya fok aaaaadddd");
+		System.out.println("aya  aaaaadddd");
 		int a = currentUtilDate.getYear() + d.getDuration();
 		
 		Date currentUtilDate2 = new Date();
 		System.out.println(a);
 		currentUtilDate2.setYear(a);
 		String nomContract = d.getNomContract();
-		System.out.println("ohhh lalalala");
+		
 		if ( (2000*10) == d.getCapitalAssure() ) {
+			System.out.println("ohhh lalalala");
 			String s ="votre demande est annulé , votre salaire "
 					+ "ne peut pas supporter votre demande de capital assuré";
 			d.setReaseon(s);
@@ -78,6 +91,8 @@ public class ContractServiceImpl implements ContractService {
 			c.setDateDebut(currentUtilDate);
 			c.setDateExpiration(currentUtilDate2);
 			c.setAcceptReq(0);
+			c.setUser(d.getUser());
+
 			
 		//Un assuré d’âge lx à t = 0 souhaite recevoir un capital S, n années plus tard s’il est encore en vie à cette époque. 
 			//Capital differe sans contre assurance
@@ -180,11 +195,211 @@ public class ContractServiceImpl implements ContractService {
 									c.setPrimePure((float) primePure);
 									c.setPrimeCommercial(d.getVal_prime()); }
 						}				
-					}}
+											}
+						////////////////////////////////////////////santeee /////////////////////////////////////////////
+						else if(d.getNomContract().equals(sante)){ 
+						
+						float primePure2  = calculesante( age ,  id ,  sexe) ;
+						System.out.println("     ....      " + primePure2);
+						float primeCommerciale = (float) (primePure2 + primePure2*frais) ;
+						c.setPrimePure(primePure2);
+						c.setPrimeCommercial(primeCommerciale);
+						
+						c.setAcceptReq(1);
+						c.setReassure(0);
+						
+						}
+						d.setTraite(1);
+						contractRep.save(c);
+						// on va changer l attribut traite .. la demande n'est plus en cours
+//						d.setTraite(1);
+//						ContractRequest.save(d);	
+						mail(c);
+						}
+					}
+			public float calculesante(float age , Long iddemande , String gender){	
+				float somme = 0  ;	
+				String homme = "homme";
+				String femme= "femme";
+				ContractRequest d = contractRequest.findById(iddemande).get();
+				Typesante l = typesanteRepo.findByContractRequest(d);
+				int nombrefille = l.getNombrefille() ;
+				int nombreenfant = l.getNombreenfant();
+				System.out.println("warinii traaa");
+			//	TableMortalité lx = tmr.findByLx(age).get();
+				if (age<5) {
+					if (homme == gender) { somme =sommeSante(1,iddemande);}
+					else if(femme == gender){		somme = sommeSante(2,iddemande);  }
+				}
+				else if (age >= 5 && age <15 ){
+					if(homme == gender){	somme = sommeSante(3,iddemande);}
+					else if(femme == gender){		somme = sommeSante(4,iddemande);  }
+				}
+				else if (age >= 15 && age <25){
+					if(homme == gender){	
+						if(l.isAjouconjoint() == true){
+							if(l.isAjoutEnf()== true){
+								somme = sommeSante(7,iddemande) + sommeSante(10,iddemande) +nombreenfant*sommeSante(5,iddemande) +nombrefille*sommeSante(6,iddemande) ;
+							}
+							else {
+								somme = sommeSante(7,iddemande) + sommeSante(10,iddemande) ;
+							}
+						}
+						else {
+							if(l.isAjoutEnf()== true){
+								somme = sommeSante(7,iddemande) +nombreenfant*sommeSante(5,iddemande) +nombrefille*sommeSante(6,iddemande) ;
+							}
+							else {
+								somme = sommeSante(7,iddemande) ;
+							}				
+						}
+					}
+					else {
+						if(l.isAjouconjoint() == true){
+							if(l.isAjoutEnf()== true){
+								somme = sommeSante(8,iddemande) + sommeSante(9,iddemande) +nombreenfant*sommeSante(5,iddemande) +nombrefille*sommeSante(6,iddemande) ;
+							}
+							else {
+								somme = sommeSante(8,iddemande) + sommeSante(9,iddemande) ;
+							}
+						}
+						else {
+							if(l.isAjoutEnf()== true){
+								somme = sommeSante(8,iddemande) +nombreenfant*sommeSante(5,iddemande) +nombrefille*sommeSante(6,iddemande) ;
+							}
+							else {
+								somme = sommeSante(8,iddemande) ;
+							}				
+						}
+					}	
+				}
+				else if (age >= 25 && age <35){	
+					if(homme == gender){	
+						if(l.isAjouconjoint() == true){
+
+							somme =  sommeSante(11,iddemande) +  sommeSante(14,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(11,iddemande);
+						}			
+					}
+					else if (femme == gender){
+						if(l.isAjouconjoint() == true){
+							somme =  sommeSante(12,iddemande) +  sommeSante(13,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(12,iddemande);
+						}						
+					}			
+				}
+				else if (age >= 35 && age <45){	
+					System.out.println("hollaaa");
+					if(homme == gender){	
+						if(l.isAjouconjoint() == true){
+							somme =  sommeSante(15,iddemande) +  sommeSante(18,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(15,iddemande);
+						}			
+					}
+					else if (femme == gender){
+						if(l.isAjouconjoint() == true){
+							somme =  sommeSante(16,iddemande) +  sommeSante(17,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(16,iddemande);
+						}						
+					}			
+				}
+				else if (age >= 45 && age <60){	
+					if(homme.equals(gender)){
+						if(l.isAjouconjoint() == true){
+							System.out.println("jiiiit !!!!  ");
+
+							somme =  sommeSante(19,iddemande) +  sommeSante(22,iddemande) ;
+						}
+						else {
+							System.out.println("jiiiit 2222222222 !!!!  ");
+
+							somme =  sommeSante(19,iddemande);
+						}			
+					}
+					else if (femme == gender){
+						if(l.isAjouconjoint() == true){
+							somme =  sommeSante(20,iddemande) +  sommeSante(21,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(20,iddemande);
+						}						
+					}			
+				}
+				else if (age >= 60 ){	
+					if(homme == gender){	
+						if(l.isAjouconjoint() == true){
+							somme =  sommeSante(23,iddemande) +  sommeSante(26,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(23,iddemande);
+						}			
+					}
+					else if (femme == gender){
+						if(l.isAjouconjoint() == true){
+							somme =  sommeSante(24,iddemande) +  sommeSante(25,iddemande) ;
+						}
+						else {
+							somme =  sommeSante(24,iddemande);
+						}						
+					}			
+				}
 				
+			System.out.println("yyeeeeeeeeey   " + somme);
+			return somme ;
 			}
 			
-	
+		  	 public  void mail(Contract c) {
+		  		 
+		  	 }
+		  	public float sommeSante(int i , Long  iddemande){
+				ContractRequest d = contractRequest.findById(iddemande).get();
+				float somme = 0 ;
+				Typesante l = typesanteRepo.findByContractRequest(d);
+				if(l.isConsultations_Visites()== true){ 
+					somme = somme + data_santeRepo.findById(i).get().getConsultations_Visites() ;
+				}
+				 if (l.isFrais_Pharmaceutiques()== true){
+					somme = somme + data_santeRepo.findById(i).get().getFrais_Pharmaceutiques();
+				}
+				 if(l.isHospitalisation()==true){
+					somme = somme + data_santeRepo.findById(i).get().getHospitalisation();
+				}
+				 if(l.isActes_Medicaux_Courants()==true){
+					somme = somme + data_santeRepo.findById(i).get().getActes_Medicaux_Courants() ;
+				}
+				 if(l.isAnalyse()==true){
+					somme = somme + data_santeRepo.findById(i).get().getAnalyse() ;
+				}
+				 if(l.isRadio_Physio()==true){
+					somme = somme + data_santeRepo.findById(i).get().getRadio_Physio() ;
+				}
+				 if(l.isOptique()==true){
+					somme = somme + data_santeRepo.findById(i).get().getOptique() ;
+				}
+				 if(l.isFrais_Chirurgicaux()==true){
+					somme = somme + data_santeRepo.findById(i).get().getFrais_Chirurgicaux() ;
+				}
+				 if(l.isDentaires()==true){
+					somme = somme + data_santeRepo.findById(i).get().getDentaires() ;
+				}
+				 if(l.isMaternite()==true){
+					somme = somme + data_santeRepo.findById(i).get().getMaternite() ;
+				}
+				 if(l.isAutres()==true){
+					somme = somme + data_santeRepo.findById(i).get().getAutres() ;
+				}
+				//System.out.println(" yaaaallllaaaa    " + somme);
+				return somme ;
+				
+			}
 	
 	/* calcul de l'age depuis la date de naissance*/
 	public int age(Date birthdate){
@@ -202,6 +417,10 @@ public class ContractServiceImpl implements ContractService {
 	public List<Contract> getContracts() {
 		return (List<Contract>) (contractRep.findAll());
 	}
+//	public List<ContractRequest> getContractRequest() {
+//		return (List<ContractRequest>) (contractRequest.findAll());
+//	}
+	
 	
 	public Contract addContract(Contract contract) {
 		return contractRep.save(contract);
@@ -210,8 +429,6 @@ public class ContractServiceImpl implements ContractService {
 	public void deleteContract(Long id) {
 		contractRep.deleteById(id);
 	}
-
-
 
 	public Contract updateContract(Long id, Contract newContract) {
 		Contract contractModified = contractRep.findById(id).get();
@@ -222,11 +439,10 @@ public class ContractServiceImpl implements ContractService {
 	
 	public Contract getContract(Long id) {
 		return contractRep.findById(id).get();
-
 	}
-
-	@Override
-	public void insertTableMortal() {
+	
+//		@Override
+		public void insertTableMortal() {
 		TableMortalité t0=new TableMortalité(0,100000,100000);	TableMortalité tm0=tr.Addtm(t0);	Assert.assertEquals(t0.getIdTable(),tm0.getIdTable());
 		TableMortalité t1=new TableMortalité(1,97104,97660);	TableMortalité tm1=tr.Addtm(t1);	Assert.assertEquals(t1.getIdTable(),tm1.getIdTable());
 		TableMortalité t2=new TableMortalité(2,96869,97436);	TableMortalité tm2=tr.Addtm(t2);	Assert.assertEquals(t2.getIdTable(),tm2.getIdTable());
@@ -351,8 +567,8 @@ public class ContractServiceImpl implements ContractService {
 				
 	}
 
-
-	public void insertTableMortal2() {
+//		@Override
+		public void insertTableMortal2() {
 //		TableMortalité t0=new TableMortalité(100000,100000,1,1f);	TableMortalité tm0=tr.Addtm(t0);
 //		TableMortalité t1=new TableMortalité(97104,97660,2,0.99431f);	TableMortalité tm1=tr.Addtm(t1);
 //		TableMortalité t2=new TableMortalité(96869,97436,3,0.99418f);	TableMortalité tm2=tr.Addtm(t2);
@@ -473,6 +689,6 @@ public class ContractServiceImpl implements ContractService {
 //		TableMortalité t117=new TableMortalité(0,0,118,0f);	TableMortalité tm117=tr.Addtm(t117);
 //		TableMortalité t118=new TableMortalité(0,0,119,0f);	TableMortalité tm118=tr.Addtm(t118);
 //		TableMortalité t119=new TableMortalité(0,0,120,0f);	TableMortalité tm119=tr.Addtm(t119);
-
+		
 	}
 }

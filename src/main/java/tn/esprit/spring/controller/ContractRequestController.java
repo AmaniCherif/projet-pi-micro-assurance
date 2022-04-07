@@ -39,9 +39,9 @@ public class ContractRequestController {
 		return contractRequest;
 	}
 
-	@DeleteMapping("/deleteById/{numRequest}")  
-	public void deleteContractRequestById(@PathVariable("numRequest")int numRequest) {
-		crsi.deleteContractRequest(numRequest);
+	@DeleteMapping("/deleteById/{id}")  
+	public void deleteContractRequestById(@PathVariable("id")Long id) {
+		crsi.deleteContractRequest(id);
 	}
 
 	@PutMapping("/updateContractRequest")
@@ -49,9 +49,9 @@ public class ContractRequestController {
 		return crsi.updateContractRequest(cr);
 	}
 
-	@GetMapping("retrieve-contractRequest/{numRequest}")
-	public ContractRequest retrieveContractRequest(@PathVariable("numRequest") int numRequest) {
-		return crsi.retrieveContractRequest(numRequest);
+	@GetMapping("retrieve-contractRequest/{id}")
+	public ContractRequest retrieveContractRequest(@PathVariable("id") Long id) {
+		return crsi.retrieveContractRequest(id);
 	}
 	
 
