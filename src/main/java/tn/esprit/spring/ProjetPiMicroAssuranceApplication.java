@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 
 
@@ -15,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 //@ComponentScan(basePackages = {"tn.esprit.spring.service.Interface"})
 //@EnableSwagger2
-
+@EnableScheduling
 public class ProjetPiMicroAssuranceApplication {
 	@Bean
 	BCryptPasswordEncoder bCryptPasswordEncoder() {
