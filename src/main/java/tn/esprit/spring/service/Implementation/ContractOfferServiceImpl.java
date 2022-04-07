@@ -2,13 +2,10 @@ package tn.esprit.spring.service.Implementation;
 
 import java.awt.Color;
 import java.io.IOException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import org.joda.time.LocalDate;
 import org.joda.time.Years;
-import com.google.zxing.qrcode.QRCodeWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -16,11 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
