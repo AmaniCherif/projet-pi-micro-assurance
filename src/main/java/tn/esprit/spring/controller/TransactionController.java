@@ -85,7 +85,7 @@ public class TransactionController {
 	public void affecterPaymentToContract(@PathVariable("Transaction_ID") int idp,@PathVariable("Contract_ID") int id) {
 		transactionservice.affecterPaymentToContract(idp, id);
 	}
-	@GetMapping("/amine/Hana/pdf")
+	@GetMapping("/Transaction/pdf")
 	public void PaymentPdf(HttpServletResponse response) throws DocumentException, IOException {
 	    response.setContentType("application/pdf");
 	    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
