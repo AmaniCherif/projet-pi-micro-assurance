@@ -4,16 +4,7 @@ package tn.esprit.spring.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.google.zxing.WriterException;
-import com.lowagie.text.DocumentException;
-
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,9 +15,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.entity.ContractOffer;
-import tn.esprit.spring.entity.State_Offer;
 import tn.esprit.spring.repository.ContractOfferRepository;
 import tn.esprit.spring.service.Interface.ContractOfferService;
 @RestController
@@ -62,11 +53,12 @@ public class ContractOfferController {
 	}
 	 @PostMapping("/AddContractMixte/{userid}")  
 	 @ResponseBody
-		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")Long userid)   
+		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")Long idUser)   
 		{  		
-		 ContractOfferService.AddContractMixte(c,userid);
+		 ContractOfferService.AddContractMixte(c,idUser);
 		 return("contract Added Successufuly");
 		}
+
 	 
 	 @GetMapping("/ContratMixte/export/pdf/{id}")
 	    public void exportToPDF(HttpServletResponse response,@PathVariable("id") int id) throws DocumentException, IOException {
@@ -98,8 +90,6 @@ public class ContractOfferController {
 		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);
 		 o2.setState_offers(State_Offer.Resillier);
 
-		 ContractOffer updated = ContractOfferService.updateContract_Offers(o2);
-		 return updated;
-	    }
+
 }
 

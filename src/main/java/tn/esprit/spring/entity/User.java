@@ -51,6 +51,20 @@ public class User implements UserDetails {
 	@NotBlank(message = "username is required")
 	@Column(unique = true)
 	private String username;
+	
+	private float salary ;
+	
+	@Enumerated(EnumType.STRING)
+	private Classification classification;
+	
+	
+	
+	public Classification getClassification() {
+		return classification;
+	}
+	public void setClassification(Classification classification) {
+		this.classification = classification;
+	}
 	public String getUsername() {
 		return username;
 	}
@@ -173,6 +187,29 @@ public class User implements UserDetails {
 	public void setUpdate_At(Date update_At) {
 		this.update_At = update_At;
 	}
+	
+	
+	public float getSalary() {
+		return salary;
+	}
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
+	public Set<ContractRequest> getContractRequest() {
+		return contractRequest;
+	}
+	public void setContractRequest(Set<ContractRequest> contractRequest) {
+		this.contractRequest = contractRequest;
+	}
+	public Set<ContractOffer> getContractOffers() {
+		return ContractOffers;
+	}
+	public void setContractOffers(Set<ContractOffer> contractOffers) {
+		ContractOffers = contractOffers;
+	}
+	public void setSexe(String sexe) {
+		this.sexe = sexe;
+	}
 	/*
 	 UserDetails interface methods
 	 */
@@ -248,4 +285,7 @@ public class User implements UserDetails {
 		list.addAll(l);
 		return list;
 	}
+	
+	
+	
 }

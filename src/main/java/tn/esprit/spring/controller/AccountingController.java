@@ -60,8 +60,10 @@ public class AccountingController {
 
 	@PutMapping("/affecterAccountingToUser/{accounting_id}/{id_user}")
 	@ResponseBody
+
 	public void affecterAccountingToUser(@PathVariable("accounting_id") int idp,@PathVariable("id_user") Long id) {
 		accountingService.affecterAccountingToUser(idp, id);
+
 	}
 	@GetMapping("/prime")
 	@ResponseBody

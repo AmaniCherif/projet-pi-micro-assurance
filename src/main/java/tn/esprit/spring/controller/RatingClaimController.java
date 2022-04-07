@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import tn.esprit.spring.entity.Claims;
+
 import tn.esprit.spring.entity.Ratingclaim;
-import tn.esprit.spring.service.Implementation.RatingClaimServiceImpl;
+
 import tn.esprit.spring.service.Interface.RatingClaimService;
 
 
@@ -48,13 +48,13 @@ public class RatingClaimController {
 		}
 	 
 	 @DeleteMapping("/removeRating/{RatingId}")
-	    public void removeRating(@PathVariable("RatingId") Long RatingId){
+	    public void removeRating(@PathVariable("RatingId") String RatingId){
 		 ratingService.DeleteRatingclaim(RatingId); 
 	        
 	    }
 	 
 	 @GetMapping("/retrieveRating/{RatingId}")
-	    public Ratingclaim retrieveRating(@PathVariable("RatingId") Long RatingId) {
+	    public Ratingclaim retrieveRating(@PathVariable("RatingId") String RatingId) {
 	        return ratingService.RetrieveRatingclaim(RatingId); 
 	    }
 	

@@ -50,9 +50,9 @@ public class AccountingServiceImpl implements AccountingService{
 	}
 	@Override
 	public Accounting addAccounting(Accounting s) {
-		 
-		
-		return accountingRepository.save(s);
+		Accounting accountingSaved = null;
+		accountingSaved=accountingRepository.save(s);
+		return accountingSaved;
 	}
 	@Override
 	public void deleteAccounting(String id) {
@@ -73,9 +73,9 @@ public class AccountingServiceImpl implements AccountingService{
 
 	}
 	@Override
-	public void affecterAccountingToUser(int idp, Long id) {
+	public void affecterAccountingToUser(int idp, Long idUser) {
 		Accounting accounting = accountingRepository.findById(idp).get();
-		User user = userRepository.findById(id).get();
+		User user = userRepository.findById(idUser).get();
 		if (!ObjectUtils.isEmpty(accounting) && !ObjectUtils.isEmpty(user))
 			accounting.setUser(user);
 		userRepository.save(user);
@@ -101,7 +101,9 @@ public class AccountingServiceImpl implements AccountingService{
 				List<ReinsuranceContract> listr = reinsuranceRepos.findAll(); //bech ye5edh les contrats lkol
 				Iterator<ReinsuranceContract> itr = listr.iterator();
 				while (itr.hasNext()) {
+
 					sc+=itr.next(). getCommerPrem()*0.3; //pour chaque contract va prendre un prime(0.3 (ratio)benéfice facteur comparatif)
+
 				}
 				float actifs=a+sc+autrescreances;
 
