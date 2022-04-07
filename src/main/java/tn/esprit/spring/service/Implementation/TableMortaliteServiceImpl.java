@@ -371,5 +371,12 @@ public class TableMortaliteServiceImpl implements ITableMortalitéService {
 		double taux = Math.exp((x3));	
 		return   taux ;
 	}
+//	@Override
+//	public TableMortalité findByLx(int age) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+
 	
 	}
