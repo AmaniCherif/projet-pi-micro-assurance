@@ -1,5 +1,6 @@
 package tn.esprit.spring.service.Implementation;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,43 +16,69 @@ import tn.esprit.spring.service.Interface.ISinistreService;
 public class SinistreServiceImpl implements ISinistreService{
 
 	@Autowired
-	SinistreRepository sinistreRepository;
+	SinistreRepository ssi;
 
 	@Override
 	public List<Sinistre> retrieveALLSinistre() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Sinistre> sinistres= (List<Sinistre>)ssi.findAll();
+		return sinistres;
 	}
 
 	@Override
 	public Sinistre addSinistre(Sinistre s) {
-		// TODO Auto-generated method stub
-		return null;
+		ssi.save(s);
+		return s;
 	}
 
 	@Override
 	public void deleteSinistre(Integer id) {
-		sinistreRepository.deleteById(id);
+		ssi.deleteById(id);
 		
 	}
 
 	@Override
 	public Sinistre updateSinistre(Sinistre s) {
-		// TODO Auto-generated method stub
-		return null;
+		ssi.save(s);
+		return s;
 	}
 
 	@Override
 	public Sinistre retrieveSinistre(Integer id) {
 		
-		return sinistreRepository.findById(id).get();
+		return ssi.findById(id).get();
 	}
 
 	@Override
-	public List<Sinistre> findByState(State_Sinistre_Claim state_Sinistre_Claim) {
-		// TODO Auto-generated method stub
-		return null;
+	public String flowSinistre(int idSinistre) {
+		Sinistre sinistre=ssi.findById(idSinistre).orElse(null);
+		if(sinistre.getState_Sinistre_Claim().equals("Invalid"))
+		{
+			return "Le Sinistre déclaré "+sinistre.getSinistreReport().getDate_reclamation()+" est rejecté"; 
+		}
+		else
+			
+		return "Le dossier sinistre est en traitrement";
 	}
+
+	@Override
+	public String TimeLimitVerification(int idSinistre) {
+		double Nbday=0;
+		String message=null;
+		Sinistre sinistre=ssi.findById(idSinistre).orElse(null);
+		
+		Date dec=sinistre.getSinistreReport().getDate_reclamation();
+		Date occ=sinistre.getSinistreReport().getDate_Occurance();
+		int delaidec=30;
+		if(Nbday<=delaidec)
+		{
+			message="Bienvenue! Le delai est bien respecté";
+		}
+		else
+			message="Bienvenue! Le delai n'est pas respecté, damande rejeté";
+		return message;
+	}
+
+	
 }
 
 /*	
