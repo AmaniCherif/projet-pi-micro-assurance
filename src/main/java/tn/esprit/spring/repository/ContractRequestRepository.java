@@ -14,7 +14,7 @@ import tn.esprit.spring.entity.ContractRequest;
 
 @Repository
 
-public interface ContractRequestRepository extends CrudRepository<ContractRequest, Integer>{
+public interface ContractRequestRepository extends CrudRepository<ContractRequest, Long>{
 
 
 	
