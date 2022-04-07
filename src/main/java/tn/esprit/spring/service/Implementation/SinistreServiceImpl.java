@@ -1,5 +1,6 @@
 package tn.esprit.spring.service.Implementation;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,18 @@ public class SinistreServiceImpl implements ISinistreService{
 		return null;
 	}
 }
+//	@Override
+//	public float TDEMPRUNTEUR(Long idS) throws ParseException {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//
+//	@Override
+//	public float CreditSimulator(Long idS, Long idC) {
+//		// TODO Auto-generated method stub
+//		return 0;
+//	}
+//}
 
 /*	
 	@Override

@@ -24,9 +24,9 @@ public class Accounting implements Serializable{
 	}
 	private int year;
 	//actifs
-	private float assets;
+	private float assets; //la somme des actifs
 	//passifs
-	private float liabilities;
+	private float liabilities;//la somme des passifs
 	//placement
 	private float placement;
 	//par  des reassureurs
