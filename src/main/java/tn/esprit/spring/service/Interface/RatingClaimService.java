@@ -5,10 +5,10 @@ import java.util.List;
 import tn.esprit.spring.entity.Ratingclaim;
 
 public interface RatingClaimService {
-	List<Ratingclaim> RetrieveAllRatingclaim(); 
+	public List<Ratingclaim> RetrieveAllRatingclaim(); 
 	Ratingclaim AddRatingclaim(Ratingclaim c);
-	void DeleteRatingclaim(Long id);
+	void DeleteRatingclaim(String id);
 	Ratingclaim UpdateRatingclaim(Ratingclaim c , Long id );
-	Ratingclaim RetrieveRatingclaim(Long id);
+	Ratingclaim RetrieveRatingclaim(String id);
 
 }

@@ -52,7 +52,7 @@ public class DataFondEuroService {
 	
 	
 	public List<Rendement> listeRendementPortefeuille(){	
-		return rendement.findAll();
+		return (List<Rendement>)rendement.findAll();
 	}
 	
 	public void calculeprofitUnique(){ // kol 3am na3tik rendement eli na3mlou ena .. w ken a9al min 0.15 nzidek ena 0.015 ... etheka l min 
@@ -62,13 +62,17 @@ public class DataFondEuroService {
 		double primerelle  =primeUnique - primeUnique*frais_gestion;
 		double f ;
 		float rachat ;
-		int year = 2021 ; 
+		//int year = 2021 ; 
 		for (int i = 0 ; i < dureeContrat ; i++){
-			Rendement r = rendement.findByAnnee(year+i);
+			System.out.println("hayaaaaaaaaa ezreb");
+			Rendement r = rendement.findByAnnee(2021+i);
+			System.out.println("barrrraaa aaaaadddddd");
 			double t = r.getRendement();
+			
 			System.out.println("************-------*-----------***********" + t);
 			double m = t*0.85 ;//*****
-			//double pb = m - frais_gestion;
+			System.out.println("nchallaah lyoum temchy");
+			//double pb = m - frais_gestion; //participation_bénéfice
 			if (m < 0.015 ){
 				rachat = (float) primerelle ; // rachat
 				System.out.println("---------" + rachat );
@@ -92,7 +96,8 @@ public class DataFondEuroService {
 			}			
 	}
 	
-
+     //assurance ki t'investi_7atet_1000dinars_da5let_1100 rb7et 10%
+	//ken negatif ta3tik 70% mel diff
 	public void calculeprofitPeriodique(){
 		float primePeriodiquePrincipale = 1000 ;
 		int dureeContrat = 5 ;
@@ -102,9 +107,14 @@ public class DataFondEuroService {
 		int year = 2021 ; 
 		for (int i = 0 ; i < dureeContrat ; i++){
 			Rendement r = rendement.findByAnnee(year+i);
+			
 			double t = r.getRendement();
-			double m = t*0.85 ;
-			//double pb = m - frais_gestion;
+			
+			//double m=(r.getRendement())*0.85;
+			System.out.println("tokhrej wallaaaaaa");
+			double m = t*0.85 ; //te5ou_rendement_mta3_3am
+			//double pb = m - frais_gestion; pparticipation bénéfice loi assurance
+			//ficas_hethy_assurance_5assra_bech_ta3tik_ken_taux_minimum_garentis
 			if (m < 0.015 ){
 				
 				rachat = primePeriodique ; // rachat

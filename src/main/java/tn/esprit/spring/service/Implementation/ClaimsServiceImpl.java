@@ -32,7 +32,7 @@ public class ClaimsServiceImpl implements ClaimsService{
 
 	@Override
 	public Claims addClaim(Claims c , long userId) {
-		// TODO Auto-generated method stub
+		
 	//	User user=userRepo.findById(userId).get();
 	//	c.setUser(user);
 		claimRep.save(c);
@@ -41,7 +41,7 @@ public class ClaimsServiceImpl implements ClaimsService{
 
 	@Override
 	public void deleteClaim(Long id) {
-		// TODO Auto-generated method stub
+		
 		Claims claim = claimRep.findById(id).get(); 
 		claimRep.delete(claim);
 		
@@ -61,7 +61,7 @@ public class ClaimsServiceImpl implements ClaimsService{
 
 	@Override
 	public Claims retrieveClaim(Long id) {
-		// TODO Auto-generated method stub
+	
 		return claimRep.findById(id).get();
 	}
 
