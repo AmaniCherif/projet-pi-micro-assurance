@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 
@@ -40,8 +41,9 @@ public class Transaction implements Serializable {
 	
 	//@JoinColumn(name = "id",referencedColumnName="id")
 	//@JsonIgnore
+	@JsonBackReference
 	@ManyToOne
-	private Contract contracts;
+	private Contract contract;
 	
     
 	
@@ -100,6 +102,20 @@ public class Transaction implements Serializable {
 
 
 
+	
+
+	
+	
+
+	
+
+
+	public Transaction() {
+		super();
+	}
+
+
+
 	public Contract getContract() {
 		return contract;
 	}
@@ -110,16 +126,15 @@ public class Transaction implements Serializable {
 		this.contract = contract;
 	}
 
-	@ManyToOne
-	private Contract contract;
-	
-
-	
 
 
-	public Transaction() {
-		super();
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
+
+
+
+	
 	
     
 
