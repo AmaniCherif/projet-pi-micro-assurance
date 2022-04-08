@@ -4,7 +4,15 @@ package tn.esprit.spring.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lowagie.text.DocumentException;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import tn.esprit.spring.repository.UserRepository;
 import tn.esprit.spring.entity.ContractOffer;
+import tn.esprit.spring.entity.State_Offer;
 import tn.esprit.spring.repository.ContractOfferRepository;
 import tn.esprit.spring.service.Interface.ContractOfferService;
 @RestController
@@ -84,11 +93,13 @@ public class ContractOfferController {
 	         
 		 return ("You have " + nbr_tranche + " x " + prime + " more payments in your contract = " + montant_restant + " Dinars");
 	    }
-	 @PostMapping("/ContratMixte/resilience/{userid}")
+	     @PostMapping("/ContratMixte/resilience/{userid}")
 	    public ContractOffer resilience(HttpServletResponse response,@PathVariable("userid")int userid)  {
 		 
 		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);
 		 o2.setState_offers(State_Offer.Resillier);
+		 return o2 ;
+	     }
 
 
 }

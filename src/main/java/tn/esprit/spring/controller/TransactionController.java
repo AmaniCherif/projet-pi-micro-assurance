@@ -34,7 +34,8 @@ public class TransactionController {
 	@PostMapping("/addTransaction")
 	@ResponseBody	
 	public  Transaction addTransaction(@RequestBody Transaction t)
-		{transactionservice.addTransaction(t);
+		{
+		transactionservice.addTransaction(t,1);
 		return t ;
 		}
 	@DeleteMapping("/deleteTransaction/{transactionid}")

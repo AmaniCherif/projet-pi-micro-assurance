@@ -6,7 +6,7 @@ import java.util.Map;
 import tn.esprit.spring.entity.Transaction;
 
 public interface TransactionService {
-	Transaction addTransaction(Transaction trans);
+	Transaction addTransaction(Transaction trans,long id);
 
 	void deleteTransaction(int id);
 

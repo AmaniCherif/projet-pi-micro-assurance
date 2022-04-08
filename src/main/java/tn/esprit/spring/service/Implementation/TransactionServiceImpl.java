@@ -25,7 +25,26 @@ public class TransactionServiceImpl implements TransactionService{
 	@Autowired
 	ContractRepository contractRepository;
 	@Override
-	public Transaction addTransaction(Transaction t) {
+	public Transaction addTransaction(Transaction t,long id) {
+		//contractRepository transaction = transactionRepository;
+		Contract contract = contractRepository.findById(id).get();
+		if(!ObjectUtils.isEmpty(contract)) {
+			t.setContract(contract);
+		}
+		//contractRepository.save(contract);
+		if(contract.getUser().getClassification() == null) {}
+		else if (contract.getUser().getClassification().name().equals("Gold")) {
+			t.setTransactionAmount(t.getTransactionAmount()-(t.getTransactionAmount()*20)/100);
+		}
+			else if (contract.getUser().getClassification().name().equals("Silver")) {
+				t.setTransactionAmount(t.getTransactionAmount()-(t.getTransactionAmount()*15)/100);
+			}
+				else if (contract.getUser().getClassification().name().equals("Bronz")) {
+					t.setTransactionAmount(t.getTransactionAmount()-(t.getTransactionAmount()*10)/100);
+				}
+					
+
+			
 		transactionRepository.save(t);
 		
 		return t;
