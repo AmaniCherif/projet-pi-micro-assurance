@@ -10,17 +10,18 @@ public class EmployeeSalary {
 	@Id
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 
-	private int salaryId;
+	private int id;
 	private int month;
 	private int year;	
 	private int workHours;
 	private int extraHours;
 	private float salary;
-	public int getSalaryId() {
-		return salaryId;
+	 
+	public int getId() {
+		return id;
 	}
-	public void setSalaryId(int salaryId) {
-		this.salaryId = salaryId;
+	public void setId(int id) {
+		this.id = id;
 	}
 	public int getMonth() {
 		return month;

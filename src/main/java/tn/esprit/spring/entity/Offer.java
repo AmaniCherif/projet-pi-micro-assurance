@@ -14,6 +14,9 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.JoinColumn;
 
 
@@ -26,7 +29,7 @@ public class Offer  {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 
-	private int id; 
+	private Long id; 
 	
 	@Temporal(TemporalType.DATE)
 	private Date date_debut ;
@@ -36,13 +39,33 @@ public class Offer  {
 	
 	private String Description ;
 	
+private double tarification;
 	
-	public int getId() {
+	@Enumerated(EnumType.STRING)
+	TypeOffer typeOffer ;
+
+	@Enumerated(EnumType.STRING)
+	State_Offer state_offers;
+	@JsonBackReference
+	@OneToOne
+	private ContractOffer offer;
+
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
+	}
+
+	 
+
+	public ContractOffer getOffer() {
+		return offer;
+	}
+
+	public void setOffer(ContractOffer offer) {
+		this.offer = offer;
 	}
 
 	public double getTarification() {
@@ -61,13 +84,7 @@ public class Offer  {
 		this.state_offers = state_offers;
 	}
 
-	private double tarification;
 	
-	@Enumerated(EnumType.STRING)
-	TypeOffer typeOffer ;
-
-	@Enumerated(EnumType.STRING)
-	State_Offer state_offers;
 //getters et Setters 
 	public Date getDate_debut() {
 		return date_debut;
@@ -93,8 +110,7 @@ public class Offer  {
 		Description = description;
 	}
 
-	@OneToOne
-	private ContractOffer offer;
+	
 
 
 }

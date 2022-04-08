@@ -26,7 +26,7 @@ public interface EmployeeSalaryRepository extends CrudRepository<EmployeeSalary,
 		public List<EmployeeSalary>ficheDePaie(@Param ("User_ID")Long idUser);
 		
 	//meilleur employee
-		@Query("select Max(u.workHours+u.extraHours), u.salaryId from EmployeeSalary u")  
+		@Query("select Max(u.workHours+u.extraHours), u.id from EmployeeSalary u")  
 		public List<?> BestEmployee();
 
 }

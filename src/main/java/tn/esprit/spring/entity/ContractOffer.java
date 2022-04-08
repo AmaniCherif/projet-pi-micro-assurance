@@ -12,11 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Entity
 public class ContractOffer implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -81,29 +83,37 @@ public class ContractOffer implements Serializable{
 	public void setState_offers(State_Offer state_offers) {
 		this.state_offers = state_offers;
 	}
-	public User getUsers() {
-		return users;
+	 
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
-	public void setUsers(User users) {
-		this.users = users;
+	public static void setSerialversionuid(long serialversionuid) {
+		serialVersionUID = serialversionuid;
 	}
-	public Offer getOffers() {
-		return offers;
+	public Offer getOffer() {
+		return offer;
 	}
-	public void setOffers(Offer offers) {
-		this.offers = offers;
+	public void setOffer(Offer offer) {
+		this.offer = offer;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
 
+    @JsonManagedReference
 	@OneToOne(mappedBy="offer")
 	private Offer offer;
-	@ManyToOne
+
+    @JsonBackReference
+    @ManyToOne
 	private User user;
-    @JsonIgnore
-    @ManyToOne
-    private User users;
-    @JsonIgnore
-    @ManyToOne
-    private Offer offers;
+    
 }

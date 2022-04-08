@@ -7,6 +7,10 @@ import org.springframework.data.repository.query.Param;
 import tn.esprit.spring.entity.ContractOffer;
 
 public interface ContractOfferRepository extends CrudRepository<ContractOffer, Integer>{
-	@Query("select c from ContractOffer c where c.users.idUser=:idUser")
-	public ContractOffer Contract_OffersByUser(@Param ("idUser")int idUser );
+	@Query("select c from ContractOffer c where c.user.idUser=:idUser")
+	public ContractOffer Contract_OffersByUser(@Param ("idUser") Long idUser );
+	public ContractOffer findByUser_idUser(  Long idUser );
+	
+	public ContractOffer findByIdContractOffer(  int idUser );
+
 }

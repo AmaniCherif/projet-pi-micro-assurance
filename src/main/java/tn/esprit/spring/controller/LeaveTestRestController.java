@@ -83,7 +83,7 @@ public class LeaveTestRestController {
 	}
 	@PostMapping("/duration")
 	@ResponseBody
-	public int duration(@RequestBody LeaveTest l) {
+	public int duration( ) {
 		return leaveTestService.duration(); 
 	}
 

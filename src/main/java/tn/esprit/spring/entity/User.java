@@ -25,6 +25,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 
@@ -252,7 +253,9 @@ public class User implements UserDetails {
 	///private Set<Investement>investements;
 	//@OneToMany(mappedBy="user")
 	private Set<ContractRequest>contractRequest;
+	
 	@OneToMany(mappedBy="user")
+	@JsonManagedReference
 	private Set<ContractOffer>ContractOffers;
 	
 

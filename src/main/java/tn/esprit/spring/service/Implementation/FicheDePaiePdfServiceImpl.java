@@ -65,7 +65,7 @@ public class FicheDePaiePdfServiceImpl {
 	     
 	    private void writeTableData(PdfPTable table) {
 	        for (EmployeeSalary employeeSalary : listEmployeeSalaries) {
-	            table.addCell(String.valueOf(employeeSalary.getSalaryId()));
+	            table.addCell(String.valueOf(employeeSalary.getId()));
 	            table.addCell((String.valueOf(employeeSalary.getUser().getCin())));
 	            table.addCell((String.valueOf(employeeSalary.getUser().getFirstname())));
 	            table.addCell((String.valueOf(employeeSalary.getUser().getLastname())));

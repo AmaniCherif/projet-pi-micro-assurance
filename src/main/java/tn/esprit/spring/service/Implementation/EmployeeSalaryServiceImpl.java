@@ -71,8 +71,14 @@ public class EmployeeSalaryServiceImpl implements EmployeeSalaryService{
 
 	@Override
 	public void affecterSalaryToUser(int idp, Long id) {
-		EmployeeSalary employeeSalary = salaryRepository.findById(idp).get();
-		User user = userRepository.findById(id).get();
+		System.out.println("****************");
+		
+		EmployeeSalary employeeSalary = salaryRepository.findById(idp).orElse(null);
+		System.out.println(employeeSalary);
+
+		User user = userRepository.findById(id).orElse(null);
+		System.out.println(user);
+
 		if (!ObjectUtils.isEmpty(employeeSalary) && !ObjectUtils.isEmpty(user))
 			employeeSalary.setUser(user);
 			userRepository.save(user);
