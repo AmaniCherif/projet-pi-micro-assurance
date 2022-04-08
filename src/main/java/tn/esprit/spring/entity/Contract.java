@@ -16,6 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 
 @Entity
@@ -176,6 +178,7 @@ public class Contract implements Serializable {
 
 
 	@OneToMany(mappedBy="contract")
+	@JsonManagedReference
 	private Set<Transaction> transaction;
 
 

@@ -12,8 +12,10 @@ import org.springframework.util.ObjectUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import tn.esprit.spring.entity.Accounting;
 import tn.esprit.spring.entity.Contract;
 import tn.esprit.spring.entity.Transaction;
+import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.ContractRepository;
 import tn.esprit.spring.repository.TransactionRepository;
 import tn.esprit.spring.service.Interface.TransactionService;
@@ -25,7 +27,14 @@ public class TransactionServiceImpl implements TransactionService{
 	@Autowired
 	ContractRepository contractRepository;
 	@Override
-	public Transaction addTransaction(Transaction t) {
+	public Transaction addTransaction(Transaction t,long id) {
+		//TransactionRepository transaction = transactionRepository;
+		Contract contract = contractRepository.findById(id).get();
+	if (!ObjectUtils.isEmpty(contract))
+		t.setContract(contract);
+//	    contractRepository.save(contract);
+			
+			
 		transactionRepository.save(t);
 		
 		return t;
@@ -215,6 +224,6 @@ public class TransactionServiceImpl implements TransactionService{
 		Contract contract = contractRepository.findById(id).get();
 	if (!ObjectUtils.isEmpty(transaction) && !ObjectUtils.isEmpty(contract))
 		transaction.setContract(contract);
-	contractRepository.save(contract);
+	    contractRepository.save(contract);
 	}
 }
