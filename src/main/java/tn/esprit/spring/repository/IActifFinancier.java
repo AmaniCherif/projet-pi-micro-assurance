@@ -22,11 +22,11 @@ List<ActifFinancier> findByNomFond(Fond nom_fond) ;
 	@Query(value = "SELECT count(*) FROM actif_financier WHERE nom_fond='Euro_Croissance' ",nativeQuery = true)
 	public int listEuro_Croissance( );
 
-	@Query(value = "SELECT * FROM actif_financier WHERE nom_fond='Euro_Croissance' and  etat='En cours' and user_actif_user_id=:w ",nativeQuery = true)
-	 List<ActifFinancier> listemontant_actuelEuroCroissanceparUser( @Param("w") int w );
+	@Query(value = "SELECT * FROM actif_financier WHERE nom_fond='Euro_Croissance' and  etat='En cours' and user_actif_id_user=:w ",nativeQuery = true)
+	 List<ActifFinancier> listemontant_actuelEuroCroissanceparUser( @Param("w") Long w );
 
-	@Query(value = "SELECT * FROM actif_financier WHERE nom_fond='Fond_Euro' and  etat='En cours' and user_actif_user_id=:w ",nativeQuery = true)
-	 List<ActifFinancier> listemontant_actuelFondEuroparUser( @Param("w") int w );
+	@Query(value = "SELECT * FROM actif_financier WHERE nom_fond='Fond_Euro' and  etat='En cours' and user_actif_id_user=:w ",nativeQuery = true)
+	 List<ActifFinancier> listemontant_actuelFondEuroparUser( @Param("w") Long w );
 	
 	
 	List<ActifFinancier> findByUserActif( User user);

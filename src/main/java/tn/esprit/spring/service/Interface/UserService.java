@@ -35,6 +35,9 @@ public interface UserService {
 
 
     public User addUser(User user);
+
+    User getcode(String email);
+
     
     public void UserClassification();
 

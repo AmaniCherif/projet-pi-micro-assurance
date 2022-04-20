@@ -129,6 +129,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Scheduled(fixedRate = 10000)
+
 	public void UserClassification() {
 		List<User> ls = getAllUser();
 		int i = 0;
@@ -153,6 +154,7 @@ public class UserServiceImpl implements UserService {
 			
 			i=0;
 		}
+
 		
 	}
 	

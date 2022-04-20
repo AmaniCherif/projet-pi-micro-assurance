@@ -98,9 +98,11 @@ public class ContractOfferController {
 		 
 		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);
 		 o2.setState_offers(State_Offer.Resillier);
+
 		 return o2 ;
-	     }
 
 
-}
+
+	 }
+	 }
 

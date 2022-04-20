@@ -16,4 +16,5 @@ public interface AccountingRepository extends JpaRepository<Accounting,Integer>{
 	@Modifying
 	@Query(value="UPDATE accounting set exercise_result=(assets-liabilities)",nativeQuery=true)
 	public int exercise_result();
+	
 }

@@ -97,6 +97,5 @@ protected void configure(AuthenticationManagerBuilder authenticationManagerBuild
 	http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
-
 }
  
