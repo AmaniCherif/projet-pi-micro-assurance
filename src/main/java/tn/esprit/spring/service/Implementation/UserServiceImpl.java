@@ -41,6 +41,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User addAdmin(User user) {
+		
+		
+		System.out.println("userrrrr"+userRepository.findByCin(user.getCin()));
+		
 
 		 if  (userRepository.findByUsername(user.getUsername())!= null){
 			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
@@ -100,14 +104,7 @@ public class UserServiceImpl implements UserService {
 
 	}
 
-	@Override
-	public void changeUserPassword(User user, String password) {
 
-		user.setPassword(new BCryptPasswordEncoder().encode(password));
-		userRepository.save(user);
-
-
-	}
 
 
 	@Override
@@ -116,9 +113,11 @@ public class UserServiceImpl implements UserService {
 		 if  (userRepository.findByUsername(user.getUsername())!= null){
 			throw new UsernameAlreadyExistsException("Email '" + user.getUsername() + "'is already exists");
 		}
+		 
 		 if  (userRepository.findByCin(user.getCin())!= null){
 			throw new UsernameAlreadyExistsException("Cin '" + user.getCin() + "'is already exists");
 		}
+
 		else {
 			
 			
@@ -129,36 +128,41 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	@Scheduled(fixedRate = 10000)
 
-	public User getcode(String email) {
-		User u=userRepository.getcode(email);
-        return u;}
-
-//	@Scheduled(fixedRate = 1000)
 	public void UserClassification() {
 		List<User> ls = getAllUser();
 		int i = 0;
 		
 		for (User user : ls) {
-			i = contractrepo.findByUser(user).size();	
+			i = contractrepo.findByUser(user).size();
+			System.out.println("yy"+i);
 			
 			if (i<5 && user.getRoleUser().name().equals("LowinComeWomen")) {
 				user.setClassification(Classification.Bronz);
-				updateUser(user);
+				UpdateUser(user);
 			}
 			
 			else if (i>5 && i<=10 && user.getRoleUser().name().equals("LowinComeWomen")) {
 				user.setClassification(Classification.Silver);
-				updateUser(user);
+				UpdateUser(user);
 			}
 			else if  (i>10 && user.getRoleUser().name().equals("LowinComeWomen")){
 				user.setClassification(Classification.Gold);
-				updateUser(user);
+				UpdateUser(user);
 			}
 			
-			
+			i=0;
 		}
 
 		
 	}
+	
+	
+	@Override
+	public void changeUserPassword(User user, String password) {
+	    user.setPassword(new BCryptPasswordEncoder().encode(password));
+	    userRepository.save(user);
+	}
+
 }

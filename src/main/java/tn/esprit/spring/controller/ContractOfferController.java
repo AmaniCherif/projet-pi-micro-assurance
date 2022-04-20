@@ -93,12 +93,13 @@ public class ContractOfferController {
 	         
 		 return ("You have " + nbr_tranche + " x " + prime + " more payments in your contract = " + montant_restant + " Dinars");
 	    }
-	 @PostMapping("/ContratMixte/resilience/{userid}")
+	     @PostMapping("/ContratMixte/resilience/{userid}")
 	    public ContractOffer resilience(HttpServletResponse response,@PathVariable("userid")int userid)  {
 		 
 		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);
 		 o2.setState_offers(State_Offer.Resillier);
-		 return o2;
+
+		 return o2 ;
 
 
 

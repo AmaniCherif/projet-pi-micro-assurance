@@ -96,14 +96,17 @@ public class User implements UserDetails {
 		this.sexe = sex;
 	}
 
-	private Long cin;
+	@NotBlank
+	private String cin;
+
+	
 
 
-	public Long getCin() {
+	public String getCin() {
 		return cin;
 	}
-	public void setCin(Long cin) {
-		cin = cin;
+	public void setCin(String cin) {
+		this.cin = cin;
 	}
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;

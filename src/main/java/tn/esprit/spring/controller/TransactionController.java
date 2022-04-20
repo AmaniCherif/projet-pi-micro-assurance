@@ -36,9 +36,11 @@ public class TransactionController {
 
 	@PostMapping("/addTransaction/{id}")
 	@ResponseBody	
+
 	public ResponseEntity< Contract> addTransaction(@RequestBody Transaction t,@PathVariable("id") Long id)
 		{transactionservice.addTransaction(t,id);
 		return new ResponseEntity<Contract>(HttpStatus.OK) ;
+
 		}
 	@DeleteMapping("/deleteTransaction/{transactionid}")
 	  public void deleteTransaction (@PathVariable("transactionid")int transactionid) {
