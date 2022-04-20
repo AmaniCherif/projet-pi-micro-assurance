@@ -28,7 +28,8 @@ public class TransactionServiceImpl implements TransactionService{
 	ContractRepository contractRepository;
 	@Override
 	public Transaction addTransaction(Transaction t,long id) {
-		//TransactionRepository transaction = transactionRepository;
+
+		//contractRepository transaction = transactionRepository;
 		Contract contract = contractRepository.findById(id).get();
 	if (!ObjectUtils.isEmpty(contract))
 		t.setContract(contract);
@@ -41,6 +42,7 @@ public class TransactionServiceImpl implements TransactionService{
 			else if (contract.getUser().getClassification().name().equals("Bronz"))
 				t.setTransactionAmount(t.getTransactionAmount()-((t.getTransactionAmount()*10)/100));
 		
+
 
 
 		transactionRepository.save(t);

@@ -88,7 +88,6 @@ protected void configure(AuthenticationManagerBuilder authenticationManagerBuild
 			"/**/*.js"
 			).permitAll()
 	.antMatchers(SecurityConstants.SIGN_UP_URLS).permitAll()
-	.antMatchers("/**").permitAll()
 	.antMatchers(SecurityConstants.CONTRACTOFFER).permitAll()
 	.antMatchers(SecurityConstants.ACCOUNTING).permitAll()
 	.antMatchers(SecurityConstants.H2_URL).permitAll()
@@ -97,7 +96,6 @@ protected void configure(AuthenticationManagerBuilder authenticationManagerBuild
 	
 	http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
-	  
-	
+
 }
  

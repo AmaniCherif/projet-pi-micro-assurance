@@ -83,7 +83,6 @@ public class UserController {
          userValidatore.validate(user,result);
          ResponseEntity<?> erroMap =mapValidationErrorService.MapValidationService(result);
          if(erroMap != null)return erroMap;
-         user.setRoleUser(RoleUser.Administrator);
          User newUser = userService.addUser(user);
          return new ResponseEntity<User>(newUser, HttpStatus.CREATED);
      }
@@ -118,8 +117,21 @@ public class UserController {
          passwordResetToken.setToken(token);
          passwordResetToken.setUser(user);
          passwordResetTokenRepository.save(passwordResetToken);
-         mailSendService.sendEmail(user.getEmail(),"Please Click On The Link Bellow To change your password : http://localhost:3000/user/changePassword/ "+token,"Please Confirm Your Account");
+         mailSendService.sendEmail(user.getEmail(),"Please Click On The Link Bellow To change your password : http://localhost:8083/SpringMVC/users/changePassword"+token,"Please Confirm Your Account");
          return " mail sended .ok " ;
      }
+     
+     
+     
+     @PutMapping("/changePassword/{token}/{Newpassword}")
+ 	public String changepass(@PathVariable("token") String token,@PathVariable("Newpassword") String Newpassword) {
+ 		PasswordResetToken t = passwordResetTokenRepository.findByToken(token);
+ 		User user = t.getUser();
+ 		userService.changeUserPassword(user,Newpassword);
+ 		return "true";
+ 		
+ 			
+ 	}
+
 
 }

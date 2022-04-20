@@ -63,6 +63,7 @@ public class FraudService {
 				f.setCause("le montant de remboursement est un peu grand par rapport au salire " + c.getContractRequest().getUser().getCin()  );
 			}
 		}	
+		Fraud.save(f);
 	}
 	
 	public void verifMontantContratFraud(Contract c){
