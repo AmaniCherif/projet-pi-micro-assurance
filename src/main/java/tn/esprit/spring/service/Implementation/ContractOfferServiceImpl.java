@@ -135,7 +135,6 @@ public class ContractOfferServiceImpl implements ContractOfferService{
 	   	deces = deces_mixte * deces;
 	   	primePure=(vie+deces);
 	   	PrimeComercial=primePure+( primePure * 0.03);
-	   	 //System.out.println("PrimeComercial "+ PrimeComercial);
 		return(PrimeComercial);
 	   	
 	    }
@@ -145,7 +144,6 @@ public class ContractOfferServiceImpl implements ContractOfferService{
 		Offer o = offerRepository.findById(offerId).get();
     	User user = userRepository.findById(userid).get();
     	DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-    	//System.out.println("ayaa heet ");
 		Date date = new Date();
 		LocalDate dateTime = new LocalDate();
 		String newDateTime = dateTime.plusYears(contract.getDuree()).toString();
