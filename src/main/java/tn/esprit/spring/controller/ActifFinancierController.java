@@ -37,11 +37,11 @@ public class ActifFinancierController {
 	
 
 	
-	@PostMapping("/addactif")
+	@PostMapping("/addactif/{idu}")
 	@ResponseBody
-	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a ,Authentication auth	){
+	public ResponseEntity<ActifFinancier> ajoutActifFinancierController(@RequestBody ActifFinancier  a ,@PathVariable("idu") Long idu){
 		
-		actifFinancierService.addActifFinancier(a, userService.getcode(auth.getName()).getIdUser());
+		actifFinancierService.addActifFinancier(a, idu);
 		return new ResponseEntity<ActifFinancier>(HttpStatus.OK);
 	}
 	
@@ -56,10 +56,11 @@ public class ActifFinancierController {
 	public List<ActifFinancier>listemontant_actuelFond(@PathVariable("fond") Fond    fond){
 		return actifFinancierService.listemontant_actuelFond(fond);
 	}
+	
 	@GetMapping("/listeActifactuelparfondUser/{fond}")  /*** user  : all par fond  */
 	@ResponseBody
-	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,Authentication auth){
-		return actifFinancierService.listemontant_actuelFondparUser(fond,userService.getcode(auth.getName()).getIdUser());
+	public List<ActifFinancier>listemontant_actuelFondUser(@PathVariable("fond") Fond    fond ,long id){
+		return actifFinancierService.listemontant_actuelFondparUser(fond,id);
 	}		
 	
 	@GetMapping("/change/{id}")

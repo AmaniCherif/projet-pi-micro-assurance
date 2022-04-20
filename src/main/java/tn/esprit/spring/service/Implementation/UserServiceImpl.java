@@ -132,9 +132,9 @@ public class UserServiceImpl implements UserService {
 
 	public User getcode(String email) {
 		User u=userRepository.getcode(email);
-        return u;
+        return u;}
 
-	@Scheduled(fixedRate = 1000)
+//	@Scheduled(fixedRate = 1000)
 	public void UserClassification() {
 		List<User> ls = getAllUser();
 		int i = 0;

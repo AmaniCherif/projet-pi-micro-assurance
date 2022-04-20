@@ -15,7 +15,7 @@ import tn.esprit.spring.entity.ActifFinancier;
 import tn.esprit.spring.entity.Fond;
 import tn.esprit.spring.entity.Prime;
 import tn.esprit.spring.entity.Rendement;
-
+import tn.esprit.spring.entity.User;
 import tn.esprit.spring.repository.IActifFinancier;
 import tn.esprit.spring.repository.IDataFondEURORepo;
 import tn.esprit.spring.repository.IRendement;
@@ -43,7 +43,7 @@ public class ActifFinancierService {
 	
 	////////////////Ajouter_l'actif_financier///////////////////
 	public void addActifFinancier( ActifFinancier actif , Long idUser){
-		//User u = userRepo.findById(idUser).get();	//Yasmine user
+		User u = userRepo.findById(idUser).get();	//Yasmine user
 		Date currentUtilDate = new Date();
 		int a = currentUtilDate.getYear() + actif.getMaturite() ;
 		Date currentUtilDate2 = new Date();
@@ -52,7 +52,7 @@ public class ActifFinancierService {
 		actif.setDate_fin(currentUtilDate2);
 		actif.setEtat("En cours");
 		actif.setAccepte_rachat(0);
-		//actif.setUserActif(u);
+		actif.setUserActif(u);
 		actifFinancierRepo.save(actif);
     }
 	///////Lister_tous_les_fonds//////////
@@ -76,6 +76,7 @@ public class ActifFinancierService {
 	   	  List<ActifFinancier> l ;
 	  	  if(f == Fond.Fond_euro){
 	  	  l = actifFinancierRepo.listemontant_actuelFondEuroparUser(idUser) ;
+	  	System.out.println("ayaaa brass ommek");
 	  	  }
 	  	  else {
 	  		  l = actifFinancierRepo.listemontant_actuelEuroCroissanceparUser(idUser) ;
@@ -204,7 +205,7 @@ public class ActifFinancierService {
 			}
 			System.out.println("amaaaaaaan2 " + primefinale);			
 		}			
-		System.out.println("calcule prime cumulÃ©  haya " + primefinale  );	
+		System.out.println("calcule prime cumulee  haya " + primefinale  );	
 
 		a.setMontant_cumule(primefinale);
 		a.setDate_actuel(d1);
@@ -338,7 +339,7 @@ public ActifFinancier montant_actuelEuroCroissance(Long id){
 		}
 		System.out.println("amaaaaaaan2 " + primefinale);			
 	}			
-	System.out.println("calcule prime cumulÃ©  haya " + primefinale  );	
+	System.out.println("calcule prime cumulee  haya " + primefinale  );	
 
 	a.setMontant_cumule(primefinale);
 	a.setDate_actuel(d1);
