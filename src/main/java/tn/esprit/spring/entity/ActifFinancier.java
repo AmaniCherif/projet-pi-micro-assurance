@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @SuppressWarnings("serial")
 @Entity
 public class ActifFinancier implements Serializable {
@@ -143,7 +145,7 @@ public class ActifFinancier implements Serializable {
 	public void setEtat(String etat) {
 		this.etat = etat;
 	}
-	
+	@JsonBackReference
 	@ManyToOne
 	 private User userActif;
 
