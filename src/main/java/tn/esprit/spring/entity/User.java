@@ -3,11 +3,12 @@
 
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,6 +25,7 @@ import javax.validation.constraints.NotBlank;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -95,14 +97,17 @@ public class User implements UserDetails {
 		this.sexe = sex;
 	}
 
-	private Long cin;
+	@NotBlank
+	private String cin;
+
+	
 
 
-	public Long getCin() {
+	public String getCin() {
 		return cin;
 	}
-	public void setCin(Long cin) {
-		cin = cin;
+	public void setCin(String cin) {
+		this.cin = cin;
 	}
 	@Temporal(TemporalType.DATE)
 	private Date birthdate;
@@ -289,6 +294,8 @@ public class User implements UserDetails {
 		return list;
 	}
 	
-	
+	@JsonBackReference
+	@OneToMany(mappedBy="userActif")
+	private Set<ActifFinancier> actifFinancier;
 	
 }

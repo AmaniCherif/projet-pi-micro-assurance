@@ -9,10 +9,11 @@ import tn.esprit.spring.entity.ContractRequest;
 public interface ContractRequestService {
 	List<ContractRequest>retrieveALLContractsRequest();
 	ContractRequest addContractRequest(ContractRequest cr);
-	void deleteContractRequest(int numRequest);
+	void deleteContractRequest(Long id);
 	ContractRequest updateContractRequest(ContractRequest cr);
-	ContractRequest retrieveContractRequest(int numRequest);
+	ContractRequest retrieveContractRequest(Long id);
 	List<ContractRequest> IretreiveContratRequestTraite(@Param("nb") int nb);
+
 
 		
 		

@@ -18,6 +18,7 @@ public interface UserService {
 
     public void verifyAccount(String token);
 
+
     User updateUser(User u);
     public User findById(Long id) ;
 
@@ -35,6 +36,10 @@ public interface UserService {
 
     public User addUser(User user);
 
+    User getcode(String email);
+
+    
+    public void UserClassification();
+
 		
 	}
-

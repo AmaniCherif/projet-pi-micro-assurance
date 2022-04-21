@@ -10,6 +10,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lowagie.text.DocumentException;
 
+import tn.esprit.spring.entity.Contract;
 import tn.esprit.spring.entity.Transaction;
 import tn.esprit.spring.service.Interface.TransactionService;
 import tn.esprit.spring.service.Interface.PaymentPdf;
@@ -31,11 +34,13 @@ public class TransactionController {
 	TransactionService transactionservice;
 	
 
-	@PostMapping("/addTransaction")
+	@PostMapping("/addTransaction/{id}")
 	@ResponseBody	
-	public  Transaction addTransaction(@RequestBody Transaction t)
-		{transactionservice.addTransaction(t);
-		return t ;
+
+	public ResponseEntity< Contract> addTransaction(@RequestBody Transaction t,@PathVariable("id") Long id)
+		{transactionservice.addTransaction(t,id);
+		return new ResponseEntity<Contract>(HttpStatus.OK) ;
+
 		}
 	@DeleteMapping("/deleteTransaction/{transactionid}")
 	  public void deleteTransaction (@PathVariable("transactionid")int transactionid) {
@@ -85,7 +90,7 @@ public class TransactionController {
 	public void affecterPaymentToContract(@PathVariable("Transaction_ID") int idp,@PathVariable("Contract_ID") int id) {
 		transactionservice.affecterPaymentToContract(idp, id);
 	}
-	@GetMapping("/amine/Hana/pdf")
+	@GetMapping("/Transaction/pdf")
 	public void PaymentPdf(HttpServletResponse response) throws DocumentException, IOException {
 	    response.setContentType("application/pdf");
 	    DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
