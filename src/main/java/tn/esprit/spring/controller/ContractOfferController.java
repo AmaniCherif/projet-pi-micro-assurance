@@ -47,7 +47,8 @@ public class ContractOfferController {
 	}
 	@PutMapping("/updateContractOffer/{idContractOffer}")
 	   @ResponseBody
-	   public ContractOffer updateoffer (@RequestBody ContractOffer cf){
+	   public ContractOffer updateoffer (@RequestBody ContractOffer cf , @PathVariable("idContractOffer") int id ){
+		   cf.setIdContractOffer(id);
 		   return  ContractOfferService.updateContract_Offers(cf); 
 	   }
 	@PostMapping("/addContractOffer")
@@ -60,11 +61,11 @@ public class ContractOfferController {
 	public void removeContractController(@PathVariable("idContractOffer") int id) {
 		ContractOfferService.deleteContract_Offers(id);
 	}
-	 @PostMapping("/AddContractMixte/{userid}")  
+	 @PostMapping("/AddContractMixte/{userid}/{offerID}")  
 	 @ResponseBody
-		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")Long idUser)   
+		public String AddContractMixte(@RequestBody ContractOffer c ,@PathVariable("userid")Long idUser,@PathVariable("offerID")Long offerID)   
 		{  		
-		 ContractOfferService.AddContractMixte(c,idUser);
+		 ContractOfferService.AddContractMixte(c,idUser,offerID);
 		 return("contract Added Successufuly");
 		}
 
@@ -78,12 +79,16 @@ public class ContractOfferController {
 	        String headerKey = "Content-Disposition";
 	        String headerValue = "attachment; filename=MixteContract_" + currentDateTime + ".pdf";
 	        response.setHeader(headerKey, headerValue);
-	        ContractOfferService.export(ContractOfferRepository.findById(id).orElse(null),response);
+	        System.out.println("/////////////////////////");
+
+	        ContractOffer x = ContractOfferRepository.findByIdContractOffer(id);
+	        System.out.println(x);
+	        ContractOfferService.export(x,response);
 	        		System.out.println("Pdf Generated successufully ");	       
 	         
 	    }
 	 @GetMapping("/ContratMixte/nbtranche/{userid}")
-	    public String nbtranche(HttpServletResponse response,@PathVariable("userid")int userid ) throws DocumentException, IOException {
+	    public String nbtranche( @PathVariable("userid")Long userid )   {
 		 ContractOffer d= ContractOfferService.Contract_OffersByUser(userid);
 		 String date = d.getDate_fin() ;
 		 double prime = d.getTarification(); // get prime mel base
@@ -93,16 +98,14 @@ public class ContractOfferController {
 	         
 		 return ("You have " + nbr_tranche + " x " + prime + " more payments in your contract = " + montant_restant + " Dinars");
 	    }
-	     @PostMapping("/ContratMixte/resilience/{userid}")
-	    public ContractOffer resilience(HttpServletResponse response,@PathVariable("userid")int userid)  {
+	 @PostMapping("/ContratMixte/resilience/{userid}")
+	    public ContractOffer resilience(HttpServletResponse response,@PathVariable("userid")Long userid)  {
 		 
 		 ContractOffer o2 = ContractOfferService.Contract_OffersByUser(userid);
 		 o2.setState_offers(State_Offer.Resillier);
-
-		 return o2 ;
-
-
-
+		 ContractOfferService.updateContract_Offers(o2);
+		 return o2;
 	 }
-	 }
+
+}
 

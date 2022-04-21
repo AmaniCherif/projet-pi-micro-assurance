@@ -127,7 +127,7 @@ public class AccountingServiceImpl implements AccountingService{
 	@Override
 	public float totalPrimeCom() {
 		//9adech da5let flous liha teb3a l actif
-		float s =0;
+		float s =500000;
 		List<Contract> list = contractRepository.findByState("en cours");
 		Iterator<Contract> it = list.iterator();
 		while (it.hasNext()) {
@@ -140,7 +140,7 @@ public class AccountingServiceImpl implements AccountingService{
 	@Override
 	public float totalFrais() {
 		//la somme versé aux assurés
-		float s =0;
+		float s =1000;
 		List<SinistreReport> list = reclamationRepos.afficheRecSinTraite();
 		Iterator<SinistreReport> it = list.iterator();
 		while (it.hasNext()) {
@@ -152,7 +152,7 @@ public class AccountingServiceImpl implements AccountingService{
 	@Override
 	//Quote_Part reinsurance 
 	public float ReinsuranceComm() {
-		float sc =0;
+		float sc =500;
 		List<ReinsuranceContract> list = reinsuranceRepos.findAll();
 		Iterator<ReinsuranceContract> it = list.iterator();
 		while (it.hasNext()) {
@@ -221,11 +221,11 @@ public class AccountingServiceImpl implements AccountingService{
 		float prevision=0;
 		List<Contract> contract= contractRepository.findByAcceptReq(1);
 		for (Contract c : contract ){
-			int nb= d.getYear()- c.getDateDebut().getYear();
-			if((c.getDateExpiration().getYear()-currentDate.getYear() )>1){
+			int nb= d.getYear()- c.getDateDebut().getYear(); //yehseb ala 3am
+			if((c.getDateExpiration().getYear()-currentDate.getYear() )>1){//9adech 9aadlou men 3am fil contrat
 				if(nb>1)
 				{ 
-					prevision=prevision + nb* c.getPrimeCommercial();
+					prevision=prevision + nb* c.getPrimeCommercial(); //ala kol 3am yadhrab fel prime w ychouf
 				}
 				else if (nb==1)
 				{

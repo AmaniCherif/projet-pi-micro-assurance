@@ -1,5 +1,8 @@
 package tn.esprit.spring.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +100,13 @@ public class AccountingController {
 	@ResponseBody
 	public float liabilities(){
 		return accountingService.liabilities();
+	}
+	@GetMapping("/prevision/{Date}")
+	@ResponseBody
+	public float Prevision(@PathVariable("Date") String d) throws ParseException{
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date d11 = dateFormat.parse(d);
+		return accountingService.prevision(d11);
 	}
 	
 }
